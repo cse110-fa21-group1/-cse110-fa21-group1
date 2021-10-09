@@ -24,10 +24,6 @@ Action:
 Discussion:\
 Conclusion:\
 Action:
-## Group bonding event
-Discussion:\
-Conclusion:\
-Action:
 ## Meeting structure
 Discussion:\
 Conclusion:\
@@ -49,6 +45,10 @@ Discussion:\
 Conclusion:\
 Action:
 ## Team Intro Video
+Discussion:\
+Conclusion:\
+Action:
+## Group bonding event
 Discussion:\
 Conclusion:\
 Action:
