@@ -16,6 +16,10 @@ Attendees:
 -
 
 # Agenda
+## Introductions
+Discussion:\
+Conclusion:\
+Action:
 ## Elect one more team lead
 Discussion:\
 Conlcusion:\
