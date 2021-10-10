@@ -29,13 +29,3 @@ If there's ever an issue, please try and resolve it amongst yourselves civilly, 
 ## Expectation of fellow team members
 Please be civil to each other, talk often, and be mindful of other people's responsibilities. Please try and dedicate around 4 hours a week to developing so we can stay up to date with each other. Be willing to ask for help if you have an issue.
 
-## Signatures:
-*Dominik Lovric*
-*Crisostomo Chan*
-*Jennifer Pham*
-*Darwin Chan*
-*John Yan*
-*Mike Dong*
-*Zimo Peng*
-*Tianze Guan*
-
