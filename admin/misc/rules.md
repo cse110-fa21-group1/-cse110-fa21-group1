@@ -2,7 +2,7 @@
 ## Group information:
 Team 1 \
 Powell \
-Team Name: TBD
+Team Name: Ready Player One
 ## Team Member information
 - Dominik
 - Navya
