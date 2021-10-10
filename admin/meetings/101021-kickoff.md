@@ -44,20 +44,17 @@ Discussion: TBD\
 Conclusion: TBD\
 Action:
 ## Branding
-Discussion: TBD\ 
+Discussion: Ready Player 1! \ 
 Conclusion: TBD\
 Action: TBD
 ## Team Page
-Discussion: TBD\
+Discussion: Do your portion of the team page!\
 Conclusion: TBD\
 Action: TBD
 ## Team Intro Video
 Discussion: TBD\
 Conclusion: TBD\
-## Group bonding!
-Discussion:
-Conclusion:
-Action: TBD
+Action: Please do your script for the intro before lecture!
 ## Group bonding event
 Discussion: TBD\
 Conclusion: TBD\
