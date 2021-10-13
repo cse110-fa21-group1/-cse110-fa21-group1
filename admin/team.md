@@ -1,6 +1,6 @@
 <h1 align="center">Ready Team One!</h1>
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/87049807/137214245-6c68f10d-ce3d-4879-bd5b-71de479ab442.png"/>
+  <img src="https://github.com/cse110-fa21-group1/-cse110-fa21-group1/blob/main/admin/branding/ready-player-one-e1522004305472.png?raw=true"/>
 </p>
 
 ## Dominik
