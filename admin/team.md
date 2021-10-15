@@ -30,7 +30,13 @@ Link to GitHub: https://github.com/nabutabu
 ## Tianze
 
 ## Jennifer
-
+For a team, I think the most important values are proper communication and a good sense of responsibility. I hope that everyone, myself included, can uphold these values!
+Link to GitHub: https://github.com/froggerson
+- 3rd year Computer Science major with Design minor in Warren college.
+- From Southern California.
+- Enjoys playing video games, drawing, and occasionally reading manga.
+- Fun fact: I am currently AR 57 in Genshin Impact. Please send help.
+  
 ## John
 
 ## Zimo
