@@ -30,7 +30,14 @@ Link to GitHub: https://github.com/darwinchan2002
 - Fun fact: I love media stuff such as photography and videos!
 
 ## Matthew
+I believe good communication at the very least is important in a team so everyone knows what is happening at any given time. In addition if the team is comfortable with good amounts of communication, hopefully it means everyone is comfortable enough to let the team know of any issues that arise, or need help with so the team can get issues done together quickly if needed.
 
+Link to GitHub: https://github.com/git-mchan
+- 4th year Computer Science student in Warren
+- From San Diego
+- Enjoys driving around town for no reason.
+- My body most of the time likes to wake up early for no reason before my alarm if there is something "important" I need to do. 
+  
 ## Chrisostomo
 
 ## Mike
