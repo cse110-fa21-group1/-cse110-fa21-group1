@@ -41,6 +41,13 @@ Link to GitHub: https://github.com/git-mchan
 ## Chrisostomo
 
 ## Mike
+I believe having mutual respect, common and aligned goals, open communication, and patience can all help make for a successful team. I hope everyone could always uphold these values and our team shall be successful.
+
+Link to GitHub: https://github.com/MikeD-source
+- 3rd year Math-Computer Science and Data Science student in Revelle
+- From Southern California
+- Enjoys fishing, boxing, and video gaming.
+- I am highly caffine-addicted.
 
 ## Tianze
 
