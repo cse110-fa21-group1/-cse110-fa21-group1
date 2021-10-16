@@ -40,5 +40,12 @@ Link to GitHub: https://github.com/darwinchan2002
 ## Jennifer
 
 ## John
+The values that any team needs to have are respect and compassion towards one another and a strong sense of pride. I hope to uphold these values and I hope my team members do the same.
+
+Link to Github: https://github.com/luosxaira
+- 3rd year Computer Science student in ERC
+- From Los Angeles
+- Enjoy running, playing a bunch of video games, karaoke, manga/anime
+- Caffeine destroys me and I hate it (so does dumping money on keyboard stuffs)
 
 ## Zimo
