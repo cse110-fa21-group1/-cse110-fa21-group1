@@ -30,6 +30,11 @@ Link to GitHub: https://github.com/darwinchan2002
 - Fun fact: I love media stuff such as photography and videos!
 
 ## Matthew
+I feel a team should at the very least have a very good amount of communication so everyone on the team knows what is going on at any given time. And if there is good communication, hopefully everyone on the team is also comfortable enough so if any mistakes are made, it doesn't feel like that person will be looked down upon and we can get issues resolved right away. 
+- 4th year Computer Science student in Warren.
+- From San Diego.
+- Enjoys driving around town, for no reason at all.
+- My body usually likes to wake up way too early before my alarm if there is something I have to do, even if I sleep really late. 
 
 ## Chrisostomo
 
