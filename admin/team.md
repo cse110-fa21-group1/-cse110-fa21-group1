@@ -20,6 +20,14 @@ Link to GitHub: https://github.com/nabutabu
 - I play for the UCSD cricket team and also play Valorant quite often
 
 ## Darwin
+I think being respectful, passionate, and communicate throughout the project would be somethings that we should keep in mind! I hope to uphold these values and I hope my team members do the same :)
+
+Link to GitHub: https://github.com/darwinchan2002
+
+- 4th year Computer Science student at Muir
+- From Hong Kong
+- Enjoys playing basketball, singing, going around, and hiking 🥾 
+- Fun fact: I love media stuff such as photography and videos!
 
 ## Matthew
 
