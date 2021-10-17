@@ -4,7 +4,7 @@
 </p>
 
 ## Dominik
-The values that I find paramount are kindness, responsibility, and communication when working on this project, I hope to uphold these values and I hope my team members do the same. \
+The values that I find paramount are kindness, responsibility, and communication when working on this project, I hope to uphold these values and I hope my team members do the same. 
 Link to GitHub: https://github.com/dlovric
 - 4th year Computer Engineering Student at Thurgood Marshall
 - From Sacramento
@@ -38,7 +38,14 @@ Link to GitHub: https://github.com/git-mchan
 - Enjoys driving around town for no reason.
 - My body most of the time likes to wake up early for no reason before my alarm if there is something "important" I need to do. 
   
-## Chrisostomo
+## Crisostomo
+I believe open communication and respect are the key ingredients to a great team dynamic. The ability to communicate our limitations and ask for help without fear of repercussions allows a much healthier environment that reduces the chances of a team falling apart and becoming dysfunctional.
+
+Link to Github: https://github.com/CrisostomoC3911
+- 4th year Mathematics and Computer Science student in Sixth
+- From Metro Manila, Philippines before I moved to Orange County in 2008
+- Enjoys guitar, kalimba, melodica, Dungeons and Dragons, reading manga/manhua/manhwa/webnovels/webtoons, anime, movies martial arts, cooking, and video games
+- Fun Fact: I post my fingerstyle guitar covers on youtube! https://www.youtube.com/channel/UC25YWQJCj7lZbNzznIkhNHQ
 
 ## Mike
 I believe having mutual respect, common and aligned goals, open communication, and patience can all help make for a successful team. I hope everyone could always uphold these values and our team shall be successful.
