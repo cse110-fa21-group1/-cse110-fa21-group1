@@ -50,6 +50,11 @@ Link to GitHub: https://github.com/MikeD-source
 - I am highly caffine-addicted.
 
 ## Tianze
+Stay together, work together, and help each other! My understanding of teamwork is to discover everyone's potential to its maximun. We want to support each other and give enough room for creativity.
+- 4th year Math-CS student.
+- Enjoy video game, cooking, and basketball.
+- Fun fact: I lost around 50 pounds this summer.
+- like to Github: https://github.com/TZ10000
 
 ## Jennifer
 For a team, I think the most important values are proper communication and a good sense of responsibility. I hope that everyone, myself included, can uphold these values!
