@@ -69,3 +69,10 @@ Link to Github: https://github.com/luosxaira
 - Caffeine destroys me and I hate it (so does dumping money on keyboard stuffs)
 
 ## Zimo
+The most important values for a team is kindness, respect, and the sense of ownership. They are the critical foundation of team communication and cooperation. 
+
+Link to Github: https://github.com/zimo27
+- 3rd year computer engineering student in Revelle
+- From Zhejiang province in China
+- Enjoys watching movies, playing badminton, snowboarding
+- Funfact: I am always lucky 
