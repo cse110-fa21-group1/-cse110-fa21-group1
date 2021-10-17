@@ -44,7 +44,7 @@ I believe open communication and respect are the key ingredients to a great team
 Link to Github: https://github.com/CrisostomoC3911
 - 4th year Mathematics and Computer Science student in Sixth
 - From Metro Manila, Philippines before I moved to Orange County in 2008
-- Enjoys guitar, kalimba, melodica, Dungeons and Dragons, reading manga/manhua/manhwa/webnovels/webtoons, anime, movies martial arts, cooking, and video games
+- Enjoys guitar, kalimba, melodica, Dungeons and Dragons, reading manga/manhua/manhwa/webnovels/webtoons, anime, movies, martial arts (kendo right now), cooking, and video games
 - Fun Fact: I post my fingerstyle guitar covers on youtube! https://www.youtube.com/channel/UC25YWQJCj7lZbNzznIkhNHQ
 
 ## Mike
