@@ -27,11 +27,11 @@ Action:\
 ## ADR
 Discussion: Formal documentation of major decisions for our project\
 Conclusion: ADR assignment is due soon, after lecture it will be more clear\
-Action:\
+Action: Mike is in charge\
 
 ## Deadlines and Updates
 Discussion: Frontend and Backend updates for work done so far. Frontend and Backend deadlines. Week 8 Sprint Review and Team assignment deadlines.\
-Conclusion: Frontend will try to present stuff to Sanat by near end week.\
+Conclusion: Frontend will try to present stuff to Sanat by near end week. Need team status video and prototype by week 8\
 Action:\
 
 ## Project Board
