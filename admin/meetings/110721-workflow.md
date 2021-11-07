@@ -29,8 +29,8 @@ Action:
 
 ## CICD Pipeline
 Discussion: Build a pipeline on github repo using github actions. Create workflow for any code that goes into the repo.\
-Conclusion: Dominik and Navya will complete it\
-Action:
+Conclusion: \
+Action:Dominik and Navya will complete it by the 15th
 
 ## ADR
 Discussion: Formal documentation of major decisions for our project\
