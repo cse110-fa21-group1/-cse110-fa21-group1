@@ -20,7 +20,7 @@ Attendees:
 ## Updates from Last Week's Meeting
 Discussion: High fidelity Wireframes mostly done. \
 Conclusion: High fidelity wireframes need to be updated a bit more to get closer to actual product. Assign work for everyone and get implementing started\
-Action: \
+Action: 
 
 ## Implementation 
 Discussion: Plan for implementation for the next 2 weeks\
