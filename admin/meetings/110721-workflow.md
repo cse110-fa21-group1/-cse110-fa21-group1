@@ -49,7 +49,7 @@ Action: Navya made Trelloboard, we will add Sanat to it.
 
 ## Confidence on Completion
 Discussion: Gauge current confidence on completion of the project. Adjust tasks/expectations accordingly.\
-Conclusion:\
+Conclusion: Slightly worried but overall confident we'll get everything done by the end\
 Action:
 
 
