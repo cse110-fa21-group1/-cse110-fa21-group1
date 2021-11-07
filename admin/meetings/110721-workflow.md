@@ -6,7 +6,15 @@ Facilitator: Dominik\
 Note Taker: Crisostomo
 
 Attendees:
--
+- Dominik Lovric
+- Navya Sharma
+- Jennifer Pham
+- John Yan
+- Matthew Chanthirat
+- Mike Dong
+- Zimo Peng
+- Darwin Chan
+- Crisostomo Chan
 
 # Agenda
 ## Updates from Last Week's Meeting
