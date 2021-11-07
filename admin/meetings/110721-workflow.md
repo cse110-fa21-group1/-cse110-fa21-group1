@@ -36,8 +36,8 @@ Action: Cris presents stuff to Sanat\
 
 ## Project Board
 Discussion: Decide on Trello/Notion. Identify issues, create tasks, story points, and assign tasks. \
-Conclusion:\
-Action: Navya made Trelloboard, we will add Sanat to it. Keep it as an informal organization board for ourselves\
+Conclusion: Keep Trello as an informal organization board for ourselves\
+Action: Navya made Trelloboard, we will add Sanat to it. \
 
 ## Confidence on Completion
 Discussion: Gauge current confidence on completion of the project. Adjust tasks/expectations accordingly.\
