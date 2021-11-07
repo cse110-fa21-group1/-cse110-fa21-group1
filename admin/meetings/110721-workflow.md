@@ -25,32 +25,32 @@ Action: \
 ## Implementation 
 Discussion: Plan for implementation for the next 2 weeks\
 Conclusion: Will have the HTML implemented by Thursday\
-Action:\
+Action:
 
 ## CICD Pipeline
 Discussion: Build a pipeline on github repo using github actions. Create workflow for any code that goes into the repo.\
 Conclusion:\
-Action:\
+Action:
 
 ## ADR
 Discussion: Formal documentation of major decisions for our project\
 Conclusion: ADR assignment is due soon, after lecture it will be more clear\
-Action: Mike is in charge\
+Action: Mike is in charge
 
 ## Deadlines and Updates
 Discussion: Frontend and Backend updates for work done so far. Frontend and Backend deadlines. Week 8 Sprint Review and Team assignment deadlines.\
 Conclusion: Frontend will try to present stuff to Sanat by near end week. Need team status video and prototype by week 8\
-Action: Cris presents stuff to Sanat\
+Action: Cris presents stuff to Sanat
 
 ## Project Board
 Discussion: Decide on Trello/Notion. Identify issues, create tasks, story points, and assign tasks. \
 Conclusion: Keep Trello as an informal organization board for ourselves\
-Action: Navya made Trelloboard, we will add Sanat to it. \
+Action: Navya made Trelloboard, we will add Sanat to it. 
 
 ## Confidence on Completion
 Discussion: Gauge current confidence on completion of the project. Adjust tasks/expectations accordingly.\
 Conclusion:\
-Action:\
+Action:
 
 
 # Additional Notes/Info:
