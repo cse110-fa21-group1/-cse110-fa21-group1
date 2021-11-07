@@ -31,7 +31,7 @@ Action:\
 
 ## Deadlines and Updates
 Discussion: Frontend and Backend updates for work done so far. Frontend and Backend deadlines. Week 8 Sprint Review and Team assignment deadlines.\
-Conclusion: Frontend will try to present stuff to Sanat by near end week\
+Conclusion: Frontend will try to present stuff to Sanat by near end week. Team assignments have checkpoints rather than 1 set deadline.\
 Action:\
 
 ## Project Board
