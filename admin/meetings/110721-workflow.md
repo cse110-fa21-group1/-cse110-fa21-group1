@@ -46,7 +46,7 @@ Action:\
 
 
 # Additional Notes/Info:
--
+- Stands up on Tuesdays and Thursdays to keep everyone connected.
 
 # For next time:
 - 
