@@ -16,7 +16,7 @@ Action: \
 
 ## Implementation 
 Discussion: Plan for implementation for the next 2 weeks\
-Conclusion:\
+Conclusion: Will have the HTML implemented by Thursday\
 Action:\
 
 ## CICD Pipeline
