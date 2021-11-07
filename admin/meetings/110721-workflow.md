@@ -14,32 +14,32 @@ Discussion: High fidelity Wireframes are done
 Conclusion: Assign work for everyone and get implementing started
 Action: 
 
-##Implementation 
+## Implementation 
 Discussion: Plan for implementation for the next 2 weeks
 Conclusion:
 Action:
 
-##CICD Pipeline
+## CICD Pipeline
 Discussion: Build a pipeline on github repo using github actions. Create workflow for any code that goes into the repo.
 Conclusion:
 Action:
 
-##ADR
+## ADR
 Discussion: Formal documentation of major decisions for our project
 Conclusion:
 Action:
 
-##Deadlines and Updates
+## Deadlines and Updates
 Discussion: Frontend and Backend updates for work done so far. Frontend and Backend deadlines. Week 8 Sprint Review and Team assignment deadlines.
 Conclusion:
 Action:
 
-##Project Board
+## Project Board
 Discussion: Decide on Trello/Notion. Identify issues, create tasks, story points, and assign tasks. 
 Conclusion:
 Action:
 
-##Confidence on Completion
+## Confidence on Completion
 Discussion: Gauge current confidence on completion of the project. Adjust tasks/expectations accordingly.
 Conclusion:
 Action:
