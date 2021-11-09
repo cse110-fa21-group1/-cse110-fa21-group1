@@ -1,98 +1,96 @@
 class NavBar extends HTMLElement {
-    constructor() {
-      // Part 1 Expose - TODO
+  constructor() {
       super();
-      // You'll want to attach the shadow DOM here
-      // let shadow = this.attachShadow({ mode: 'open' });
-      this.shadow = this.attachShadow({mode: 'open'});
-    }
 
-    connectedCallback() {
-        const styleElem = document.createElement('style');
-        const styles = `
-        /* Add a black background color to the top navigation bar */
+      this.shadow = this.attachShadow({mode: 'open'});
+      const styleElem = document.createElement('style');
+      const styles = `
         nav {
+          position: sticky;
+          width: 100vw;
+          height: 80px;
           overflow: hidden;
-          background-color: #e9e9e9;
+          background-color: #999999;
+          display: grid;
+          font-family: sans-serif;
+          grid-template-columns: 50px 1fr 1fr 8fr 1fr 1fr 50px;
+          grid-template-rows:auto;
+          column-gap: 20px;
+          grid-template-areas: 
+          ". logo . search . icon .";
         }
-        
-        /* Style the links inside the navigation bar */
-        nav a {
-          float: left;
-          display: block;
-          color: black;
+
+        #logo{
+          margin-top: 25px;
+          grid-area: logo;
+          background-color: #CCCCCC;
           text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
+          padding: 10px 10px;
         }
-        
-        /* Change the color of links on hover */
-        nav a:hover {
-          background-color: #ddd;
-          color: black;
+
+        .search-container{
+          margin-top: 25px;
+          grid-area: search;
         }
-        
-        /* Style the "active" element to highlight the current page */
-        nav a.active {
-          background-color: #2196F3;
-          color: white;
+
+        .search-container form{
+          display: flex;
+          justifiy-content: flex-start;
+          align-items: center;
         }
-        
+
         /* Style the search box inside the navigation bar */
-        nav input[type=text] {
-          float: right;
+        #search-bar {
+          background-color: #C4C4C4;
+          color: #4C4C4C;
           padding: 6px;
           border: none;
-          margin-top: 8px;
-          margin-right: 16px;
-          font-size: 17px;
+          font-size: 18px;
+          width:90%;
+          margin:0;
         }
-        
-        /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-        @media screen and (max-width: 600px) {
-          nav a, nav input[type=text] {
-            float: none;
-            display: block;
-            text-align: left;
-            width: 100%;
-            margin: 0;
-            padding: 14px;
-          }
-          nav input[type=text] {
-            border: 1px solid #ccc;
-          }
+
+        #search-button{
+          box-sizing: border-box;
+          margin:0;
+          background-color:#4c4c4c;
+          width: 34px;
+          height:34px;
+          border-width:0;
+          background-size:28px;
+          background-image: url("assets/search.png");
+          background-repeat: no-repeat;
+          background-position: center; 
+          
         }
-        `;
-        styleElem.innerHTML = styles;
 
-        const navbar = document.createElement('nav');
-        navbar.innerHTML = 
-        `
-          <a class="active" href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <input type="text" placeholder="Search..">
-        `
-        const shadowRoot = this.attachShadow({ mode: 'closed' });
-    
-        this.shadow.appendChild(headerTemplate.content);
-    }
+        #hamburger-icon{
+          margin-top: 25px;
+          text-align:right;
+          grid-area: icon;
+          height: 28px;
+          width: auto;
+        }
+      `;
+      styleElem.innerHTML = styles;
 
-    
-      // Some functions that will be helpful here:
-      //    document.createElement()
-      //    document.querySelector()
-      //    element.classList.add()
-      //    element.setAttribute()
-      //    element.appendChild()
-      //    & All of the helper functions below
-  
-      // Make sure to attach your root element and styles to the shadow DOM you
-      // created in the constructor()
+      const navbar = document.createElement('nav');
+      navbar.innerHTML = 
+      `
+        <img id="logo" src="tba" alt="logo">
+        <div class="search-container">
+          <form>
+            <input id="search-bar" type="text" placeholder="Search for something to cook">
+            <button id="search-button" type="submit"></button>
+          </form>
+        </div>
+        <img id="hamburger-icon" src="assets/hamburger.png" alt="menu">
+
+
+      `;
       this.shadow.appendChild(styleElem);
-      this.shadow.appendChild(card);
-  // Define the Class so you can use it as a custom element.
-  // This is critical, leave this here and don't touch it
-  customElements.define('nav-bar', NavBar);
+      this.shadow.appendChild(navbar);
+  }
+}
+customElements.define('nav-bar', NavBar);
   
