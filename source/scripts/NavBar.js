@@ -64,12 +64,71 @@ class NavBar extends HTMLElement {
           
         }
 
-        #hamburger-icon{
+        .hamburger-icon{
           margin-top: 25px;
-          text-align:right;
           grid-area: icon;
           height: 28px;
-          width: auto;
+          width: 28px;
+          display: inline-block;
+        }
+
+        .hamburger-icon span{
+          display: block;
+          background: #000;
+          width: 100%;
+          height: 4px;
+        }
+
+        .hamburger-icon:before,
+        .hamburger-icon:after {
+          content: "";
+          display: block;
+          background: #000;
+          width: 100%;
+          height: 4px;
+          transform-origin: center center;
+          transform: rotate(0deg);
+          transition: all 0.3s ease;
+        }
+
+        .hamburger-icon:before {
+          margin-bottom: 6px;
+        }
+        
+        .hamburger-icon:after {
+          margin-top: 6px;
+        }
+
+        .hamburger-shown .hamburger-icon span {
+          background: transparent;
+        }
+        
+        .hamburger-shown .hamburger-icon:before {
+          transform: rotate(45deg);
+        }
+        
+        .hamburger-shown .hamburger-icon:after {
+          transform: rotate(-45deg);
+
+        .hamburger-menu{
+          position: absolute;
+          float: right;
+          width: 100%;
+          max-height: 50vh;
+          text-align: center;
+          background-color: #C4C4C4;
+          transition: all .4s ease-in-out;
+          transform: translateX(-100%);
+        }
+
+        .hamburger_shown .hamburger-menu {
+          transform: translateX(0);
+        }
+        
+        .mobile .menu__item {
+          display: block;
+          line-height: 2;
+          padding: 25px 0;
         }
       `;
       styleElem.innerHTML = styles;
@@ -84,12 +143,38 @@ class NavBar extends HTMLElement {
             <button id="search-button" type="submit"></button>
           </form>
         </div>
-        <img id="hamburger-icon" src="assets/hamburger.png" alt="menu">
-
-
+        <a class="hamburger-icon"><span></span></a>
+        <ul class='hamburger-menu">
+          <li>Home</li>
+          <li>Recipes</li>
+            <ul class="recipes-menu">
+              <li>View All</li>
+              <li>Add</li>
+              <li>Edit</li>
+              <li>Delete</li>
+            </ul>
+          <li>Login/Logout</li>
+        </ul>
       `;
+      
       this.shadow.appendChild(styleElem);
       this.shadow.appendChild(navbar);
+
+     console.log('This is the shadow');
+     console.log(this.shadow);
+     console.log('This is the shadow element dammit');
+     
+     let icon = this.shadow.querySelector('.hamburger-icon');
+     let menu = this.shadow.querySelector('.hamburger-menu');
+     icon.addEventListener('click', (e) =>{
+      console.log(e.target);
+      e.target.classList.toggle('hamburger-shown');
+      //console.log(e.target.nextElementSibling);
+      //menu.classList.toggle('hamburger-shown');
+     });
+
+
+
   }
 }
 customElements.define('nav-bar', NavBar);
