@@ -57,7 +57,7 @@ class NavBar extends HTMLElement {
           width: 34px;
           height:34px;
           border-width:0;
-          background-size:28px;
+          background-size:24px;
           background-image: url("assets/search.png");
           background-repeat: no-repeat;
           background-position: center; 
