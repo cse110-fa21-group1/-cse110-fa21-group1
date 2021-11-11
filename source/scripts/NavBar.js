@@ -3,6 +3,8 @@ class NavBar extends HTMLElement {
       super();
 
       this.shadow = this.attachShadow({mode: 'open'});
+
+      // Creates the styling for the navbar component
       const styleElem = document.createElement('style');
       const styles = `
         nav {
@@ -133,6 +135,7 @@ class NavBar extends HTMLElement {
       `;
       styleElem.innerHTML = styles;
 
+      // Creates the html for the nav bar component
       const navbar = document.createElement('nav');
       navbar.innerHTML = 
       `
@@ -160,17 +163,15 @@ class NavBar extends HTMLElement {
       this.shadow.appendChild(styleElem);
       this.shadow.appendChild(navbar);
 
-     console.log('This is the shadow');
-     console.log(this.shadow);
-     console.log('This is the shadow element dammit');
-     
+     // Ideally, this would allow the menu on the side to open and close.
+     // Unfortunately, I am a mere scrub who can not get this to work.
+     // Please send help.
      let icon = this.shadow.querySelector('.hamburger-icon');
      let menu = this.shadow.querySelector('.hamburger-menu');
      icon.addEventListener('click', (e) =>{
       console.log(e.target);
       e.target.classList.toggle('hamburger-shown');
-      //console.log(e.target.nextElementSibling);
-      //menu.classList.toggle('hamburger-shown');
+
      });
 
 
