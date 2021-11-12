@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js Lint
 
 on:
   push:
@@ -18,12 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-      - with:
+        uses: actions/checkout@v2
+        with:
           node-version: ${{ matrix.node-version }}
-      - run: |
-          working-directory: ./source
+          
+      - name: npm install, and test
+        working-directory: ./source
+        run: |
           npm install
-          npm run build --if-present
           npm test
 
   lint:
