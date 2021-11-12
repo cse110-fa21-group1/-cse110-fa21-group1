@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Search API Sample</title>
+
+    <!-- Google Search Engine (GCSE) -->
+    <script async src="https://cse.google.com/cse.js?cx=25984c3df49deb8c9"></script>
+    
+    <style>
+        .gsc-adBlock {
+            /* Makes the ads attached to the search result hidden */
+            display: none !important
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+
+            <h2>Search</h2>
+            <!-- Customized gcse search bar -->
+            <form action="index.html" method="get" role="search">
+                <input autocomplete="off" name="q" placeholder="Search with Darwin" title="Enter search here" type="text">
+                <input type="submit" value="Let's go!"></button>
+            </form>
+
+            <h2>Search Results</h2>
+            <!-- Will be overwritten by gcse with results -->
+            <div class="gcse-searchresults-only">
+
+            </div>
+
+        </section>
+
+    </main>
+</body>
+
+</html>
