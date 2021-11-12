@@ -4,8 +4,12 @@
   "description": "Created on Nov 11, 2021",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"No test so no error: no test specified\" && exit 0"
   },
   "author": "Darwin",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-google": "^0.14.0"
+  }
 }
