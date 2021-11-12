@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <script src="scripts/NavBar.js" type="text/javascript" defer></script>
+  <link href="styles/ManageRecipe.css" rel="stylesheet" type="text/css" />
+  <title>Managing a Recipe</title>
+</head>
+
+<body>
+  <nav-bar></nav-bar>
+
+  <header>
+    <button class="big-button" value="button">Back to Recipes</button>
+    <p id="current-name">Managing a Recipe...</p>
+    <span></span>
+  </header>
+
+  <section class="middle">
+    <!-- html for first page -->
+    <div class="page-one">
+      <div class="left-half">
+        <img id="recipe-pic" src="tba">
+        <input id="pic-url" type="url" placeholder="URL of the image">
+        <button id="pic-button" value="button">+</button>
+      </div>
+      <div class="right-half">
+        <input id="name-box" type="text" placeholder="Name">
+        <textarea id="desc-box" placeholder="Description"></textarea>
+        <input id="tag-box" type="text" placeholder="Tags">
+      </div>
+    </div>
+    <!-- html for 2nd page (ingredients) -->
+    <div class="page-two hidden">
+      <ul class="ing-box">
+        <li>3 ingredient 1</li>
+        <li>4 tsp ingredient 2</li>
+        <li>1 whole ingredient</li>
+        <li>6 ingredient ingredients</li>
+        <li>5 drops of ingredient or pinch of ingredient</li>
+        <li>5 drops of ingredient or pinch of ingredient</li>
+        <li>5 drops of ingredient or pinch of ingredient</li>
+        <li>5 drops of ingredient or pinch of ingredient</li>
+      </ul>
+      <button id="ing-button" class="big-button" value="button">+</button>
+    </div>
+    <!-- html for 3rd page (instructions) -->
+    <div class="page-three hidden">
+      <ol class="instr-box">
+        <li>Mince 4 counter of ingredients and set them aside.</li>
+        <li>Use a rolling pin to roll or an object to flatten the ingredient.</li>
+        <li>Place ingredient into an ingredient shower until ingredient is fully covered.</li>
+        <li>Take the covered ingredient and mix it in shreeded ingredient.</li>
+        <li>Dip the ingredient back into the ingredient shower.</li>
+        <li>Take the covered ingredient and mix it in the bowl of dried ingredient until it is fully covered.</li>
+        <li>Pour 3 tablespoons of ingredient into a frying place on medium with the minced ingredients.</li>
+        <li>After the minced ingredient begins browning, place the ingredient into the pan.</li>
+        <li>Cover the lid and let it sit for for 2 minutes. Following that, flip and repeat for 10 minutes.</li>
+      </ol>
+      <button id="instr-button" class="big-button" value="button">+</button>
+    </div>
+    <!-- html for 4th page (finishing touches) -->
+    <div class="page-four hidden">
+      <div class="left-half">
+        <input id="time-box" type="text" placeholder="Cooking Time">
+        <input id="serving-box" type="text" placeholder="Servings">
+        <div id="pin-section">
+          <p id="pin-text">Pin?</p>
+          <!-- trying to get heart to wrok still -->
+          <p class="heart"></a>
+        </div>
+      </div>
+      <div class="right-half">
+        <video id="recipe-vid" controls>
+          <source src="tba">
+        </video>
+        <input id="vid-url" type="url" placeholder="URL of the video">
+        <button id="vid-button" value="button">+</button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <button id="back-button" class="big-button fade" value="button">Back</button>
+      <ul class="box-group">
+        <li id="b1" class="progress-box active-box"></li>
+        <li id="b2" class="progress-box"></li>
+        <li id="b3" class="progress-box"></li>
+        <li id="b4" class="progress-box"></li>
+      </ul>
+    <button class="big-button" value="button">Next</button>
+  </footer>
+</body>
+</html>
