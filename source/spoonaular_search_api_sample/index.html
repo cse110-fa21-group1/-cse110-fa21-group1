@@ -29,14 +29,29 @@
 
             <script>
                 const apiKey = "e4948e03b38847d7b0b4c0e30e37bd17"
+
+                /**
+                 * Generates url for searching by id
+                 * @param {string} id - Id of the recipe
+                 */
                 function fetchRecipeByIdURL(id) {
                     return "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + apiKey
                 }
+
+                /**
+                 * Generates url for searching by query
+                 * @param {string} query - query for the search
+                 */
                 function fetchRecipeByQueryURL(query) {
                     // https://api.spoonacular.com/recipes/search?apiKey=e4948e03b38847d7b0b4c0e30e37bd17&query=chicken
                     // https://api.spoonacular.com/recipes/complexSearch?query=chicken&apiKey=e4948e03b38847d7b0b4c0e30e37bd17&addRecipeInformation=true
                     return "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&addRecipeInformation=true&number=3&apiKey=" + apiKey
                 }
+
+                /**
+                 * Fetch recipes by query, and populate them in the HTML
+                 * @param {string} query - query of the search
+                 */
                 async function fetchRecipes(query) {
                     return new Promise((resolve, reject) => {
                         // recipes.forEach(recipe => {
