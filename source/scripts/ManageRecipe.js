@@ -26,9 +26,9 @@ const pages = [page1, page2, page3, page4];
 const boxes = [box1, box2, box3, box4];
 const titleTexts = [
 'Managing a Recipe...',
-    'Ingredients!',
-    'Instructions!',
-    'Finishing Touches'];
+  'Ingredients!',
+  'Instructions!',
+  'Finishing Touches'];
 
 /** Helper function for navigating to the 4 different slides of the page
  *  Hides elements from the previous page, shows elements of newPage,
@@ -36,53 +36,53 @@ const titleTexts = [
  * @param {int} newPage The page number of the page navigating to
  */
 function moveToPage(newPage) {
-    boxes[currentPage].classList.remove('active-box');
-    boxes[newPage].classList.add('active-box');
-    pages[currentPage].classList.add('hidden');
-    pages[newPage].classList.remove('hidden');
-    nameText.textContent = titleTexts[newPage];
-    if (currentPage == 0) leftButton.classList.remove('fade');
-    if (currentPage == 3) rightButton.textContent = 'Next';
-    if (newPage == 0) leftButton.classList.add('fade');
-    if (newPage == 3) rightButton.textContent = 'Save';
-    currentPage = newPage;
+  boxes[currentPage].classList.remove('active-box');
+  boxes[newPage].classList.add('active-box');
+  pages[currentPage].classList.add('hidden');
+  pages[newPage].classList.remove('hidden');
+  nameText.textContent = titleTexts[newPage];
+  if (currentPage == 0) leftButton.classList.remove('fade');
+  if (currentPage == 3) rightButton.textContent = 'Next';
+  if (newPage == 0) leftButton.classList.add('fade');
+  if (newPage == 3) rightButton.textContent = 'Save';
+  currentPage = newPage;
 }
 
 /* Adds 'event listeners' for the back and next navigation buttons */
 leftButton.onclick = function() {
-    moveToPage(currentPage-1);
+  moveToPage(currentPage-1);
 };
 rightButton.onclick = function() {
-    if (currentPage == 3) {
-        // save();
-    }
-    else {
-        moveToPage(currentPage+1);
-    }
+  if (currentPage == 3) {
+    // save();
+  }
+  else {
+    moveToPage(currentPage+1);
+  }
 };
 
 /* Adds 'event listeners' for the dot navigation */
 box1.onclick = function() {
-    moveToPage(0);
+  moveToPage(0);
 };
 box2.onclick = function() {
-    moveToPage(1);
+  moveToPage(1);
 };
 box3.onclick = function() {
-    moveToPage(2);
+  moveToPage(2);
 };
 box4.onclick = function() {
-    moveToPage(3);
+  moveToPage(3);
 };
 
 /** Adds 'event listeners' for the import video
  *  and picture from URL buttons by setting src.
  *  */
 picButton.onclick = function() {
-    recipePic.src = picURL.value;
+  recipePic.src = picURL.value;
 };
 vidButton.onclick = function() {
-    recipeVid.src = vidURL.value;
+  recipeVid.src = vidURL.value;
 };
 
 /**  Helper function for adding a new ingredient
@@ -92,19 +92,19 @@ vidButton.onclick = function() {
  *   @return {li} that li object
  */
 function newIng() {
-    const created = document.createElement('li');
-    created.setAttribute('contenteditable', 'true');
-    created.addEventListener('keydown', (event) => {
-        if (event.key == 'Backspace') {
-            if (created.textContent == '') ingList.removeChild(created);
-        }
-        if (event.key == 'Enter') {
-            event.preventDefault();
-            created.parentNode.insertBefore(newIng(), created.nextSibling);
-            created.nextSibling.focus();
-        }
-    });
-    return created;
+  const created = document.createElement('li');
+  created.setAttribute('contenteditable', 'true');
+  created.addEventListener('keydown', (event) => {
+    if (event.key == 'Backspace') {
+      if (created.textContent == '') ingList.removeChild(created);
+    }
+    if (event.key == 'Enter') {
+      event.preventDefault();
+      created.parentNode.insertBefore(newIng(), created.nextSibling);
+      created.nextSibling.focus();
+    }
+  });
+  return created;
 }
 
 /** Adds 'event listener' to the add ingredient button
@@ -112,9 +112,9 @@ function newIng() {
  *  moves to editing the new ingredient.
  */
 ingButton.onclick = function() {
-    const created = newIng();
-    ingList.appendChild(created);
-    created.focus();
+  const created = newIng();
+  ingList.appendChild(created);
+  created.focus();
 };
 
 /**  Helper function for adding a new instruction
@@ -124,19 +124,19 @@ ingButton.onclick = function() {
  *   @return {li} that li object
  */
 function newInstr() {
-    const created = document.createElement('li');
-    created.setAttribute('contenteditable', 'true');
-    created.addEventListener('keydown', (event) => {
-        if (event.key == 'Backspace') {
-            if (created.textContent == '') instrList.removeChild(created);
-        }
-        if (event.key == 'Enter') {
-            event.preventDefault();
-            created.parentNode.insertBefore(newInstr(), created.nextSibling);
-            created.nextSibling.focus();
-        }
-    });
-    return created;
+  const created = document.createElement('li');
+  created.setAttribute('contenteditable', 'true');
+  created.addEventListener('keydown', (event) => {
+    if (event.key == 'Backspace') {
+      if (created.textContent == '') instrList.removeChild(created);
+    }
+    if (event.key == 'Enter') {
+      event.preventDefault();
+      created.parentNode.insertBefore(newInstr(), created.nextSibling);
+      created.nextSibling.focus();
+    }
+  });
+  return created;
 }
 
 /** Adds 'event listener' to the add ingredient button
@@ -144,25 +144,25 @@ function newInstr() {
  *  moves to editing the new instruction.
  */
 instrButton.onclick = function() {
-    const created = newInstr();
-    instrList.appendChild(created);
-    created.focus();
+  const created = newInstr();
+  instrList.appendChild(created);
+  created.focus();
 };
 
 /** Adds event listeners to the first ingredient and instruction
  *  Unlike the created ingredients and instructions, it cannot be deleted.
  */
 firstIng.addEventListener('keydown', (event) => {
-    if (event.key == 'Enter') {
-        event.preventDefault();
-        firstIng.parentNode.insertBefore(newIng(), firstIng.nextSibling);
-        firstIng.nextSibling.focus();
-    }
+  if (event.key == 'Enter') {
+    event.preventDefault();
+    firstIng.parentNode.insertBefore(newIng(), firstIng.nextSibling);
+    firstIng.nextSibling.focus();
+  }
 });
 firstInstr.addEventListener('keydown', (event) => {
-    if (event.key == 'Enter') {
-        event.preventDefault();
-        firstInstr.parentNode.insertBefore(newInstr(), firstInstr.nextSibling);
-        firstInstr.nextSibling.focus();
-    }
+  if (event.key == 'Enter') {
+    event.preventDefault();
+    firstInstr.parentNode.insertBefore(newInstr(), firstInstr.nextSibling);
+    firstInstr.nextSibling.focus();
+  }
 });
