@@ -1,11 +1,12 @@
 # Agile Sprint Review Meeting 1
 In this meeting, we review work accomplished within the last 10 days in great detail
 ### Tasks completed by each member
-- John:
-- Darwin:
-- Mike:
-- Chrisostomo:
-- Jennifer:
-- Matthew:
-- Zimo:
+- John: Sunday and monday came up with the mid fidelity design for edit/add recipe page, Tuesday began coding html, how to hide elements and use flex/grid when coding the front end, on Thursday the simple prototype has been finished and just yesterday it was all flushed out and buttons/images all work. Navigation button works as well. Styling for the javascript page has been done. Will complete styling regarding color/theme logo this upcoming week and maybe transfer to back end.
+- Darwin: Met with Navya to work on the CI/CD pipeline, starting on Wednesday, started on setting up the pipeline stuff on github actions, has never encountered this before and had to do great research regarding the topic and how to get it working. Thursday and Friday did similar things, went through documentation. Friday and Saturday confirmed that everything was finished with the setup with the pipeline. Saturday attended meeting and then started doing research on the spoonacular API, how it works, the documentation, some examples. Can expect to get everything completed in a day or 2, on Monday and Tuesday was working on google search API (turned out to be not as useful for our project) 
+- Mike: Last week after Sunday was looking at the ADR, how it works, to set it up, uploaded templates to repo and completed assignment. Did research regarding spoonacular from Tuesday to Thursday, did some demo stuff afterwards to work with the search portion. Did research on the topic and how to use these APIs, how to get json data, making the connection, etc. Just yesterday tried to use some of Darwins API to make the connections with the frontend to get it integrated. Worked a little bit on the CI/CD pipeline but not as much as Navya or Darwin, just general information.
+- Chrisostomo: Created template for recipe card page, added a search term, filter, the card itself, (hasn't done filter yet, getting done today), added some animations, stored data regarding time and tags when opening up recipes, styles done, still needs to push. Currently trying to figure out what light buttons to put in, making sure its a class within html so the javascript can connect nicely. There are a lot of ways to create buttons, implement as button within html, or as a picture, etc (going to do the first implementation, gonna complete soon), will work on styling/theme soon.
+- Jennifer: On Monday and Tuesday worked on homepage html template. Had trouble with the shadow dom, so just looked on stack overflow for help. On Thursday added comments to my script file. On Saturday worked a bit on the final design on the HomePage. Playing around with various portions of the styling, still trying to find a logo, gonna look into more detail later today.
+- Matthew: Tuesday/Wednesday was working on the html template, only issue was aligning the various boxes with each other, got it figured out, still working on the issue of the recipe information page linting wise (commit wise). And on saturday worked a little bit more to complete the high fidelity design, gonna look into that later today with Jennifer.
+- Zimo: Last Sunday and this Friday, I looked into spoonacular documentation, YouTube tutorials on building apps based on spoonacular. Wednesday and Thursday I did video integration research and examples building. I faced a bug that keeps the video not playing. Then I looked into frontend repo, getting familiar with the pages. I'm still not quite familiar with spoonacular, need to look more
 ### Tasks completed as a whole project wise
+
