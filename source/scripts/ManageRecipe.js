@@ -25,9 +25,9 @@ let currentPage = 0;
 const pages = [page1, page2, page3, page4];
 const boxes = [box1, box2, box3, box4];
 const titleTexts = [
-    'Managing a Recipe...', 
-    'Ingredients!', 
-    'Instructions!', 
+'Managing a Recipe...',
+    'Ingredients!',
+    'Instructions!',
     'Finishing Touches'];
 
 /** Helper function for navigating to the 4 different slides of the page
@@ -48,46 +48,45 @@ function moveToPage (newPage) {
 }
 
 /* Adds 'event listeners' for the back and next navigation buttons */
-leftButton.onclick = function () {
+leftButton.onclick = function() {
     moveToPage(currentPage-1);
 };
-rightButton.onclick = function () {
+rightButton.onclick = function() {
     if (currentPage == 3) {
-        //save();
+        // save();
     }
     else {
         moveToPage(currentPage+1);
     }
-
 };
 
 /* Adds 'event listeners' for the dot navigation */
-box1.onclick = function () {
+box1.onclick = function() {
     moveToPage(0);
-}
-box2.onclick = function () {
+};
+box2.onclick = function() {
     moveToPage(1);
-}
-box3.onclick = function () {
+};
+box3.onclick = function() {
     moveToPage(2);
-}
-box4.onclick = function () {
+};
+box4.onclick = function() {
     moveToPage(3);
-}
+};
 
-picButton.onclick = function () {
+picButton.onclick = function() {
     recipePic.src = picURL.value;
-}
+};
 
-vidButton.onclick = function () {
+vidButton.onclick = function() {
     recipeVid.src = vidURL.value;
-}
+};
 
 /**  Helper function for adding a new ingredient
  *   Creates a new li object and adds event listeners for backspace (to delete)
  *   and enter (to create a new one right below and moves to it [through focus()]).
  */
-function newIng () {
+function newIng() {
     const created = document.createElement('li');
     created.setAttribute('contenteditable', 'true');
     created.addEventListener('keydown', event => {
@@ -107,17 +106,17 @@ function newIng () {
  *  Specifically creates an ingredient, appends it to the list, and finally
  *  moves to editing the new ingredient.
  */ 
-ingButton.onclick = function () {
+ingButton.onclick = function() {
     const created = newIng();
     ingList.appendChild(created);
     created.focus();
-}
+};
 
 /**  Helper function for adding a new instruction
  *   Creates a new li object and adds event listeners for backspace (to delete)
  *   and enter (to create a new one right below and moves to it [through focus()]).
  */
-function newInstr () {
+function newInstr() {
     const created = document.createElement('li');
     created.setAttribute('contenteditable', 'true');
     created.addEventListener('keydown', event => {
@@ -136,8 +135,8 @@ function newInstr () {
 /** Adds 'event listener' to the add ingredient button
  *  Specifically creates an instruction, appends it to the list, and finally
  *  moves to editing the new instruction.
- */ 
-instrButton.onclick = function () {
+ */
+instrButton.onclick = function() {
     const created = newInstr();
     instrList.appendChild(created);
     created.focus();
@@ -145,7 +144,7 @@ instrButton.onclick = function () {
 
 /** Adds event listeners to the first ingredient and instruction
  *  Unlike the created ingredients and instructions, it cannot be deleted.
- */ 
+ */
 firstIng.addEventListener('keydown', event => {
     if (event.key == 'Enter') {
         event.preventDefault();
