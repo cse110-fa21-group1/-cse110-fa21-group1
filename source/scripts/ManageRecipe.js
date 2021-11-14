@@ -25,7 +25,7 @@ let currentPage = 0;
 const pages = [page1, page2, page3, page4];
 const boxes = [box1, box2, box3, box4];
 const titleTexts = [
-'Managing a Recipe...',
+  'Managing a Recipe...',
   'Ingredients!',
   'Instructions!',
   'Finishing Touches'];
@@ -55,8 +55,7 @@ leftButton.onclick = function() {
 rightButton.onclick = function() {
   if (currentPage == 3) {
     // save();
-  }
-  else {
+  } else {
     moveToPage(currentPage+1);
   }
 };
