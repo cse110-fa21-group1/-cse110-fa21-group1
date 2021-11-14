@@ -89,7 +89,7 @@ header {
   width: 90vw;
   height: 55vh;
 }
-.ing-box {
+#ing-box {
   overflow-y:scroll;
   height: 40vh;
 }
@@ -106,7 +106,7 @@ header {
   width: 90vw;
   height: 55vh;
 }
-.instr-box {
+#instr-box {
   margin-left: 1vw;
   overflow-y:scroll;
   height: 40vh;

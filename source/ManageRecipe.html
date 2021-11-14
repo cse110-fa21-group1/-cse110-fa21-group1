@@ -35,30 +35,15 @@
     </div>
     <!-- html for 2nd page (ingredients) -->
     <div class="page-two hidden">
-      <ul class="ing-box">
-        <li>3 ingredient 1</li>
-        <li>4 tsp ingredient 2</li>
-        <li>1 whole ingredient</li>
-        <li>6 ingredient ingredients</li>
-        <li>5 drops of ingredient or pinch of ingredient</li>
-        <li>5 drops of ingredient or pinch of ingredient</li>
-        <li>5 drops of ingredient or pinch of ingredient</li>
-        <li>5 drops of ingredient or pinch of ingredient</li>
+      <ul id="ing-box">
+        <li id="first-ing" contenteditable="true"></li>
       </ul>
       <button id="ing-button" class="big-button" value="button">+</button>
     </div>
     <!-- html for 3rd page (instructions) -->
     <div class="page-three hidden">
-      <ol class="instr-box">
-        <li>Mince 4 counter of ingredients and set them aside.</li>
-        <li>Use a rolling pin to roll or an object to flatten the ingredient.</li>
-        <li>Place ingredient into an ingredient shower until ingredient is fully covered.</li>
-        <li>Take the covered ingredient and mix it in shreeded ingredient.</li>
-        <li>Dip the ingredient back into the ingredient shower.</li>
-        <li>Take the covered ingredient and mix it in the bowl of dried ingredient until it is fully covered.</li>
-        <li>Pour 3 tablespoons of ingredient into a frying place on medium with the minced ingredients.</li>
-        <li>After the minced ingredient begins browning, place the ingredient into the pan.</li>
-        <li>Cover the lid and let it sit for for 2 minutes. Following that, flip and repeat for 10 minutes.</li>
+      <ol id="instr-box">
+        <li id="first-instr" contenteditable="true"></li>
       </ol>
       <button id="instr-button" class="big-button" value="button">+</button>
     </div>
@@ -74,9 +59,8 @@
         </div>
       </div>
       <div class="right-half">
-        <video id="recipe-vid" controls>
-          <source src="tba">
-        </video>
+        <iframe id="recipe-vid">
+        </iframe>
         <input id="vid-url" type="url" placeholder="URL of the video">
         <button id="vid-button" value="button">+</button>
       </div>
