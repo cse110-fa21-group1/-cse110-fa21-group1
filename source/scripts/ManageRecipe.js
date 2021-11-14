@@ -89,7 +89,7 @@ vidButton.onclick = function() {
  *   Creates a new li object and adds event listeners for backspace (to delete)
  *   and enter (to create a new one right below and
  *   moves to it [through focus()]).
- *   @return that li object
+ *   @return {li} that li object
  */
 function newIng() {
     const created = document.createElement('li');
@@ -121,7 +121,7 @@ ingButton.onclick = function() {
  *   Creates a new li object and adds event listeners for backspace (to delete)
  *   and enter (to create a new one right below and
  *   moves to it [through focus()]).
- *   @return that li object
+ *   @return {li} that li object
  */
 function newInstr() {
     const created = document.createElement('li');
