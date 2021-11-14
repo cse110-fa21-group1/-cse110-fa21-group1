@@ -35,7 +35,7 @@ const titleTexts = [
  *  and changes the currentPage counter to the newPage.
  * @param {int} newPage The page number of the page navigating to
  */
-function moveToPage (newPage) {
+function moveToPage(newPage) {
     boxes[currentPage].classList.remove('active-box');
     boxes[newPage].classList.add('active-box');
     pages[currentPage].classList.add('hidden');
@@ -87,8 +87,9 @@ vidButton.onclick = function() {
 
 /**  Helper function for adding a new ingredient
  *   Creates a new li object and adds event listeners for backspace (to delete)
- *   and enter (to create a new one right below and moves to it [through focus()]).
- *   @returns that li object
+ *   and enter (to create a new one right below and
+ *   moves to it [through focus()]).
+ *   @return that li object
  */
 function newIng() {
     const created = document.createElement('li');
@@ -118,8 +119,9 @@ ingButton.onclick = function() {
 
 /**  Helper function for adding a new instruction
  *   Creates a new li object and adds event listeners for backspace (to delete)
- *   and enter (to create a new one right below and moves to it [through focus()]).
- *   @returns that li object
+ *   and enter (to create a new one right below and
+ *   moves to it [through focus()]).
+ *   @return that li object
  */
 function newInstr() {
     const created = document.createElement('li');
