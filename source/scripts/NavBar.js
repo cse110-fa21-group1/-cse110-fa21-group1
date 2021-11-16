@@ -5,8 +5,8 @@ function init() {
   openHamburgerMenu();
 }
 
-/** Adds an event listener to the hamburger icon that opens/closes the hamburger menu */
-function openHamburgerMenu(){
+/** Adds an event listener to the hamburger menu */
+function openHamburgerMenu() {
   const hamburgerIcon = document.querySelector('.hamburger-icon');
   hamburgerIcon.addEventListener('click', (event) =>{
     const hamburgerMenu = document.querySelector('.hamburger-menu');
