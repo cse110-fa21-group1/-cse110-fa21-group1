@@ -1,0 +1,15 @@
+{
+  "name": "source",
+  "version": "1.0.0",
+  "description": "Created on Nov 11, 2021",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"No test so no error: no test specified\" && exit 0"
+  },
+  "author": "Darwin",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
