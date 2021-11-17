@@ -24,10 +24,10 @@ function openHamburgerMenu() {
  *  navigate to explore page with query string
  */
 function addSearchFunction() {
-  const searchForm = document.querySelector(".search-container")
+  const searchForm = document.querySelector('.search-container');
   searchForm.addEventListener('submit', function(e) {
-    e.preventDefault()
-    const query = document.querySelector("#search-bar").value
-    window.location.href = "http://127.0.0.1:5501/source/Explore.html?q=" + query
-  })
+    e.preventDefault();
+    const query = document.querySelector('#search-bar').value;
+    window.location.href = "http://127.0.0.1:5501/source/Explore.html?q=" + query;
+  });
 }
