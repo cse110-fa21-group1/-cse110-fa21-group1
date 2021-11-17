@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <script src="scripts/NavBar.js" type="text/javascript" defer></script>
+  <script src="scripts/ManageRecipe.js" type="text/javascript" defer></script>
+  <link href="styles/navbar.css" rel="stylesheet" type="text/css" />
+  <link href="styles/ManageRecipe.css" rel="stylesheet" type="text/css" />
+  <title>Managing a Recipe</title>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-bar">
+      <img id="logo" src="tba" alt="logo">
+      <div class="search-container">
+        <form>
+          <input id="search-bar" type="text" placeholder="Search for something to cook">
+          <button id="search-button" type="submit"></button>
+        </form>
+      </div>
+      <a class="hamburger-icon"><span></span></a>
+    </div>
+    <ul class="hamburger-menu">
+      <li><a href=""><img src="assets/home.png" alt="Home Icon">Home</a></li>
+      <li><a href=""><img src="assets/recipe.png" alt="Recipes Icon">Recipes</a></li>
+      <li class="recipe-menu"><a href=""><img src="assets/search.png" alt="View Icon">View All</a></li>
+      <li class="recipe-menu"><a href=""><img src="assets/add.png" alt="Add Icon">Add</a></li>
+      <li class="recipe-menu"><a href=""><img src="assets/edit.png" alt="Edit Icon">Edit</a></li>
+      <li class="recipe-menu"><a href=""><img src="assets/delete.png" alt="Delete Icon">Delete</a></li>
+      <li><a href=""><img src="assets/logout.png" alt="Logout Icon">Login/Logout</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <button class="big-button" value="button">Back to Recipes</button>
+    <p id="current-name">Managing a Recipe...</p>
+    <span></span>
+  </header>
+
+  <section class="middle">
+    <!-- html for first page -->
+    <div class="page-one">
+      <div class="left-half">
+        <img id="recipe-pic" src="tba">
+        <input id="pic-url" type="url" placeholder="URL of the image">
+        <button id="pic-button" value="button">+</button>
+      </div>
+      <div class="right-half">
+        <input id="name-box" type="text" placeholder="Name">
+        <textarea id="desc-box" placeholder="Description"></textarea>
+        <input id="tag-box" type="text" placeholder="Tags">
+      </div>
+    </div>
+    <!-- html for 2nd page (ingredients) -->
+    <div class="page-two hidden">
+      <ul id="ing-box">
+        <li id="first-ing" contenteditable="true"></li>
+      </ul>
+      <button id="ing-button" class="big-button" value="button">+</button>
+    </div>
+    <!-- html for 3rd page (instructions) -->
+    <div class="page-three hidden">
+      <ol id="instr-box">
+        <li id="first-instr" contenteditable="true"></li>
+      </ol>
+      <button id="instr-button" class="big-button" value="button">+</button>
+    </div>
+    <!-- html for 4th page (finishing touches) -->
+    <div class="page-four hidden">
+      <div class="left-half">
+        <input id="time-box" type="text" placeholder="Cooking Time">
+        <input id="serving-box" type="text" placeholder="Servings">
+        <div id="pin-section">
+          <p id="pin-text">Pin?</p>
+          <!-- trying to get heart to work still -->
+          <p class="heart"></a>
+        </div>
+      </div>
+      <div class="right-half">
+        <iframe id="recipe-vid">
+        </iframe>
+        <input id="vid-url" type="url" placeholder="URL of the video">
+        <button id="vid-button" value="button">+</button>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <button id="back-button" class="big-button fade" value="button">Back</button>
+      <ul class="box-group">
+        <li id="b1" class="progress-box active-box"></li>
+        <li id="b2" class="progress-box"></li>
+        <li id="b3" class="progress-box"></li>
+        <li id="b4" class="progress-box"></li>
+      </ul>
+    <button id="next-button" class="big-button" value="button">Next</button>
+  </footer>
+</body>
+</html>
