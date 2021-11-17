@@ -27,11 +27,15 @@ main {
 }
 
 .heart {
-  width: 50px;
-  height: 50px;
+  background: url("source/assets/heart_transparent.png");
+  height: 60px;
+  width: 60px;
+  display: block;
+  /* Other styles here */
 }
 
 .section {
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,23 +51,26 @@ h1 {
   margin-bottom: 10px;
   font-size: 64px;
   font-weight: 550;
+  font-family: "Montserrat", sans-serif;
 }
 
 h2 {
   font-weight: 320;
   font-size: 54px;
+  font-family: "Montserrat", sans-serif;
 }
 
 p {
   margin: 0;
   text-align: left;
   font-size: 18px;
+  font-family: "Montserrat", sans-serif;
 }
 
 small {
   margin-top: 30px;
   font-size: 18px;
-  margin-bottom: 6px;
+  font-family: "Montserrat", sans-serif;
 }
 
 video {
@@ -75,6 +82,7 @@ video {
 li {
   border-spacing: 1px;
   line-height: 250%;
+  font-family: "Montserrat", sans-serif;
 }
 @media only screen and (max-width: 1600px) {
   .header-image {
