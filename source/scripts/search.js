@@ -43,7 +43,7 @@ async function fetchRecipes(url) {
         .then((data) => {
           const length = data['results'].length;
           for (let i = 0; i < length; i++) {
-            recipeData[recipeData.length] = data['results'][ind];
+            recipeData[recipeData.length] = data['results'][i];
           }
           console.log(data['results']);
           resolve();
