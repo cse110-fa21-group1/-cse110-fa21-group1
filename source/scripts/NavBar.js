@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', init);
 /** Adds event listeners to the navbar once page is loaded. */
 function init() {
   openHamburgerMenu();
+  addSearchFunction();
 }
 
 /** Adds an event listener to the hamburger menu */
@@ -19,3 +20,14 @@ function openHamburgerMenu() {
   });
 }
 
+/** Add event listener for submitting the search form -
+ *  navigate to explore page with query string
+ */
+function addSearchFunction() {
+  const searchForm = document.querySelector(".search-container")
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+    const query = document.querySelector("#search-bar").value
+    window.location.href = "http://127.0.0.1:5501/source/Explore.html?q=" + query
+  })
+}
