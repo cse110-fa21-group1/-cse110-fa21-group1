@@ -12,4 +12,4 @@ database API: Spoonarcular to fetch our recipes.
 ## Decision Outcome
 
 Choose Option: Using Spoonacular API to fetch recipe data, since it is convinent and works the best for our interested.
-It has robust features and relativly easy to used.
+It has robust features and relativly easy to used
