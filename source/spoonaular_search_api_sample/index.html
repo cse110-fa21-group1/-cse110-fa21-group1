@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Search API Sample</title>
+</head>
+
+<body>
+    <main>
+        <section>
+
+            <h2>Search</h2>
+            <!-- Customized gcse search bar -->
+            <form action="index.html" method="GET">
+                <input autocomplete="off" placeholder="Search with Darwin" type="text" id="search">
+                <button type="button" onclick="fetchRecipes(document.getElementById('search').value)">Let's go!</button>
+            </form>
+
+            <h2>Search Results</h2>
+            <div id="results"></div>
+            <!-- <img src="" id="thumb">
+            <h3 id="itemInfo"></h6>
+            <a href="" id="hyperlink"></a>
+            <p id="steps">steps</p>
+            <p id="summary">summary</p> -->
+
+            <script>
+                const apiKey = "e4948e03b38847d7b0b4c0e30e37bd17"
+
+                /**
+                 * Generates url for searching by id
+                 * @param {string} id - Id of the recipe
+                 */
+                function fetchRecipeByIdURL(id) {
+                    return "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + apiKey
+                }
+
+                /**
+                 * Generates url for searching by query
+                 * @param {string} query - query for the search
+                 */
+                function fetchRecipeByQueryURL(query) {
+                    // https://api.spoonacular.com/recipes/search?apiKey=e4948e03b38847d7b0b4c0e30e37bd17&query=chicken
+                    // https://api.spoonacular.com/recipes/complexSearch?query=chicken&apiKey=e4948e03b38847d7b0b4c0e30e37bd17&addRecipeInformation=true
+                    return "https://api.spoonacular.com/recipes/complexSearch?query=" + query + "&addRecipeInformation=true&number=3&apiKey=" + apiKey
+                }
+
+                /**
+                 * Fetch recipes by query, and populate them in the HTML
+                 * @param {string} query - query of the search
+                 */
+                async function fetchRecipes(query) {
+                    return new Promise((resolve, reject) => {
+                        // recipes.forEach(recipe => {
+                        fetch(fetchRecipeByQueryURL(query))
+                            .then(response => response.json())
+                            .then(data => {
+                                (data['results']).forEach( recipe => {
+                                    // let fetched = data['results'][0]
+                                    // console.log(fetched)
+                                    // document.getElementById('thumb').setAttribute('src',fetched['image'])
+                                    // document.getElementById('itemInfo').innerText = fetched['title']
+                                    // document.getElementById('hyperlink').setAttribute('href',fetched['sourceUrl'])
+                                    // document.getElementById('hyperlink').innerText = fetched['sourceUrl']
+                                    // document.getElementById('steps').innerHTML = "Steps: <br>" + JSON.stringify(fetched['analyzedInstructions'])
+                                    // document.getElementById('summary').innerHTML = fetched['summary']
+
+
+                                    const recipe_card = document.createElement('div')
+                                    console.log(recipe)
+                                    recipe_card.innerHTML = "<img src='" + recipe['image'] + "'>" + 
+                                                            "<h3>" + recipe['title'] + "</h3>" +
+                                                            "<a href='" + recipe['sourceUrl'] + "'>" + recipe['sourceUrl'] + "</a>" +
+                                                            "<p class='steps'>Steps:<br>" + JSON.stringify(recipe['analyzedInstructions']) + "</p>" +
+                                                            "<p class='summary'>Summary:<br>" + recipe['summary'] + "</p>"
+                                    document.querySelector('#results').appendChild(recipe_card)
+                                })
+                            })
+                            .catch(err => {
+                            console.log(`Error loading the ${query} recipe`);
+                            reject(err);
+                            });
+                        // });
+                    });
+                    }
+            </script>
+
+        </section>
+
+    </main>
+</body>
+
+</html>
