@@ -55,3 +55,27 @@ storage.getRecipeIndex = function(id) {
   }
   return -1;
 };
+
+/**
+ * Return a set of recipe ids in localstorage
+ * @return {Set} Set of recipe ids in localstorage
+ */
+storage.getRecipeIDs = function() {
+  const currRecipes = storage.getItems();
+  return new Set(currRecipes.map((a) => a['id']) || []);
+};
+
+/**
+ * Save search result for later use
+ * @param {String} result Search result in json format
+ */
+storage.setSearchedRecipes = function(result) {
+  localStorage.setItem('searchRecipes', result);
+};
+
+/**
+ * Reset localstorage
+ */
+storage.reset = function() {
+  localStorage.clear();
+};
