@@ -3,6 +3,17 @@
 export const storage = {};
 
 /**
+ * 3 <key,value> in our local storage
+ * recipes       --> user-created recipes
+ *               --> getItems(), addItem(recipe), removeItem(id), getItem(id),
+ *                   getRecipeIndex(id), getRecipeIDs()
+ * searchRecipes --> latest search result
+ *               --> setSearchRecipes(result)
+ * savedRecipes  --> 'hearted' recipes
+ *               --> TODO()
+ */
+
+/**
  * Return an array of all saved recipes
  * @return {Array} An array of all saved recipes
  */
