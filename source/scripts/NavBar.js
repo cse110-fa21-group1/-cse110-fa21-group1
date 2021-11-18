@@ -1,9 +1,14 @@
+// NavBar.js
+
+import {storage} from './storage.js';
+
 window.addEventListener('DOMContentLoaded', init);
 
 /** Adds event listeners to the navbar once page is loaded. */
 function init() {
   openHamburgerMenu();
   addSearchFunction();
+  storage.init();
 }
 
 /** Adds an event listener to the hamburger menu */
