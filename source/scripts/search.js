@@ -52,6 +52,8 @@ async function fetchRecipesHelper(query) {
   const queryURL = 'https://api.spoonacular.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
         '&number=3' +
+        '&instructionsRequired=true' +
+        '&fillIngredients=true' +
         '&apiKey=' + apiKey;
   try {
     await fetchRecipes(queryURL);
