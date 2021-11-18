@@ -59,6 +59,10 @@ article:hover {
   transform: scale(1.02);
 }
 
+ul {
+  display: none;
+}
+
 @media only screen and (max-width: 1600px) {
   .header-image {
     width: 350px;
