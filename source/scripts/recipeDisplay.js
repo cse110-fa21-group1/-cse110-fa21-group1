@@ -1,7 +1,7 @@
 // recipeDisplay.js
 
 import {storage} from './storage.js';
-// import {recipeDemo} from './Recipe.js';
+import {recipeDemo} from './Recipe.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -10,7 +10,8 @@ window.addEventListener('DOMContentLoaded', init);
  */
 function init() {
   storage.init();
-  if (storage.currentCount == 0) {
+  // Demo recipe - http://127.0.0.1:5501/source/Recipe.html?id=0000001
+  if (storage.currentCount() == 0) {
     storage.addRecipe(recipeDemo);
   }
   populateRecipe();
