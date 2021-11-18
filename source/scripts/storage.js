@@ -111,7 +111,32 @@ storage.getRecipeIDs = function() {
  * @param {String} result Search result in json format
  */
 storage.setSearchedRecipes = function(result) {
-  localStorage.setItem('searchRecipes', result);
+  const recipes = JSON.parse(result);
+  const recipesFormatted = [];
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = {};
+    recipe.name = recipes[i]['title'];
+    recipe.image = recipes[i]['image'];
+    recipe.description = recipes[i]['summary'];
+    recipe.totalTime = 'PT' +
+      Math.floor(recipes[i]['readyInMinutes']/60) + 'H' +
+      (recipes[i]['readyInMinutes']%60) + 'M';
+    recipe.recipeYield = recipes[i]['servings'];
+    recipe.recipeIngredient = [];
+    for (let j = 0; j < (recipes[i]['extendedIngredients']).length; j++) {
+      const ing = recipes[i]['extendedIngredients'][j]['name'];
+      recipe.recipeIngredient.push(ing);
+    }
+    recipe.recipeInstruction = [];
+    const instrCount = (recipes[i]['analyzedInstructions'][0]['steps']).length;
+    for (let j = 0; j < instrCount; j++) {
+      const step = recipes[i]['analyzedInstructions'][0]['steps'][j]['step'];
+      recipe.recipeInstruction.push(step);
+    }
+    recipe.id = recipes[i]['id'];
+    recipesFormatted.push(recipe);
+  }
+  localStorage.setItem('searchRecipes', JSON.stringify(recipesFormatted));
 };
 
 /**
