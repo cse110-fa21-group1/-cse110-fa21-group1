@@ -69,7 +69,7 @@ storage.getRecipeIndex = function(id) {
 };
 
 /**
- * Removes an item from the cart and then stores that new cart
+ * Removes a recipe from our recipes
  * @param {String} id ID of a recipe
  */
 storage.removeRecipe = function(id) {
@@ -102,7 +102,7 @@ storage.getRecipe = function(id) {
  * @return {Set} Set of recipe ids in localstorage
  */
 storage.getRecipeIDs = function() {
-  const currRecipes = storage.getItems();
+  const currRecipes = storage.getRecipes();
   return new Set(currRecipes.map((a) => a['id']) || []);
 };
 
