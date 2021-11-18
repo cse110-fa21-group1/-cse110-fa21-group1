@@ -10,7 +10,9 @@ window.addEventListener('DOMContentLoaded', init);
  */
 function init() {
   storage.init();
-  // storage.addRecipe(recipeDemo);
+  if (storage.currentCount == 0) {
+    storage.addRecipe(recipeDemo);
+  }
   populateRecipe();
 }
 
@@ -30,6 +32,10 @@ function populateRecipe() {
   // Populate description
   console.log(recipe.description);
   document.querySelector('#description').innerText = recipe.description;
+  // Populate cooktime and servings
+  document.querySelector('#cooktimeAndServing').innerText =
+    'Cooktime = ' + recipe.totalTime + '\n' +
+    'Servings = ' + recipe.recipeYield;
   // Populate ingredients
   const ingredientList = document.querySelector('#thelist');
   ingredientList.innerHTML = '';
