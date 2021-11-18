@@ -5,13 +5,14 @@ export const storage = {};
 /** Initialize localstorage for counting recipes created */
 storage.init = () => {
   if (localStorage.getItem('numRecipesCreated') == undefined) {
-    localStorage.setItem('numRecipesCreated', 0);
+    localStorage.setItem('numRecipesCreated', '0');
   }
 };
 
 /** Increase number of recipes created, mainly for creating id */
 storage.increaseCount = () => {
-  localStorage.setItem('numRecipesCreated', storage.currentCount+1);
+  const newCount = (storage.currentCount()+1).toString();
+  localStorage.setItem('numRecipesCreated', newCount);
 };
 
 /**
@@ -19,7 +20,7 @@ storage.increaseCount = () => {
  * @return {Int} Number of recipes created
  */
 storage.currentCount = () => {
-  return localStorage.getItem('numRecipesCreated');
+  return parseInt(localStorage.getItem('numRecipesCreated'));
 };
 
 /**
@@ -28,7 +29,7 @@ storage.currentCount = () => {
  */
 storage.generateNewId = () => {
   storage.increaseCount();
-  return ('000000'+currentCount).slice(-7);
+  return ('000000'+storage.currentCount()).slice(-7);
 };
 
 /**
@@ -47,7 +48,7 @@ storage.addRecipe = function(recipe) {
   // Get current recipes
   const currRecipes = storage.getRecipes();
   // Add recipe to recipes
-  recipe.id = generateNewId();
+  recipe.id = storage.generateNewId();
   currRecipes.push(recipe);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
 };
@@ -90,10 +91,10 @@ storage.getRecipe = function(id) {
   const currRecipes = storage.getRecipes();
   for (let i = 0; i < currRecipes.length; i++) {
     if (currRecipes[i].id == id) {
-      currRecipes[i];
+      return currRecipes[i];
     }
   }
-  return null;
+  return {};
 };
 
 /**
