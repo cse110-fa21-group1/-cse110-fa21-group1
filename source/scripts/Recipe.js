@@ -1,5 +1,5 @@
 /** A recipe holder (template) */
-class Recipe {
+export class Recipe {
   /* {String} Recipe title */
   name;
   /* {String} Thumbnail */
