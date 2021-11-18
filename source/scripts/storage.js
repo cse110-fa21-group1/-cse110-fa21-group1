@@ -2,54 +2,54 @@
 
 export const storage = {};
 
+/** Initialize localstorage for counting recipes created */
+storage.init = () => {
+  if (localStorage.getItem('numRecipesCreated') == undefined) {
+    localStorage.setItem('numRecipesCreated', 0);
+  }
+};
+
+/** Increase number of recipes created, mainly for creating id */
+storage.increaseCount = () => {
+  localStorage.setItem('numRecipesCreated', storage.currentCount+1);
+};
+
 /**
- * 3 <key,value> in our local storage
- * recipes       --> user-created recipes
- *               --> getItems(), addItem(recipe), removeItem(id), getItem(id),
- *                   getRecipeIndex(id), getRecipeIDs()
- * searchRecipes --> latest search result
- *               --> setSearchRecipes(result)
- * savedRecipes  --> 'hearted' recipes
- *               --> TODO()
+ * Return number of recipes created
+ * @return {Int} Number of recipes created
  */
+storage.currentCount = () => {
+  return localStorage.getItem('numRecipesCreated');
+};
+
+/**
+ * Return generated recipe id for new recipe
+ * @return {String} Generated recipe id for new recipe
+ */
+storage.generateNewId = () => {
+  storage.increaseCount();
+  return ('000000'+currentCount).slice(-7);
+};
 
 /**
  * Return an array of all saved recipes
  * @return {Array} An array of all saved recipes
  */
-storage.getItems = () => {
+storage.getRecipes = () => {
   return JSON.parse(localStorage.getItem('recipes')) || [];
 };
 
 /**
  * Adds a recipe to storage
- * @param {String} recipe recipe in json format
+ * @param {Recipe} recipe recipe in json format
  */
-storage.addItem = function(recipe) {
+storage.addRecipe = function(recipe) {
   // Get current recipes
-  const currRecipes = storage.getItems();
+  const currRecipes = storage.getRecipes();
   // Add recipe to recipes
+  recipe.id = generateNewId();
   currRecipes.push(recipe);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
-};
-
-/**
- * Removes an item from the cart and then stores that new cart
- * @param {String} id ID of a recipe
- */
-storage.removeItem = function(id) {
-  // Get the current recipes
-  const currRecipes = storage.getItems();
-  // Get the index of the recipe to remove
-  const indexOfId = storage.getRecipeIndex(id);
-  // Remove that index of the item to remove from the recipes
-  if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
-  localStorage.setItem('recipes', JSON.stringify(currRecipes));
-};
-
-storage.getItem = function(id) {
-  const currRecipes = storage.getItems();
-  return currRecipes[storage.getRecipeIndex(id)];
 };
 
 /**
@@ -59,12 +59,41 @@ storage.getItem = function(id) {
  */
 storage.getRecipeIndex = function(id) {
   const currRecipes = storage.getItems();
-  for (let i = 0; i < currRecipes; i++) {
-    if (currRecipes[i]['id'] == id) {
+  for (let i = 0; i < currRecipes.length; i++) {
+    if (currRecipes[i].id == id) {
       return i;
     }
   }
   return -1;
+};
+
+/**
+ * Removes an item from the cart and then stores that new cart
+ * @param {String} id ID of a recipe
+ */
+storage.removeRecipe = function(id) {
+  // Get the current recipes
+  const currRecipes = storage.getRecipes();
+  // Get the index of the recipe to remove
+  const indexOfId = storage.getRecipeIndex(id);
+  // Remove that index of the item to remove from the recipes
+  if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
+  localStorage.setItem('recipes', JSON.stringify(currRecipes));
+};
+
+/**
+ * Get recipe info with id
+ * @param {String} id id of the recipe
+ * @return {Recipe} requestedrecipe object
+ */
+storage.getRecipe = function(id) {
+  const currRecipes = storage.getRecipes();
+  for (let i = 0; i < currRecipes.length; i++) {
+    if (currRecipes[i].id == id) {
+      currRecipes[i];
+    }
+  }
+  return null;
 };
 
 /**
