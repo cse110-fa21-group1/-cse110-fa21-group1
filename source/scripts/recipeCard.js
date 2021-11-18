@@ -42,7 +42,10 @@ class RecipeCard extends HTMLElement {
     const title = document.createElement('p');
     title.classList.add('title');
     const href = document.createElement('a');
-    href.setAttribute('href', data.sourceUrl);
+    href.setAttribute('href',
+        window.location.origin +
+        window.location.pathname.replace('Explore.html', 'Recipe.html') +
+        '?searched=true&id=' + data.id);
     href.innerText = data.title;
     title.append(href);
 
