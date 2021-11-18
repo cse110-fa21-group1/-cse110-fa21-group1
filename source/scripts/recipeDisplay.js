@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   storage.init();
   // Demo recipe - http://127.0.0.1:5501/source/Recipe.html?id=0000001
+  // Demo searched recipe - http://127.0.0.1:5501/source/Recipe.html?searched=true&id=637876 (search chicken)
   if (storage.currentCount() == 0) {
     storage.addRecipe(recipeDemo);
   }
@@ -26,7 +27,9 @@ function populateRecipe() {
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id');
   // Fetch recipe from local storage
-  const recipe = storage.getRecipe(id);
+  const recipe = (urlParams.get('searched') == 'true') ?
+                    storage.getSearchedRecipes(id) :
+                    storage.getRecipe(id);
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
   // Populate title
   document.querySelector('#title').innerText = recipe.name;
