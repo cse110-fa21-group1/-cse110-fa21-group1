@@ -6,7 +6,6 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   openHamburgerMenu();
   addSearchFunction();
-  storage.init();
 }
 
 /** Adds an event listener to the hamburger menu */
