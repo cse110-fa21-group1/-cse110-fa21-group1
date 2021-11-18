@@ -115,6 +115,21 @@ storage.setSearchedRecipes = function(result) {
 };
 
 /**
+ * Return recipe from search results
+ * @param {id} id Id of the target recipe
+ * @return {Recipe} recipe queried
+ */
+storage.getSearchedRecipes = function(id) {
+  const currRecipes = JSON.parse(localStorage.getItem('searchRecipes'));
+  for (let i = 0; i < currRecipes.length; i++) {
+    if (currRecipes[i].id == id) {
+      return currRecipes[i];
+    }
+  }
+  return {};
+};
+
+/**
  * Reset localstorage
  */
 storage.reset = function() {
