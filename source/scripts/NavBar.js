@@ -1,3 +1,5 @@
+// NavBar.js
+
 window.addEventListener('DOMContentLoaded', init);
 
 /** Adds event listeners to the navbar once page is loaded. */
