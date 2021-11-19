@@ -4,6 +4,7 @@ export const storage = {};
 
 /** Initialize localstorage for counting recipes created */
 storage.init = () => {
+  // Initialize our recipe count for generating IDs
   if (localStorage.getItem('numRecipesCreated') == undefined) {
     localStorage.setItem('numRecipesCreated', '0');
   }
@@ -28,7 +29,11 @@ storage.currentCount = () => {
  * @return {String} Generated recipe id for new recipe
  */
 storage.generateNewId = () => {
+  // Increase accumulating count for generating id
   storage.increaseCount();
+  // Format: 7-digit number
+  // 0000001, 0000002, 0000003, ...
+  // Current limit is up to 9999999
   return ('000000'+storage.currentCount()).slice(-7);
 };
 
@@ -83,6 +88,21 @@ storage.removeRecipe = function(id) {
 };
 
 /**
+ * Update the recipe, match using id
+ * @param {Recipe} recipe The updated version of the recipe
+ */
+storage.editRecipe = function(recipe) {
+  // Get the current recipes
+  const currRecipes = storage.getRecipes();
+  // Get the index of the recipe to remove
+  const indexOfId = storage.getRecipeIndex(recipe.id);
+  // Remove that index of the item to remove from the recipes
+  if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
+  // Push the new recipe to localstorage
+  storage.addRecipe(recipe);
+};
+
+/**
  * Get recipe info with id
  * @param {String} id id of the recipe
  * @return {Recipe} requestedrecipe object
@@ -90,10 +110,12 @@ storage.removeRecipe = function(id) {
 storage.getRecipe = function(id) {
   const currRecipes = storage.getRecipes();
   for (let i = 0; i < currRecipes.length; i++) {
+    // Get Recipe by comparing ids
     if (currRecipes[i].id == id) {
       return currRecipes[i];
     }
   }
+  // Return empty object when not found (error)
   return {};
 };
 
@@ -111,31 +133,46 @@ storage.getRecipeIDs = function() {
  * @param {String} result Search result in json format
  */
 storage.setSearchedRecipes = function(result) {
+  // Result - from json to Object
   const recipes = JSON.parse(result);
   const recipesFormatted = [];
+  // For each recipes searched
+  // Reason for this formatting loop is that
+  // Spoonacular doesn't follow the standard Google json format
   for (let i = 0; i < recipes.length; i++) {
+    // Recipe holder
     const recipe = {};
+    // Recipe title
     recipe.name = recipes[i]['title'];
+    // Recipe thumbnail
     recipe.image = recipes[i]['image'];
+    // Recipe description
     recipe.description = recipes[i]['summary'];
+    // Recipe cook time
     recipe.totalTime = 'PT' +
       Math.floor(recipes[i]['readyInMinutes']/60) + 'H' +
       (recipes[i]['readyInMinutes']%60) + 'M';
+    // Recipe servings
     recipe.recipeYield = recipes[i]['servings'];
+    // Recipe ingredients
     recipe.recipeIngredient = [];
     for (let j = 0; j < (recipes[i]['extendedIngredients']).length; j++) {
       const ing = recipes[i]['extendedIngredients'][j]['name'];
       recipe.recipeIngredient.push(ing);
     }
+    // Recipe insturctions
     recipe.recipeInstruction = [];
     const instrCount = (recipes[i]['analyzedInstructions'][0]['steps']).length;
     for (let j = 0; j < instrCount; j++) {
       const step = recipes[i]['analyzedInstructions'][0]['steps'][j]['step'];
       recipe.recipeInstruction.push(step);
     }
+    // Recipe id (from spoonacular)
     recipe.id = recipes[i]['id'];
+    // Push formatted recipe
     recipesFormatted.push(recipe);
   }
+  // Save all formatted recipes (as Json String)
   localStorage.setItem('searchRecipes', JSON.stringify(recipesFormatted));
 };
 
@@ -147,6 +184,7 @@ storage.setSearchedRecipes = function(result) {
 storage.getSearchedRecipes = function(id) {
   const currRecipes = JSON.parse(localStorage.getItem('searchRecipes'));
   for (let i = 0; i < currRecipes.length; i++) {
+    // Get recipe by comparing ids
     if (currRecipes[i].id == id) {
       return currRecipes[i];
     }
@@ -158,5 +196,6 @@ storage.getSearchedRecipes = function(id) {
  * Reset localstorage
  */
 storage.reset = function() {
+  // Clear everything in the localstorage
   localStorage.clear();
 };
