@@ -48,6 +48,7 @@ storage.getRecipes = () => {
 /**
  * Adds a recipe to storage
  * @param {Recipe} recipe recipe in json format
+ * @return {String} id of the new recipe
  */
 storage.addRecipe = function(recipe) {
   // Get current recipes
@@ -56,6 +57,7 @@ storage.addRecipe = function(recipe) {
   recipe.id = storage.generateNewId();
   currRecipes.push(recipe);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
+  return recipe.id;
 };
 
 /**
@@ -90,16 +92,21 @@ storage.removeRecipe = function(id) {
 /**
  * Update the recipe, match using id
  * @param {Recipe} recipe The updated version of the recipe
+ * @return {String} id of the reciped being edited
  */
 storage.editRecipe = function(recipe) {
   // Get the current recipes
   const currRecipes = storage.getRecipes();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(recipe.id);
-  // Remove that index of the item to remove from the recipes
-  if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
-  // Push the new recipe to localstorage
-  storage.addRecipe(recipe);
+  // Error checking - if the recipe is actually new but not editing an old one
+  if (indexOfId > -1) {
+    const newId = storage.addRecipe(recipe);
+    return newId;
+  } else {
+    currRecipes[indexOfId] = recipe;
+    return recipe.id;
+  }
 };
 
 /**
