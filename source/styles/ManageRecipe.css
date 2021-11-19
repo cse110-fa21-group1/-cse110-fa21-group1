@@ -1,0 +1,194 @@
+body {
+  margin:0;
+}
+li {
+  font-family: monospace;
+  font-size: 3vmin;
+  text-align: center;
+  border: 3px solid #4C4C4C;
+  margin-bottom: 2vh;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  height: 10vh;
+  padding: 0vh 5vw 0vh 5vw;
+}
+.big-button {
+  margin-top: 2vh;
+  width: 12vw;
+  height: 7vh;
+  font-size: 2vmin;
+  font-family: monospace;
+}
+#current-name {
+  width: 30vw;
+  height: 10vh;
+  font-size: 3vmin;
+  font-family: monospace;
+}
+
+.middle {
+  /* border: 3px double #4C4C4C; */
+  width: 90vw;
+  height: 65vh;
+  padding: 5vh 5vw 0vh 5vw;
+}
+
+/* The first page and all of its elements */
+.page-one {
+  display: flex;
+  justify-content: space-between;
+}
+.left-half {
+  width: 42vw;
+  height: 60vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+#recipe-pic {
+  width: 42vw;
+  height: 50vh;
+}
+#pic-url {
+  width: 32vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#pic-button {
+  font-size: 4vmin;
+  width: 9vw;
+  height: 7vh;
+}
+.right-half {
+  width: 42vw;
+  height: 60vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+#name-box {
+  width: 42vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#desc-box {
+  width: 42vw;
+  height: 40vh;
+  font-size: 2.25vmin;
+}
+#tag-box {
+  width: 42vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+
+/* The second page and all of its elements */
+.page-two {
+  border: 3px solid #4C4C4C;
+  width: 90vw;
+  height: 55vh;
+}
+#ing-box {
+  overflow-y:scroll;
+  height: 40vh;
+}
+#ing-button {
+  font-size: 4vmin;
+  float: right;
+  margin: 1vh 3vw 1vh 3vw;
+  display: block;
+}
+
+/* The third page and all of its elements */
+.page-three {
+  border: 3px solid #4C4C4C;
+  width: 90vw;
+  height: 55vh;
+}
+#instr-box {
+  margin-left: 1vw;
+  overflow-y:scroll;
+  height: 40vh;
+}
+#instr-button {
+  font-size: 4vmin;
+  float: right;
+  margin: 1vh 3vw 1vh 3vw;
+  display: block;
+}
+
+/* The third page and all of its elements */
+.page-four {
+  display: flex;
+  justify-content: space-between;
+}
+#time-box {
+  width: 42vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#serving-box {
+  width: 42vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#recipe-vid {
+  width: 42vw;
+  height: 50vh;
+}
+#pin-section {
+  display: flex;
+  justify-content: space-evenly;
+}
+#pin-text {
+  font-family: monospace;
+  font-size: 3vmin;
+}
+.heart {
+  content: '&hearts';
+}
+#vid-url {
+  width: 32vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#vid-button {
+  font-size: 4vmin;
+  width: 9vw;
+  height: 7vh;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  height: 10vh;
+  padding: 0vh 5vw 0vh 5vw;
+}
+.box-group {
+  display: flex;
+  list-style-type: none;
+}
+.progress-box {
+  height: 2.5vmin;
+  width: 2.5vmin;
+  background-color: transparent;
+  border: 3px double #4C4C4C;
+  margin: 0 1vw;
+} 
+
+.active-box {
+  background-color: #C4C4C4;
+} 
+
+.fade {
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+  
