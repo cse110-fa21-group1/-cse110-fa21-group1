@@ -65,9 +65,9 @@ rightButton.onclick = function() {
     document.getElementsByTagName('video').src = recp.video;
 
     let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yyyy = today.getFullYear();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
     recp.datePublished = today;
 
@@ -97,7 +97,7 @@ rightButton.onclick = function() {
     // navigate to the new recipecard page
     window.location.href = window.location.origin +
                           window.location.pathname.replace('ManageRecipe.html'
-                          , 'Recipe.html?id=' + id);
+                              , 'Recipe.html?id=' + id);
   } else {
     moveToPage(currentPage+1);
   }
