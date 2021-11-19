@@ -88,6 +88,21 @@ storage.removeRecipe = function(id) {
 };
 
 /**
+ * Update the recipe, match using id
+ * @param {Recipe} recipe The updated version of the recipe
+ */
+storage.editRecipe = function(recipe) {
+  // Get the current recipes
+  const currRecipes = storage.getRecipes();
+  // Get the index of the recipe to remove
+  const indexOfId = storage.getRecipeIndex(recipe.id);
+  // Remove that index of the item to remove from the recipes
+  if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
+  // Push the new recipe to localstorage
+  storage.addRecipe(recipe);
+};
+
+/**
  * Get recipe info with id
  * @param {String} id id of the recipe
  * @return {Recipe} requestedrecipe object
