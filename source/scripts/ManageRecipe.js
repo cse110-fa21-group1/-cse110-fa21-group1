@@ -81,8 +81,8 @@ box4.onclick = function() {
 function youtubeID(link) {
   const parsed = link.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
    return (parsed[2] !== undefined) ? parsed[2].split(/[^0-9a-z_\-]/i)[0] : link;
-
 }
+
 /** Adds 'event listeners' for the import video
  *  and picture from URL buttons by setting src.
  *  */
