@@ -8,16 +8,19 @@ main{
     column-gap: 20px;
     grid-template-rows:auto;
     grid-template-areas: 
-    ". header-image header-image header-image header-image header-image header-text header-text header-text header-text  header-text .";
+    ". header-text header-text header-text header-text  header-text header-image header-image header-image header-image header-image .";
     font-family: sans-serif;
 }
 
 .header-image{
     grid-area: header-image;
-    width: 500px;
-    height: 500px;
-    background-color: #e5e5e5;
-    border: black solid 1px;
+    max-height: 80%;
+}
+
+.header-image img{
+    float:right;
+    height: auto;
+    max-width: 70%;
 }
 
 .header-text{
@@ -26,12 +29,12 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 h1{
     margin:0;
-    text-align: right;
+    text-align: left;
     font-weight: 700;
     font-size: 64px;   
 }
