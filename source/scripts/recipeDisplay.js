@@ -28,7 +28,7 @@ function populateRecipe() {
   const id = urlParams.get('id');
   // Fetch recipe from local storage
   const recipe = (urlParams.get('searched') == 'true') ?
-                    storage.getSearchedRecipes(id) :
+                    storage.getSearchedRecipe(id) :
                     storage.getRecipe(id);
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
 

@@ -79,7 +79,7 @@ async function fetchRecipes(url) {
         .then((data) => {
           if (data) {
             storage.setSearchedRecipes(JSON.stringify(data['results']));
-            recipes = data['results'];
+            recipes = storage.getSearchedRecipes();
             resolve();
           }
           // const length = data['results'].length;

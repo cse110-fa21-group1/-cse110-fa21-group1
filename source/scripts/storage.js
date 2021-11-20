@@ -101,7 +101,6 @@ storage.editRecipe = function(recipe) {
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(recipe.id);
   // Error checking - if the recipe is actually new but not editing an old one
-  console.log(indexOfId);
   if (indexOfId < 0) {
     const newId = storage.addRecipe(recipe);
     return newId;
@@ -200,6 +199,14 @@ storage.getSearchedRecipes = function(id) {
     }
   }
   return {};
+};
+
+/**
+ * Return recipes from search results
+ * @return {Recipe} recipes in latest search
+ */
+storage.getSearchedRecipes = function() {
+  return JSON.parse(localStorage.getItem('searchRecipes'));
 };
 
 /**
