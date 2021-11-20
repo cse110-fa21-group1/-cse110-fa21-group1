@@ -1,4 +1,15 @@
 import {storage} from './storage.js';
+
+window.addEventListener('DOMContentLoaded', init);
+
+/** Initialize the manage page */
+function init() {
+  const id = isEdit();
+  if (id != '-1') {
+    populateRecipe(id);
+  }
+}
+
 const leftButton = document.getElementById('back-button');
 const rightButton = document.getElementById('next-button');
 const ingButton = document.getElementById('ing-button');
@@ -30,6 +41,64 @@ const titleTexts = [
   'Ingredients!',
   'Instructions!',
   'Finishing Touches'];
+
+/**
+ * Populate recipe into our manage page
+ * @param {*} id id of the recipe being edited
+ */
+function populateRecipe(id) {
+  // Fetch recipe from local storage
+  // const recipe = (urlParams.get('searched') == 'true') ?
+  // storage.getSearchedRecipe(id) :
+  // storage.getRecipe(id);
+  const recipe = storage.getRecipe(id);
+
+  if (Object.keys(recipe).length == 0) return; // TODO: catch error
+
+  // Populate imageUrl
+  picURL.value = recipe.image;
+  // Populate title
+  document.getElementById('name-box').value = recipe.name;
+  // Populate description
+  document.getElementById('desc-box').value = recipe.description;
+  // Populate tags
+  document.getElementById('tag-box').value =
+    recipe.tag == null ? '' : recipe.tag;
+
+  // Populate ingredients
+  for (let i=0; i<recipe.recipeIngredient.length; i++) {
+    if (i == 0) {
+      firstIng.textContent =
+        recipe.recipeIngredient[0];
+      continue;
+    }
+    const created = newIng();
+    created.textContent = recipe.recipeIngredient[i];
+    ingList.appendChild(created);
+    created.focus();
+  }
+
+  // Populate ingredients
+  for (let i=0; i<recipe.recipeInstruction.length; i++) {
+    if (i == 0) {
+      firstInstr.textContent =
+        recipe.recipeInstruction[0];
+      continue;
+    }
+    const created = newInstr();
+    created.textContent = recipe.recipeInstruction[i];
+    instrList.appendChild(created);
+    created.focus();
+  }
+
+  // Populate cooktime and servings
+  document.querySelector('#time-box').value = recipe.totalTime;
+  document.querySelector('#serving-box').value = recipe.recipeYield;
+  
+  // Populate videoUrl
+  document.querySelector('#vid-url').value = recipe.video;
+}
+
 
 /** Helper function for navigating to the 4 different slides of the page
  *  Hides elements from the previous page, shows elements of newPage,
