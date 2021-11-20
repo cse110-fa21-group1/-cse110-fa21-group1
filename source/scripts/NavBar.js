@@ -69,7 +69,12 @@ function addNavigation() {
   });
 
   editButton.addEventListener('click', (event) => {
-    // TODO
+    event.preventDefault();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id');
+    window.location.href =
+      window.location.origin + '/source/ManageRecipe.html?id=' + id;
   });
 
   deleteButton.addEventListener('click', (event) => {
