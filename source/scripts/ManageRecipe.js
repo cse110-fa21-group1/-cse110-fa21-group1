@@ -1,3 +1,4 @@
+import {storage} from './storage.js';
 const leftButton = document.getElementById('back-button');
 const rightButton = document.getElementById('next-button');
 const ingButton = document.getElementById('ing-button');
@@ -55,6 +56,48 @@ leftButton.onclick = function() {
 rightButton.onclick = function() {
   if (currentPage == 3) {
     // save();
+    const recp = {};
+    recp.name = document.getElementById('name-box').value;
+    recp.image = picURL.value;
+    recp.video = document.getElementById('vid-url').value;
+    // console.log(document.getElementsByTagName('video'));
+    // document.querySelector('video').src = recp.video;
+    document.getElementsByTagName('video').src = recp.video;
+
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    recp.datePublished = today;
+
+    recp.description = document.getElementById('desc-box').value;
+
+    recp.totalTime = document.getElementById('time-box').value;
+    recp.recipeYield = document.getElementById('serving-box').value;
+
+    const IngreArray = [];
+    const ListIngre = document.querySelectorAll('#ing-box li');
+    for (let i=0; i<ListIngre.length; i++) {
+      IngreArray.push(ListIngre[i].value);
+    }
+    recp.recipeIngredient = IngreArray;
+
+    const InstrArray = [];
+    const ListInstr = document.querySelectorAll('#instr-box li');
+    for (let i=0; i<ListInstr.length; i++) {
+      InstrArray.push(ListInstr[i].textContent);
+    }
+    recp.recipeInstruction = InstrArray;
+
+    // recp.tag
+
+    const id = storage.addRecipe(recp);
+
+    // navigate to the new recipecard page
+    window.location.href = window.location.origin +
+                          window.location.pathname.replace('ManageRecipe.html'
+                              , 'Recipe.html?id=' + id);
   } else {
     moveToPage(currentPage+1);
   }
