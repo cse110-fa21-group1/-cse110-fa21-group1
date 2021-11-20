@@ -44,7 +44,7 @@ function addNavigation() {
   const viewButton = document.getElementById('nav-view');
   const addButton = document.getElementById('nav-add');
   const editButton = document.getElementById('nav-edit');
-  const deleteButton = document.getElementById('nav-delete');
+  // const deleteButton = document.getElementById('nav-delete');
   const logoutButton = document.getElementById('nav-logout');
 
   homeButton.addEventListener('click', (event) => {
@@ -80,9 +80,7 @@ function addNavigation() {
       window.location.origin + '/source/ManageRecipe.html?id=' + id;
   });
 
-  deleteButton.addEventListener('click', (event) => {
-    // TODO
-  });
+  // Delete button implemented in deleteRecipe.js
 
   logoutButton.addEventListener('click', (event) => {
     // TODO

@@ -4,9 +4,10 @@
 
 import {storage} from './storage.js';
 
-const deleteButton = document.getElementById('delete-button');
+const deleteButton = document.getElementById('nav-delete');
 
 deleteButton.addEventListener('click', (event) => {
+  event.preventDefault();
   // console.log('storage:' + storage);
   // Extract query id
   const queryString = window.location.search;
