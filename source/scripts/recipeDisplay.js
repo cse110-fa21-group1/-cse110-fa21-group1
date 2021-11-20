@@ -34,7 +34,7 @@ function populateRecipe() {
   // Populate title
   document.querySelector('#title').innerText = recipe.name;
   // Populate description
-  console.log(recipe.description);
+  // console.log(recipe.description);
   document.querySelector('#description').innerHTML = recipe.description;
   // Populate cooktime and servings
   document.querySelector('#cooktimeAndServing').innerText =

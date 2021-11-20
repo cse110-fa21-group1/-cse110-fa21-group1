@@ -18,5 +18,6 @@ deleteButton.addEventListener('click', (event) => {
 
   // Go back to home page
   window.location.href =
-  window.location.pathname.replace('Recipe.html', 'Home.html');
+    window.location.origin +
+    window.location.pathname.replace('Recipe.html', 'Home.html');
 });

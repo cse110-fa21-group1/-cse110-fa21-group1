@@ -11,12 +11,17 @@ async function init() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  // Attempt to fetch recipes
-  try {
-    await fetchRecipesHelper(urlParams.get('q'));
-  } catch (err) {
-    console.log(`Error fetch recipes: ${err}`);
-    return; // Return if fetch fails
+  if (urlParams.get('searched') == 'true') {
+    // Attempt to fetch recipes
+    try {
+      await fetchRecipesHelper(urlParams.get('q'));
+    } catch (err) {
+      console.log(`Error fetch recipes: ${err}`);
+      return; // Return if fetch fails
+    }
+  } else {
+    // Displaying our own recipes
+    recipes = storage.getRecipes();
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
 
