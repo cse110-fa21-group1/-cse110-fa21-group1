@@ -79,7 +79,7 @@ rightButton.onclick = function() {
     const IngreArray = [];
     const ListIngre = document.querySelectorAll('#ing-box li');
     for (let i=0; i<ListIngre.length; i++) {
-      IngreArray.push(ListIngre[i].value);
+      IngreArray.push(ListIngre[i].textContent);
     }
     recp.recipeIngredient = IngreArray;
 
