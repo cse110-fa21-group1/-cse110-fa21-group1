@@ -1,15 +1,11 @@
 // NavBar.js
 
-// hide the nav bar at first
-document.querySelector('.hamburger-menu').style.display = 'none';
-
 window.addEventListener('DOMContentLoaded', init);
 
 /** Adds event listeners to the navbar once page is loaded. */
 function init() {
   openHamburgerMenu();
   addSearchFunction();
-  addNavigation();
 }
 
 /** Adds an event listener to the hamburger menu */
