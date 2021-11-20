@@ -210,10 +210,24 @@ storage.formatRecipe = function(recipe) {
   }
   // Recipe insturctions
   formatted.recipeInstruction = [];
-  const instrCount = (recipe['analyzedInstructions'][0]['steps']).length;
-  for (let j = 0; j < instrCount; j++) {
-    const step = recipe['analyzedInstructions'][0]['steps'][j]['step'];
-    formatted.recipeInstruction.push(step);
+  const majorInstrCount = (recipe['analyzedInstructions']).length;
+  for (let i = 0; i < majorInstrCount; i++) {
+    // The short summary of the following steps
+    const majorInstr = recipe['analyzedInstructions'][i]['name'];
+    if (majorInstr != '') {
+      // If we have major summarized instructions for the small steps
+      formatted.recipeInstruction.push(majorInstr + ':');
+    }
+    const instrCount = (recipe['analyzedInstructions'][i]['steps']).length;
+    // Pad two spaces in front if it is summarized into a major instruction
+    const paddingSpace = (majorInstr != '') ? '--> ' : '';
+    console.log(paddingSpace);
+    console.log(majorInstr);
+    for (let j = 0; j < instrCount; j++) {
+      // Detailed steps of the instruction
+      const step = recipe['analyzedInstructions'][i]['steps'][j]['step'];
+      formatted.recipeInstruction.push(paddingSpace + step);
+    }
   }
   // Recipe id (from spoonacular)
   formatted.id = recipe['id'];
