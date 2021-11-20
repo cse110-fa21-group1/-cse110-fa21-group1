@@ -5,7 +5,8 @@ export const storage = {};
 /** Initialize localstorage for counting recipes created */
 storage.init = () => {
   // Initialize our recipe count for generating IDs
-  if (localStorage.getItem('numRecipesCreated') == undefined) {
+  if (localStorage.getItem('numRecipesCreated') == undefined ||
+      localStorage.getItem('numRecipesCreated') == 'NaN') {
     localStorage.setItem('numRecipesCreated', '0');
   }
 };
