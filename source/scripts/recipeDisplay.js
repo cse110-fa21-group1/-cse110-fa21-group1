@@ -1,6 +1,7 @@
 // recipeDisplay.js
 
 import {storage} from './storage.js';
+// import {recipeDemo} from './Recipe.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -11,9 +12,9 @@ function init() {
   storage.init();
   // Demo recipe - http://127.0.0.1:5501/source/Recipe.html?id=0000001
   // Demo searched recipe - http://127.0.0.1:5501/source/Recipe.html?searched=true&id=637876 (search chicken)
-  if (storage.currentCount() == 0) {
-    storage.addRecipe(recipeDemo);
-  }
+  // if (storage.currentCount() == 0) {
+  //   storage.addRecipe(recipeDemo);
+  // }
   populateRecipe();
 }
 
