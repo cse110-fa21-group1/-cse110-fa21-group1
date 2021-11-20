@@ -2,7 +2,7 @@ body{
   width:100vw;
   height: 100vh;
   font-family: sans-serif;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .nav-bar {
@@ -21,9 +21,8 @@ body{
 }
 
 #logo{
-    margin-top: 25px;
+    margin-top: 10px;
     grid-area: logo;
-    background-color: #CCCCCC;
     text-align: center;
     padding: 10px 10px;
 }
@@ -112,6 +111,7 @@ body{
   }
 
 .hamburger-menu{
+    display: none;
     margin-top:0;
     right:0;
     position: absolute;
