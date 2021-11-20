@@ -65,7 +65,10 @@ function addNavigation() {
 
   addButton.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href = window.location.origin + '/source/ManageRecipe.html';
+    window.location.href =
+      window.location.origin +
+      '/source/ManageRecipe.html' +
+      window.location.search;
   });
 
   editButton.addEventListener('click', (event) => {

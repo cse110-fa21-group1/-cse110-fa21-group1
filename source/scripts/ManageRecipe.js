@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   const id = isEdit();
   if (id != '-1') {
-    populateRecipe(id);
+    populateRecipeHelper(id);
   }
 }
 
@@ -43,16 +43,22 @@ const titleTexts = [
   'Finishing Touches'];
 
 /**
- * Populate recipe into our manage page
- * @param {*} id id of the recipe being edited
+ * Recipe populate helper
+ * @param {String} id id of the recipe
  */
-function populateRecipe(id) {
-  // Fetch recipe from local storage
-  // const recipe = (urlParams.get('searched') == 'true') ?
-  // storage.getSearchedRecipe(id) :
-  // storage.getRecipe(id);
-  const recipe = storage.getRecipe(id);
+function populateRecipeHelper(id) {
+  if (isSearched() && id != '-1') {
+    populateRecipe(storage.getSearchedRecipe(id));
+  } else {
+    populateRecipe(storage.getRecipe(id));
+  }
+}
 
+/**
+ * Populate recipe into our manage page
+ * @param {Recipe} recipe the recipe being edited/added
+ */
+function populateRecipe(recipe) {
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
 
   // Populate imageUrl
@@ -162,7 +168,13 @@ rightButton.onclick = function() {
     // recp.tag
 
     let id = isEdit();
-    if (id != '-1') {
+    if (isSearched()) {
+      id = storage.addRecipe(recp);
+      // navigate to the new recipecard page
+      window.location.href = window.location.origin +
+        window.location.pathname.replace('ManageRecipe.html'
+            , 'Recipe.html?id=' + id);
+    } else if (id != '-1') {
       // edit recipe
       recp.id = id;
       storage.editRecipe(recp);
@@ -299,4 +311,16 @@ function isEdit() {
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id');
   return id != null ? id : '-1';
+}
+
+/**
+ * Check if we are editing from a searched recipe
+ * @return {Boolean} true if yes, else false
+ */
+function isSearched() {
+  // console.log('storage:' + storage);
+  // Extract query id
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('searched') != null;
 }
