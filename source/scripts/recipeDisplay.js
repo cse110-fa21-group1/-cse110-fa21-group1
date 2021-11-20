@@ -2,7 +2,6 @@
 
 import {storage} from './storage.js';
 
-
 window.addEventListener('DOMContentLoaded', init);
 
 /**

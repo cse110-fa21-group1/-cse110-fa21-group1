@@ -68,3 +68,7 @@ article:hover {
     font-size: 48px;
   }
 }
+
+ul {
+  display: none;
+}
