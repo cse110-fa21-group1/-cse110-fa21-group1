@@ -51,7 +51,7 @@ function moveToPage(newPage) {
 
 /* Adds 'event listeners' for the back and next navigation buttons */
 leftButton.onclick = function() {
-  moveToPage(currentPage-1);
+  moveToPage(currentPage - 1);
 };
 rightButton.onclick = function() {
   if (currentPage == 3) {
@@ -78,28 +78,38 @@ rightButton.onclick = function() {
 
     const IngreArray = [];
     const ListIngre = document.querySelectorAll('#ing-box li');
-    for (let i=0; i<ListIngre.length; i++) {
+    for (let i = 0; i < ListIngre.length; i++) {
       IngreArray.push(ListIngre[i].textContent);
     }
     recp.recipeIngredient = IngreArray;
 
     const InstrArray = [];
     const ListInstr = document.querySelectorAll('#instr-box li');
-    for (let i=0; i<ListInstr.length; i++) {
+    for (let i = 0; i < ListInstr.length; i++) {
       InstrArray.push(ListInstr[i].textContent);
     }
     recp.recipeInstruction = InstrArray;
 
     // recp.tag
 
-    const id = storage.addRecipe(recp);
-
-    // navigate to the new recipecard page
-    window.location.href = window.location.origin +
-                          window.location.pathname.replace('ManageRecipe.html'
-                              , 'Recipe.html?id=' + id);
+    let id = isEdit();
+    if (id != '-1') {
+      // edit recipe
+      recp.id = id;
+      storage.editRecipe(recp);
+      // go back to recipe
+      window.location.href =
+        window.location.pathname.replace(
+            'ManageRecipe.html', 'Recipe.html?id=' + id);
+    } else {
+      id = storage.addRecipe(recp);
+      // navigate to the new recipecard page
+      window.location.href = window.location.origin +
+        window.location.pathname.replace('ManageRecipe.html'
+            , 'Recipe.html?id=' + id);
+    }
   } else {
-    moveToPage(currentPage+1);
+    moveToPage(currentPage + 1);
   }
 };
 
@@ -208,3 +218,16 @@ firstInstr.addEventListener('keydown', (event) => {
     firstInstr.nextSibling.focus();
   }
 });
+
+/**
+ * Check if we are editing a recipe
+ * @return {String} the editing recipe id if editing, else '-1'
+ */
+function isEdit() {
+  // console.log('storage:' + storage);
+  // Extract query id
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get('id');
+  return id != null ? id : '-1';
+}
