@@ -1,7 +1,6 @@
 // recipeDisplay.js
 
 import {storage} from './storage.js';
-import {recipeDemo} from './Recipe.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
