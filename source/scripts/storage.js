@@ -190,7 +190,7 @@ storage.setSearchedRecipes = function(result) {
  * @param {id} id Id of the target recipe
  * @return {Recipe} recipe queried
  */
-storage.getSearchedRecipes = function(id) {
+storage.getSearchedRecipe = function(id) {
   const currRecipes = JSON.parse(localStorage.getItem('searchRecipes'));
   for (let i = 0; i < currRecipes.length; i++) {
     // Get recipe by comparing ids
