@@ -12,13 +12,11 @@ returnButton.addEventListener('click', (event) => {
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id');
 
-  //edit recipe
+  // edit recipe
   const recipe = storage.getRecipe(id);
   storage.editRecipe(recipe);
 
-  //go back to recipe
+  // go back to recipe
   window.location.href =
-  window.location.pathname.replace('ManageRecipe.html', 'Recipe.html');
-
-
+  window.location.pathname.replace('ManageRecipe.html', 'Recipe.html'); 
 });
