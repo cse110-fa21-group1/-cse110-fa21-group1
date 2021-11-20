@@ -2,7 +2,7 @@ import {storage} from './storage.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-const apiKey = 'e4948e03b38847d7b0b4c0e30e37bd17';
+const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
 // const recipeData = [];
 let recipes;
 
