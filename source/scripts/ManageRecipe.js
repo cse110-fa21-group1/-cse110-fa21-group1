@@ -149,6 +149,8 @@ vidButton.onclick = function() {
 function newIng() {
   const created = document.createElement('li');
   created.setAttribute('contenteditable', 'true');
+  created.classList.add('ing-instr');
+  created.classList.add('grd-brdr');
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') ingList.removeChild(created);
@@ -181,6 +183,8 @@ ingButton.onclick = function() {
 function newInstr() {
   const created = document.createElement('li');
   created.setAttribute('contenteditable', 'true');
+  created.classList.add('ing-instr');
+  created.classList.add('grd-brdr');
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') instrList.removeChild(created);
