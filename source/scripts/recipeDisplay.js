@@ -33,10 +33,11 @@ function populateRecipe() {
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
 
   // If it is user's recipe, allow user to delete recipe
-  if (urlParams.get('searched') != 'true') {
-    const deleteBtn = document.querySelector('#delete-button');
-    deleteBtn.style.visibility = 'visible';
-  }
+  // if (urlParams.get('searched') != 'true') {
+  //   const deleteBtn = document.querySelector('#delete-button');
+  //   deleteBtn.style.visibility = 'visible';
+  // }
+  // TOOD: delete user button
 
   // Populate title
   document.querySelector('#title').innerText = recipe.name;
