@@ -51,6 +51,7 @@ function addNavigation() {
   const logoutButton = document.getElementById('nav-logout');
 
   homeButton.addEventListener('click', (event) => {
+    // Remove default behavior of reloading
     event.preventDefault();
     window.location.href = window.location.origin + '/source/Home.html';
   });
