@@ -1,10 +1,9 @@
-
 /* 
     Variables representing the styles used in the final design.
     To use these, add '@import url(styles.css) all;' to the top of your CSS file.
     Then add the respective variable to any css style.
     Ex. box-shadow: var(--purple-glow);
-    More styles may be added int the future.
+    More styles may be added in the future.
 */
 
 :root{
