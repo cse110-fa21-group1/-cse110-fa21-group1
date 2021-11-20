@@ -94,7 +94,7 @@ function populateRecipe(id) {
   // Populate cooktime and servings
   document.querySelector('#time-box').value = recipe.totalTime;
   document.querySelector('#serving-box').value = recipe.recipeYield;
-  
+
   // Populate videoUrl
   document.querySelector('#vid-url').value = recipe.video;
 }
