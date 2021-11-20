@@ -18,6 +18,6 @@ returnButton.addEventListener('click', (event) => {
 
   // go back to recipe
   window.location.href =
-  window.location.origin + 
+  window.location.origin +
   window.location.pathname.replace('ManageRecipe.html', 'Recipe.html');
 });
