@@ -51,19 +51,22 @@ function addNavigation() {
   const logoutButton = document.getElementById('nav-logout');
 
   homeButton.addEventListener('click', (event) => {
+    event.preventDefault();
     window.location.href = window.location.origin + '/source/Home.html';
   });
 
   recipeButton.addEventListener('click', (event) => {
-    console.log('recipe clicked');
+    event.preventDefault();
     window.location.href = window.location.origin + '/source/Explore.html';
   });
 
   viewButton.addEventListener('click', (event) => {
+    event.preventDefault();
     window.location.href = window.location.origin + '/source/Explore.html';
   });
 
   addButton.addEventListener('click', (event) => {
+    event.preventDefault();
     window.location.href = window.location.origin + '/source/ManageRecipe.html';
   });
 
