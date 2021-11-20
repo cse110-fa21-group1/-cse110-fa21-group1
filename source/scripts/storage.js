@@ -67,7 +67,7 @@ storage.addRecipe = function(recipe) {
  * @return {Int} index of the recipe
  */
 storage.getRecipeIndex = function(id) {
-  const currRecipes = storage.getItems();
+  const currRecipes = storage.getRecipes();
   for (let i = 0; i < currRecipes.length; i++) {
     if (currRecipes[i].id == id) {
       return i;
