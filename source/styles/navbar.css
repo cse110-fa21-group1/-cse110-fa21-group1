@@ -10,7 +10,7 @@ body{
     width: 100vw;
     height: 80px;
     overflow: hidden;
-    background-color: #999999;
+    background-color: #181629;
     display: grid;
     grid-template-columns: 50px 1fr 1fr 8fr 1fr 1fr 50px;
     grid-template-rows:auto;
@@ -40,7 +40,7 @@ body{
 
   /* Style the search box inside the navigation bar */
 #search-bar {
-    background-color: #C4C4C4;
+    background-color: white;
     color: #4C4C4C;
     padding: 6px;
     border: none;
@@ -52,7 +52,7 @@ body{
 #search-button{
     box-sizing: border-box;
     margin:0;
-    background-color:#4c4c4c;
+    background-color:#C728FF;
     width: 34px;
     height:34px;
     border-width:0;
@@ -73,7 +73,7 @@ body{
 
 .hamburger-icon span{
     display: block;
-    background: #000;
+    background: white;
     width: 100%;
     height: 4px;
 }
@@ -82,7 +82,7 @@ body{
 .hamburger-icon:after {
     content: "";
     display: block;
-    background: #000;
+    background: white;
     width: 100%;
     height: 4px;
     transform-origin: center center;
@@ -115,7 +115,7 @@ body{
     margin-top:0;
     right:0;
     position: absolute;
-    background-color: #999999;
+    background-color: #19162A;
     width: 200px;
     min-height: 100%;
     text-align: left;
@@ -138,4 +138,8 @@ li img{
   margin-right: 16px;
   width:27px;
   height: auto;
+}
+
+a:visited {
+    color: white; 
 }

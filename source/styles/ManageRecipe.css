@@ -1,12 +1,21 @@
 body {
   margin:0;
 }
-li {
-  font-family: monospace;
+.grd-brdr {
+  border:  solid 2px transparent;
+  border-radius: 7px;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(#C728FF, #333399);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+.ing-instr {
   font-size: 3vmin;
   text-align: center;
-  border: 3px solid #4C4C4C;
   margin-bottom: 2vh;
+}
+.grd-brdr:focus {
+  outline: none;
 }
 header {
   display: flex;
@@ -20,13 +29,13 @@ header {
   width: 12vw;
   height: 7vh;
   font-size: 2vmin;
-  font-family: monospace;
+  font-family: 'Montserrat';
 }
 #current-name {
   width: 30vw;
   height: 10vh;
   font-size: 3vmin;
-  font-family: monospace;
+  font-family: 'Montserrat';
 }
 
 .middle {
@@ -85,7 +94,6 @@ header {
 
 /* The second page and all of its elements */
 .page-two {
-  border: 3px solid #4C4C4C;
   width: 90vw;
   height: 55vh;
 }
@@ -102,7 +110,6 @@ header {
 
 /* The third page and all of its elements */
 .page-three {
-  border: 3px solid #4C4C4C;
   width: 90vw;
   height: 55vh;
 }
@@ -142,7 +149,7 @@ header {
   justify-content: space-evenly;
 }
 #pin-text {
-  font-family: monospace;
+  font-family: 'Montserrat';
   font-size: 3vmin;
 }
 .heart {
@@ -174,13 +181,12 @@ footer {
 .progress-box {
   height: 2.5vmin;
   width: 2.5vmin;
-  background-color: transparent;
-  border: 3px double #4C4C4C;
+  background-color: #41355B;
   margin: 0 1vw;
 } 
 
 .active-box {
-  background-color: #C4C4C4;
+  background-color: #C728FF;
 } 
 
 .fade {

@@ -7,6 +7,7 @@
   <script src="scripts/NavBar.js" type="text/javascript" defer></script>
   <script src="scripts/ManageRecipe.js" type="module" defer></script>
   <link href="styles/navbar.css" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <link href="styles/ManageRecipe.css" rel="stylesheet" type="text/css" />
   <title>Managing a Recipe</title>
 </head>
@@ -56,16 +57,16 @@
       </div>
     </div>
     <!-- html for 2nd page (ingredients) -->
-    <div class="page-two hidden">
+    <div class="page-two grd-brdr hidden">
       <ul id="ing-box">
-        <li id="first-ing" contenteditable="true"></li>
+        <li class="ing-instr grd-brdr" id="first-ing" contenteditable="true"></li>
       </ul>
       <button id="ing-button" class="big-button" value="button">+</button>
     </div>
     <!-- html for 3rd page (instructions) -->
-    <div class="page-three hidden">
+    <div class="page-three grd-brdr hidden">
       <ol id="instr-box">
-        <li id="first-instr" contenteditable="true"></li>
+        <li class="ing-instr grd-brdr" id="first-instr" contenteditable="true"></li>
       </ol>
       <button id="instr-button" class="big-button" value="button">+</button>
     </div>

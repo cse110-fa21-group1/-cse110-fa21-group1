@@ -242,6 +242,17 @@ box4.onclick = function() {
   moveToPage(3);
 };
 
+/** Grabs video ID from youtube link and attempts to parse it
+ * @param {String} link The link to split with regex
+ * @return {String} Either a youtube ID if successful, otherwise link
+*/
+function youtubeID(link) {
+  const parsed = link.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  return (parsed[2] !== undefined) ?
+  parsed[2].split(/[^0-9a-z_\-]/i)[0] :
+  link;
+}
+
 /** Adds 'event listeners' for the import video
  *  and picture from URL buttons by setting src.
  *  */
@@ -249,7 +260,9 @@ picButton.onclick = function() {
   recipePic.src = picURL.value;
 };
 vidButton.onclick = function() {
-  recipeVid.src = vidURL.value;
+  let link = youtubeID(vidURL.value);
+  if (link.length == 11) link = 'https://youtube.com/embed/' + link;
+  recipeVid.src = link;
 };
 
 /**  Helper function for adding a new ingredient
@@ -261,6 +274,8 @@ vidButton.onclick = function() {
 function newIng() {
   const created = document.createElement('li');
   created.setAttribute('contenteditable', 'true');
+  created.classList.add('ing-instr');
+  created.classList.add('grd-brdr');
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') ingList.removeChild(created);
@@ -293,6 +308,8 @@ ingButton.onclick = function() {
 function newInstr() {
   const created = document.createElement('li');
   created.setAttribute('contenteditable', 'true');
+  created.classList.add('ing-instr');
+  created.classList.add('grd-brdr');
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') instrList.removeChild(created);
