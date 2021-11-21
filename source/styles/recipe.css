@@ -89,3 +89,7 @@ li {
     font-size: 48px;
   }
 }
+
+#delete-button {
+  visibility: hidden;
+}

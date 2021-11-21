@@ -30,7 +30,7 @@ class RecipeCard extends HTMLElement {
     imgWrapper.classList.add('image-wrapper');
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
-    img.setAttribute('alt', data.title);
+    img.setAttribute('alt', data.name);
     const heartWrapper = document.createElement('div');
     heartWrapper.classList.add('placement');
     const heart = document.createElement('div');
@@ -42,11 +42,14 @@ class RecipeCard extends HTMLElement {
     const title = document.createElement('p');
     title.classList.add('title');
     const href = document.createElement('a');
+
+    const urlParams = new URLSearchParams(window.location.search);
     href.setAttribute('href',
         window.location.origin +
         window.location.pathname.replace('Explore.html', 'Recipe.html') +
-        '?searched=true&id=' + data.id);
-    href.innerText = data.title;
+            '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
+            'id=' + data.id);
+    href.innerText = data.name;
     title.append(href);
 
     // Create the time for recipe
@@ -61,7 +64,6 @@ class RecipeCard extends HTMLElement {
     wrapper.append(imgWrapper, title, time, tag);
 
     // Append the wrapper and the styles to the Shadow DOM
-    console.log('here');
     this.shadowRoot.append(styles, wrapper);
   }
 

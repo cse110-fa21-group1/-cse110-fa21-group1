@@ -1,9 +1,24 @@
 import {storage} from './storage.js';
+import {isEdit, isSearched} from './url.js';
+
+window.addEventListener('DOMContentLoaded', init);
+
+const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
+
+/** Initialize the manage page */
+function init() {
+  const id = isEdit();
+  if (id != '-1') {
+    populateRecipeHelper(id);
+  }
+}
+
 const leftButton = document.getElementById('back-button');
 const rightButton = document.getElementById('next-button');
 const ingButton = document.getElementById('ing-button');
 const instrButton = document.getElementById('instr-button');
 const picButton = document.getElementById('pic-button');
+const baseButton = document.getElementById('baseline-button');
 const vidButton = document.getElementById('vid-button');
 const picURL = document.getElementById('pic-url');
 const vidURL = document.getElementById('vid-url');
@@ -31,6 +46,95 @@ const titleTexts = [
   'Instructions!',
   'Finishing Touches'];
 
+/**
+ * Recipe populate helper
+ * @param {String} id id of the recipe
+ */
+function populateRecipeHelper(id) {
+  if (isSearched() && id != '-1') {
+    populateRecipe(storage.getSearchedRecipe(id));
+  } else {
+    populateRecipe(storage.getRecipe(id));
+  }
+}
+
+/**
+ * Populate using a recipe from online
+ * @param {String} url url of the recipe to be fetched from
+ */
+async function populateBaseline(url) {
+  const queryURL = 'https://api.spoonacular.com/recipes/extract?' +
+        'apiKey=' + apiKey +
+        '&url=' + url;
+  await (new Promise((resolve, reject) => {
+    fetch(queryURL)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            const recipe = storage.formatRecipe(data);
+            populateRecipe(recipe);
+            resolve();
+          }
+        })
+        .catch((err) => {
+          console.log(`Error loading the ${url} recipe`);
+          reject(err);
+        });
+  }));
+}
+
+/**
+ * Populate recipe into our manage page
+ * @param {Recipe} recipe the recipe being edited/added
+ */
+function populateRecipe(recipe) {
+  if (Object.keys(recipe).length == 0) return; // TODO: catch error
+
+  // Populate imageUrl
+  picURL.value = recipe.image;
+  // Populate title
+  document.getElementById('name-box').value = recipe.name;
+  // Populate description
+  document.getElementById('desc-box').value = recipe.description;
+  // Populate tags
+  document.getElementById('tag-box').value =
+    recipe.tag == null ? '' : recipe.tag;
+
+  // Populate ingredients
+  for (let i=0; i<recipe.recipeIngredient.length; i++) {
+    if (i == 0) {
+      firstIng.textContent =
+        recipe.recipeIngredient[0];
+      continue;
+    }
+    const created = newIng();
+    created.textContent = recipe.recipeIngredient[i];
+    ingList.appendChild(created);
+    created.focus();
+  }
+
+  // Populate ingredients
+  for (let i=0; i<recipe.recipeInstruction.length; i++) {
+    if (i == 0) {
+      firstInstr.textContent =
+        recipe.recipeInstruction[0];
+      continue;
+    }
+    const created = newInstr();
+    created.textContent = recipe.recipeInstruction[i];
+    instrList.appendChild(created);
+    created.focus();
+  }
+
+  // Populate cooktime and servings
+  document.querySelector('#time-box').value = recipe.totalTime;
+  document.querySelector('#serving-box').value = recipe.recipeYield;
+
+  // Populate videoUrl
+  document.querySelector('#vid-url').value = recipe.video;
+}
+
+
 /** Helper function for navigating to the 4 different slides of the page
  *  Hides elements from the previous page, shows elements of newPage,
  *  and changes the currentPage counter to the newPage.
@@ -51,7 +155,7 @@ function moveToPage(newPage) {
 
 /* Adds 'event listeners' for the back and next navigation buttons */
 leftButton.onclick = function() {
-  moveToPage(currentPage-1);
+  moveToPage(currentPage - 1);
 };
 rightButton.onclick = function() {
   if (currentPage == 3) {
@@ -78,29 +182,50 @@ rightButton.onclick = function() {
 
     const IngreArray = [];
     const ListIngre = document.querySelectorAll('#ing-box li');
-    for (let i=0; i<ListIngre.length; i++) {
-      IngreArray.push(ListIngre[i].value);
+    for (let i = 0; i < ListIngre.length; i++) {
+      IngreArray.push(ListIngre[i].textContent);
     }
     recp.recipeIngredient = IngreArray;
 
     const InstrArray = [];
     const ListInstr = document.querySelectorAll('#instr-box li');
-    for (let i=0; i<ListInstr.length; i++) {
+    for (let i = 0; i < ListInstr.length; i++) {
       InstrArray.push(ListInstr[i].textContent);
     }
     recp.recipeInstruction = InstrArray;
 
     // recp.tag
 
-    const id = storage.addRecipe(recp);
-
-    // navigate to the new recipecard page
-    window.location.href = window.location.origin +
-                          window.location.pathname.replace('ManageRecipe.html'
-                              , 'Recipe.html?id=' + id);
+    let id = isEdit();
+    if (isSearched()) {
+      id = storage.addRecipe(recp);
+      // navigate to the new recipecard page
+      window.location.href = window.location.origin +
+        window.location.pathname.replace('ManageRecipe.html'
+            , 'Recipe.html?id=' + id);
+    } else if (id != '-1') {
+      // edit recipe
+      recp.id = id;
+      storage.editRecipe(recp);
+      // go back to recipe
+      window.location.href =
+        window.location.pathname.replace(
+            'ManageRecipe.html', 'Recipe.html?id=' + id);
+    } else {
+      id = storage.addRecipe(recp);
+      // navigate to the new recipecard page
+      window.location.href = window.location.origin +
+        window.location.pathname.replace('ManageRecipe.html'
+            , 'Recipe.html?id=' + id);
+    }
   } else {
-    moveToPage(currentPage+1);
+    moveToPage(currentPage + 1);
   }
+};
+
+baseButton.onclick = function() {
+  const theURL = document.getElementById('baseline-url').value;
+  populateBaseline(theURL);
 };
 
 /* Adds 'event listeners' for the dot navigation */

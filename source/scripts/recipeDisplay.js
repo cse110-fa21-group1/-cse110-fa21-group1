@@ -1,7 +1,7 @@
 // recipeDisplay.js
 
 import {storage} from './storage.js';
-import {recipeDemo} from './Recipe.js';
+// import {recipeDemo} from './Recipe.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -12,9 +12,9 @@ function init() {
   storage.init();
   // Demo recipe - http://127.0.0.1:5501/source/Recipe.html?id=0000001
   // Demo searched recipe - http://127.0.0.1:5501/source/Recipe.html?searched=true&id=637876 (search chicken)
-  if (storage.currentCount() == 0) {
-    storage.addRecipe(recipeDemo);
-  }
+  // if (storage.currentCount() == 0) {
+  //   storage.addRecipe(recipeDemo);
+  // }
   populateRecipe();
 }
 
@@ -28,13 +28,21 @@ function populateRecipe() {
   const id = urlParams.get('id');
   // Fetch recipe from local storage
   const recipe = (urlParams.get('searched') == 'true') ?
-                    storage.getSearchedRecipes(id) :
+                    storage.getSearchedRecipe(id) :
                     storage.getRecipe(id);
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
+
+  // If it is user's recipe, allow user to delete recipe
+  // if (urlParams.get('searched') != 'true') {
+  //   const deleteBtn = document.querySelector('#delete-button');
+  //   deleteBtn.style.visibility = 'visible';
+  // }
+  // TOOD: delete user button
+
   // Populate title
   document.querySelector('#title').innerText = recipe.name;
   // Populate description
-  console.log(recipe.description);
+  // console.log(recipe.description);
   document.querySelector('#description').innerHTML = recipe.description;
   // Populate cooktime and servings
   document.querySelector('#cooktimeAndServing').innerText =

@@ -101,11 +101,12 @@ storage.editRecipe = function(recipe) {
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(recipe.id);
   // Error checking - if the recipe is actually new but not editing an old one
-  if (indexOfId > -1) {
+  if (indexOfId < 0) {
     const newId = storage.addRecipe(recipe);
     return newId;
   } else {
     currRecipes[indexOfId] = recipe;
+    localStorage.setItem('recipes', JSON.stringify(currRecipes));
     return recipe.id;
   }
 };
@@ -148,35 +149,8 @@ storage.setSearchedRecipes = function(result) {
   // Reason for this formatting loop is that
   // Spoonacular doesn't follow the standard Google json format
   for (let i = 0; i < recipes.length; i++) {
-    // Recipe holder
-    const recipe = {};
-    // Recipe title
-    recipe.name = recipes[i]['title'];
-    // Recipe thumbnail
-    recipe.image = recipes[i]['image'];
-    // Recipe description
-    recipe.description = recipes[i]['summary'];
-    // Recipe cook time
-    recipe.totalTime = 'PT' +
-      Math.floor(recipes[i]['readyInMinutes']/60) + 'H' +
-      (recipes[i]['readyInMinutes']%60) + 'M';
-    // Recipe servings
-    recipe.recipeYield = recipes[i]['servings'];
-    // Recipe ingredients
-    recipe.recipeIngredient = [];
-    for (let j = 0; j < (recipes[i]['extendedIngredients']).length; j++) {
-      const ing = recipes[i]['extendedIngredients'][j]['name'];
-      recipe.recipeIngredient.push(ing);
-    }
-    // Recipe insturctions
-    recipe.recipeInstruction = [];
-    const instrCount = (recipes[i]['analyzedInstructions'][0]['steps']).length;
-    for (let j = 0; j < instrCount; j++) {
-      const step = recipes[i]['analyzedInstructions'][0]['steps'][j]['step'];
-      recipe.recipeInstruction.push(step);
-    }
-    // Recipe id (from spoonacular)
-    recipe.id = recipes[i]['id'];
+    // Format from Spoonacular format into the standard format
+    const recipe = storage.formatRecipe(recipes[i]);
     // Push formatted recipe
     recipesFormatted.push(recipe);
   }
@@ -189,7 +163,7 @@ storage.setSearchedRecipes = function(result) {
  * @param {id} id Id of the target recipe
  * @return {Recipe} recipe queried
  */
-storage.getSearchedRecipes = function(id) {
+storage.getSearchedRecipe = function(id) {
   const currRecipes = JSON.parse(localStorage.getItem('searchRecipes'));
   for (let i = 0; i < currRecipes.length; i++) {
     // Get recipe by comparing ids
@@ -198,6 +172,67 @@ storage.getSearchedRecipes = function(id) {
     }
   }
   return {};
+};
+
+/**
+ * Return recipes from search results
+ * @return {Recipe} recipes in latest search
+ */
+storage.getSearchedRecipes = function() {
+  return JSON.parse(localStorage.getItem('searchRecipes'));
+};
+
+/**
+ * Return formatted recipe
+ * @param {Recipe} recipe Recipe from Spoonacular
+ * @return {Recipe} formatted recipe
+ */
+storage.formatRecipe = function(recipe) {
+  // Recipe holder
+  const formatted = {};
+  // Recipe title
+  formatted.name = recipe['title'];
+  // Recipe thumbnail
+  formatted.image = recipe['image'];
+  // Recipe description
+  formatted.description = recipe['summary'];
+  // Recipe cook time
+  formatted.totalTime = 'PT' +
+    Math.floor(recipe['readyInMinutes']/60) + 'H' +
+    (recipe['readyInMinutes']%60) + 'M';
+  // Recipe servings
+  formatted.recipeYield = recipe['servings'];
+  // Recipe ingredients
+  formatted.recipeIngredient = [];
+  for (let j = 0; j < (recipe['extendedIngredients']).length; j++) {
+    const ing = recipe['extendedIngredients'][j]['name'];
+    formatted.recipeIngredient.push(ing);
+  }
+  // Recipe insturctions
+  formatted.recipeInstruction = [];
+  const majorInstrCount = (recipe['analyzedInstructions']).length;
+  for (let i = 0; i < majorInstrCount; i++) {
+    // The short summary of the following steps
+    const majorInstr = recipe['analyzedInstructions'][i]['name'];
+    if (majorInstr != '') {
+      // If we have major summarized instructions for the small steps
+      formatted.recipeInstruction.push(majorInstr + ':');
+    }
+    const instrCount = (recipe['analyzedInstructions'][i]['steps']).length;
+    // Pad two spaces in front if it is summarized into a major instruction
+    const paddingSpace = (majorInstr != '') ? '--> ' : '';
+    console.log(paddingSpace);
+    console.log(majorInstr);
+    for (let j = 0; j < instrCount; j++) {
+      // Detailed steps of the instruction
+      const step = recipe['analyzedInstructions'][i]['steps'][j]['step'];
+      formatted.recipeInstruction.push(paddingSpace + step);
+    }
+  }
+  // Recipe id (from spoonacular)
+  formatted.id = recipe['id'];
+
+  return formatted;
 };
 
 /**

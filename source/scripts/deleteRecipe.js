@@ -4,9 +4,10 @@
 
 import {storage} from './storage.js';
 
-const deleteButton = document.getElementById('delete-button');
+const deleteButton = document.getElementById('nav-delete');
 
 deleteButton.addEventListener('click', (event) => {
+  event.preventDefault();
   // console.log('storage:' + storage);
   // Extract query id
   const queryString = window.location.search;
@@ -18,5 +19,6 @@ deleteButton.addEventListener('click', (event) => {
 
   // Go back to home page
   window.location.href =
-  window.location.pathname.replace('Recipe.html', 'Home.html');
+    window.location.origin +
+    window.location.pathname.replace('Recipe.html', 'Home.html');
 });

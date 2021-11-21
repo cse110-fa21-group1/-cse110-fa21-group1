@@ -2,7 +2,7 @@ import {storage} from './storage.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-const apiKey = 'e4948e03b38847d7b0b4c0e30e37bd17';
+const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
 // const recipeData = [];
 let recipes;
 
@@ -11,12 +11,17 @@ async function init() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  // Attempt to fetch recipes
-  try {
-    await fetchRecipesHelper(urlParams.get('q'));
-  } catch (err) {
-    console.log(`Error fetch recipes: ${err}`);
-    return; // Return if fetch fails
+  if (urlParams.get('searched') == 'true') {
+    // Attempt to fetch recipes
+    try {
+      await fetchRecipesHelper(urlParams.get('q'));
+    } catch (err) {
+      console.log(`Error fetch recipes: ${err}`);
+      return; // Return if fetch fails
+    }
+  } else {
+    // Displaying our own recipes
+    recipes = storage.getRecipes();
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
 
@@ -74,7 +79,7 @@ async function fetchRecipes(url) {
         .then((data) => {
           if (data) {
             storage.setSearchedRecipes(JSON.stringify(data['results']));
-            recipes = data['results'];
+            recipes = storage.getSearchedRecipes();
             resolve();
           }
           // const length = data['results'].length;
