@@ -221,8 +221,6 @@ storage.formatRecipe = function(recipe) {
     const instrCount = (recipe['analyzedInstructions'][i]['steps']).length;
     // Pad two spaces in front if it is summarized into a major instruction
     const paddingSpace = (majorInstr != '') ? '--> ' : '';
-    console.log(paddingSpace);
-    console.log(majorInstr);
     for (let j = 0; j < instrCount; j++) {
       // Detailed steps of the instruction
       const step = recipe['analyzedInstructions'][i]['steps'][j]['step'];
