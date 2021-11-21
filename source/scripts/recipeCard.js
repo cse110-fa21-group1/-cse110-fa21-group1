@@ -1,5 +1,7 @@
 // recipeCard.js
 
+import( '../styles/explore.css' );
+
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
   /**
@@ -19,8 +21,11 @@ class RecipeCard extends HTMLElement {
   set data(data) {
     this.json = data; // Store the data passed in for later
 
-    const styles = document.createElement('style');
-    styles.innerHTML = '';
+    // const styles = document.createElement('style');
+    const styles = document.createElement('link');
+    styles.setAttribute('href', 'styles/explore.css');
+    styles.setAttribute('rel', 'stylesheet');
+    styles.setAttribute('type', 'text/css');
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');

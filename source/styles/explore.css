@@ -1,24 +1,21 @@
+@import url(styles.css) all;
 body {
   margin: 0;
+  background-color: var(--midnight-purple);
 }
 
-.header-image {
-  grid-area: header-image;
-  width: 500px;
-  height: 500px;
-  background-color: #e5e5e5;
-  border: black solid 1px;
-}
-
-.header-text {
-  max-height: 40vh;
+main {
+  overflow: scroll;
 }
 
 h1 {
-  margin: 3%;
+  margin-top: 3%;
+  margin-left: 3%;
   text-align: left;
   font-weight: 700;
   font-size: 36px;
+  color: white;
+  font-family: Montserrat;
 }
 
 p {
@@ -27,16 +24,26 @@ p {
   font-size: 18;
 }
 
+.recipe-cards--wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  row-gap: 3%;
+  column-gap: 3%;
+  margin: 3%;
+}
+
 article {
   align-items: center;
-  margin: 3%;
-  border: 2px solid rgb(223, 225, 229);
-  border-radius: 3px;
+  box-shadow: var(--subtle-purple-glow);
+  border: 2px solid var(--electric-purple);
+  border-radius: 5%;
   display: grid;
   height: auto;
   row-gap: 5px;
   width: 200px;
-  background-color: #c4c4c4;
+  background-color: var(--purple-gray);
   transition: all 0.2s ease;
 }
 
@@ -45,6 +52,8 @@ article {
   text-align: left;
   font-weight: 700;
   font-size: 18;
+  font-family: Montserrat;
+  color: white;
 }
 .image-wrapper > img {
   border-top-left-radius: 3px;
@@ -52,9 +61,9 @@ article {
 }
 
 article:hover {
-  border-radius: 3px;
+  border-radius: 5%;
   cursor: pointer;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(var(--purple-glow));
   transition: all 0.2s ease;
   transform: scale(1.02);
 }
