@@ -1,29 +1,38 @@
-body{
+@import url(styles.css) all;
+
+body {
     margin:0;
+    background-color: var(--midnight-purple);
+    overflow: hidden;
 }
-main{
+
+main {
     margin: 20vh 70px 0 70px;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: 20px;
     grid-template-rows:auto;
     grid-template-areas: 
-    ". header-text header-text header-text header-text  header-text header-image header-image header-image header-image header-image .";
+    "header-text header-text header-text header-text header-text  header-text header-image header-image header-image header-image header-image header-image";
     font-family: sans-serif;
 }
 
-.header-image{
+.header-image {
     grid-area: header-image;
-    max-height: 80%;
+    max-height: 70%;
+    display: grid;
 }
 
-.header-image img{
-    float:right;
+#donut {
+    position: relative;
+    right: 0;
+    top: -10%;
     height: auto;
-    max-width: 70%;
+    max-width: 90%;
 }
 
-.header-text{
+.header-text {
+    color:white;
     grid-area: header-text;
     max-height: 40vh;
     display: flex;
@@ -32,40 +41,67 @@ main{
     align-items: flex-start;
 }
 
-h1{
+h1 {
+    text-shadow: var(--white-purple-glow);
     margin:0;
     text-align: left;
-    font-weight: 700;
-    font-size: 64px;   
+    font-weight: 800;
+    font-size: 64px;
+    padding-bottom: 48px;
 }
 
-p{
+p {
     margin:0;
     text-align: left;
-    font-size: 18;
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 48px;
+    line-height: 36px;
 }
 
-button{
+button {
     margin:0;
     float: right;
     border-width: 0;
-    background-color: #c4c4c4;
-    font-size:18px;
-    height: 56px;
-    width: 180px;
+    color:white;
+    font-size:24px;
+    padding: 20px 40px;
+    background-color: var(--electric-purple);
+    border-radius: 15px;
+    font-weight: 800;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    transform: scale(1.02);
+    box-shadow: var(--subtle-purple-glow);
+}
+
+ul {
+    display: none;
 }
 
 @media only screen and (max-width: 1600px) {
-    .header-image{
-        width: 350px;
-        height: 350px;
-
+    main {
+        margin: 15vh 50px 0 50px;
+        column-gap: 16px;
     }
-    h1{
-        font-size: 48px;
-    }
-  }
 
-  ul {
-    display: none;
-  }
+    h1 {
+        font-size: 44px;
+        padding-bottom: 32px;
+    }
+
+    p {
+        font-size: 20px;
+        padding-bottom: 32px;
+    }
+
+    button {
+        font-size: 20px;
+        padding: 15px 25px;
+    }
+}
+
+ 
