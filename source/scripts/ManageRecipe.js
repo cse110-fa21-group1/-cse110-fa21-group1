@@ -1,6 +1,9 @@
 import {storage} from './storage.js';
+import {isEdit, isSearched} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
+
+const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
 
 /** Initialize the manage page */
 function init() {
@@ -15,6 +18,7 @@ const rightButton = document.getElementById('next-button');
 const ingButton = document.getElementById('ing-button');
 const instrButton = document.getElementById('instr-button');
 const picButton = document.getElementById('pic-button');
+const baseButton = document.getElementById('baseline-button');
 const vidButton = document.getElementById('vid-button');
 const picURL = document.getElementById('pic-url');
 const vidURL = document.getElementById('vid-url');
@@ -52,6 +56,31 @@ function populateRecipeHelper(id) {
   } else {
     populateRecipe(storage.getRecipe(id));
   }
+}
+
+/**
+ * Populate using a recipe from online
+ * @param {String} url url of the recipe to be fetched from
+ */
+async function populateBaseline(url) {
+  const queryURL = 'https://api.spoonacular.com/recipes/extract?' +
+        'apiKey=' + apiKey +
+        '&url=' + url;
+  await (new Promise((resolve, reject) => {
+    fetch(queryURL)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            const recipe = storage.formatRecipe(data);
+            populateRecipe(recipe);
+            resolve();
+          }
+        })
+        .catch((err) => {
+          console.log(`Error loading the ${url} recipe`);
+          reject(err);
+        });
+  }));
 }
 
 /**
@@ -194,6 +223,11 @@ rightButton.onclick = function() {
   }
 };
 
+baseButton.onclick = function() {
+  const theURL = document.getElementById('baseline-url').value;
+  populateBaseline(theURL);
+};
+
 /* Adds 'event listeners' for the dot navigation */
 box1.onclick = function() {
   moveToPage(0);
@@ -299,28 +333,3 @@ firstInstr.addEventListener('keydown', (event) => {
     firstInstr.nextSibling.focus();
   }
 });
-
-/**
- * Check if we are editing a recipe
- * @return {String} the editing recipe id if editing, else '-1'
- */
-function isEdit() {
-  // console.log('storage:' + storage);
-  // Extract query id
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const id = urlParams.get('id');
-  return id != null ? id : '-1';
-}
-
-/**
- * Check if we are editing from a searched recipe
- * @return {Boolean} true if yes, else false
- */
-function isSearched() {
-  // console.log('storage:' + storage);
-  // Extract query id
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  return urlParams.get('searched') != null;
-}
