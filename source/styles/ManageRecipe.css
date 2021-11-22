@@ -5,22 +5,38 @@ body {
   overflow:hidden;
 }
 .grd-brdr {
-  border:  solid 0.1vw transparent;
+  border:  solid 0.15vw transparent;
   border-radius: 7px;
   background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
                     linear-gradient(var(--electric-purple), #333399);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+.grd-brdr > * {
+  background-color: transparent;
+  border: 0;
+}
+.text-input > * {
+  color:white;
+}
+.text-input > *:focus {
+  outline: none;
+}
 .ing-instr {
   font-family: "Montserrat";
-  font-size: 2vw;
+  font-size: 3vh;
   text-align: center;
   margin-bottom: 2vh;
   color:white;
 }
 .grd-brdr:focus {
   outline: none;
+}
+.url-section {
+  width: 42vw;
+  height: 6.25vh;
+  display:flex;
+  align-content: center;
 }
 header {
   display: flex;
@@ -38,13 +54,13 @@ header {
 #current-name {
   width: 30vw;
   height: 10vh;
-  font-size: 4vmin;
+  font-size: 3.25vh;
   color:white;
   font-family: 'Montserrat';
 }
 
 .middle {
-  border: 3px double #4C4C4C;
+  /* border: 3px double #4C4C4C; */
   height: 65vh;
   padding: 5vh 5vw 0vh 5vw;
 }
@@ -59,6 +75,7 @@ header {
   height: 60vh;
   display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
 }
 #recipe-pic {
   width: 42vw;
@@ -79,6 +96,7 @@ header {
   height: 60vh;
   display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
 }
 #name-box {
   width: 42vw;
@@ -87,13 +105,23 @@ header {
 }
 #desc-box {
   width: 42vw;
-  height: 40vh;
+  height: 35vh;
   font-size: 2.25vmin;
 }
 #tag-box {
   width: 42vw;
   height: 6.25vh;
   font-size: 2vmin;
+}
+#baseline-url {
+  width: 32vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+#baseline-button {
+  font-size: 4vmin;
+  width: 9vw;
+  height: 7vh;
 }
 
 /* The second page and all of its elements */
@@ -166,6 +194,7 @@ header {
 #pin-text {
   font-family: 'Montserrat';
   font-size: 3vmin;
+  color:white;
 }
 .heart {
   content: '&hearts';
