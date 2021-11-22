@@ -5,7 +5,9 @@ body {
 }
 
 main {
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow: visible;
 }
 
 h1 {
@@ -26,12 +28,13 @@ p {
 
 .recipe-cards--wrapper {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
   row-gap: 3%;
-  column-gap: 3%;
+  column-gap: 7%;
   margin: 3%;
+  overflow: visible;
 }
 
 article {
@@ -42,9 +45,19 @@ article {
   display: grid;
   height: auto;
   row-gap: 5px;
-  width: 200px;
+  width: 312px;
   background-color: var(--purple-gray);
   transition: all 0.2s ease;
+  overflow: visible;
+}
+
+article:hover {
+  border-radius: 5%;
+  cursor: pointer;
+  filter: brightness(1.1);
+  transition: all 0.2s ease;
+  transform: scale(1.02);
+  overflow: visible;
 }
 
 .title > a {
@@ -55,17 +68,40 @@ article {
   font-family: Montserrat;
   color: white;
 }
+
+.time-wrapper {
+  /*margin: 3%;*/
+}
+
+.time-wrapper > p {
+  text-align: left;
+  font-family: Montserrat;
+  font-size: 18;
+  color: white;
+}
+
+.tag-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 3%;
+  column-gap: 3%;
+  /*margin: 3%;*/
+}
+
+.tag-wrapper > p {
+  text-align: left;
+  font-family: Montserrat;
+  font-size: 18;
+  color: #19162a;
+  background-color: #15d6e4;
+  border-radius: 15%;
+}
+
 .image-wrapper > img {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-}
-
-article:hover {
-  border-radius: 5%;
-  cursor: pointer;
-  filter: drop-shadow(var(--purple-glow));
-  transition: all 0.2s ease;
-  transform: scale(1.02);
 }
 
 @media only screen and (max-width: 1600px) {
