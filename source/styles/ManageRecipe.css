@@ -90,6 +90,12 @@ header {
   width: 42vw;
   height: 50vh;
 }
+#pic-wrap {
+  width: 41.5vw;
+  height: 49.5vh;
+  border-radius: 15px;
+  overflow: hidden;
+}
 #pic-url {
   width: 32vw;
   height: 6.25vh;
