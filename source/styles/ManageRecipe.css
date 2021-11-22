@@ -1,8 +1,17 @@
-  @import url(styles.css) all;
+@import url(styles.css) all;
 body {
   margin:0;
   background-color:var(--midnight-purple);
   overflow:hidden;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 500px var(--midnight-purple) inset;
 }
 .grd-brdr {
   border:  solid 0.15vw transparent;
@@ -34,7 +43,7 @@ body {
 }
 .url-section {
   width: 42vw;
-  height: 6.25vh;
+  height: 7vh;
   display:flex;
   align-content: center;
 }
