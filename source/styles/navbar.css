@@ -1,16 +1,14 @@
+@import url(styles.css) all;
 body{
-  width:100vw;
-  height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Montserrat';
   overflow: scroll;
 }
 
 .nav-bar {
     position: sticky;
-    width: 100vw;
     height: 80px;
     overflow: hidden;
-    background-color: #181629;
+    background-color: var(--midnight-purple);
     display: grid;
     grid-template-columns: 50px 1fr 1fr 8fr 1fr 1fr 50px;
     grid-template-rows:auto;
@@ -41,6 +39,7 @@ body{
   /* Style the search box inside the navigation bar */
 #search-bar {
     background-color: white;
+    border-radius: 7px 0 0 7px;
     color: #4C4C4C;
     padding: 6px;
     border: none;
@@ -48,11 +47,14 @@ body{
     width:90%;
     margin:0;
 }
+#search-bar:focus {
+    outline: none;
+}
 
 #search-button{
     box-sizing: border-box;
     margin:0;
-    background-color:#C728FF;
+    background-color:var(--electric-purple);
     width: 34px;
     height:34px;
     border-width:0;
@@ -115,7 +117,7 @@ body{
     margin-top:0;
     right:0;
     position: absolute;
-    background-color: #19162A;
+    background-color: var(--midnight-purple);
     width: 200px;
     min-height: 100%;
     text-align: left;

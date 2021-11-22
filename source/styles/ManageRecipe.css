@@ -1,18 +1,23 @@
+  @import url(styles.css) all;
 body {
   margin:0;
+  background-color:var(--midnight-purple);
+  overflow:hidden;
 }
 .grd-brdr {
-  border:  solid 2px transparent;
+  border:  solid 0.1vw transparent;
   border-radius: 7px;
-  background-image: linear-gradient(white, white), 
-                    linear-gradient(#C728FF, #333399);
+  background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
+                    linear-gradient(var(--electric-purple), #333399);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
 .ing-instr {
-  font-size: 3vmin;
+  font-family: "Montserrat";
+  font-size: 2vw;
   text-align: center;
   margin-bottom: 2vh;
+  color:white;
 }
 .grd-brdr:focus {
   outline: none;
@@ -20,7 +25,6 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  width: 90vw;
   height: 10vh;
   padding: 0vh 5vw 0vh 5vw;
 }
@@ -34,13 +38,13 @@ header {
 #current-name {
   width: 30vw;
   height: 10vh;
-  font-size: 3vmin;
+  font-size: 4vmin;
+  color:white;
   font-family: 'Montserrat';
 }
 
 .middle {
-  /* border: 3px double #4C4C4C; */
-  width: 90vw;
+  border: 3px double #4C4C4C;
   height: 65vh;
   padding: 5vh 5vw 0vh 5vw;
 }
@@ -96,33 +100,44 @@ header {
 .page-two {
   width: 90vw;
   height: 55vh;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #ing-box {
   overflow-y:scroll;
   height: 40vh;
+  width: 85vw;
+}
+#ing-bottom {
+  width: 85vw;
+  display:flex;
+  justify-content: right;
 }
 #ing-button {
   font-size: 4vmin;
-  float: right;
-  margin: 1vh 3vw 1vh 3vw;
-  display: block;
 }
 
 /* The third page and all of its elements */
 .page-three {
   width: 90vw;
   height: 55vh;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #instr-box {
-  margin-left: 1vw;
   overflow-y:scroll;
   height: 40vh;
+  width: 85vw;
+}
+#instr-bottom {
+  width: 85vw;
+  display:flex;
+  justify-content: right;
 }
 #instr-button {
   font-size: 4vmin;
-  float: right;
-  margin: 1vh 3vw 1vh 3vw;
-  display: block;
 }
 
 /* The third page and all of its elements */
@@ -170,7 +185,6 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90vw;
   height: 10vh;
   padding: 0vh 5vw 0vh 5vw;
 }
@@ -186,7 +200,7 @@ footer {
 } 
 
 .active-box {
-  background-color: #C728FF;
+  background-color: var(--electric-purple);
 } 
 
 .fade {
