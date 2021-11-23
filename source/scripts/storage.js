@@ -151,6 +151,24 @@ storage.unpinRecipe = function(id) {
 };
 
 /**
+ * Check if a recipe is pinned
+ * @param {String} id id of the recipe to be checked
+ * @return {Boolean} whether recipe is pinned
+ */
+storage.isPinned = function(id) {
+  return localStorage.getItem(id).pinned == true;
+};
+
+/**
+ * Return a list of pinned recipe ids
+ * @return {Array} List of pinned recipe pids
+ */
+storage.getPinnedRecipes = function() {
+  const ids = storage.getRecipeIDs();
+  return ids.filter((id) => storage.isPinned(id)) || [];
+};
+
+/**
  * Save search result for later use
  * @param {String} result Search result in json format
  */
