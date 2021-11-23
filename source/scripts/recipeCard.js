@@ -29,6 +29,14 @@ class RecipeCard extends HTMLElement {
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');
+    const urlParams = new URLSearchParams(window.location.search);
+    wrapper.onclick = function() {
+      window.location.href =
+          window.location.origin +
+          window.location.pathname.replace('Explore.html', 'Recipe.html') +
+          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
+          'id=' + data.id;
+    };
 
     // Create the recipe image element
     const imgWrapper = document.createElement('div');
@@ -46,16 +54,7 @@ class RecipeCard extends HTMLElement {
     // Create the recipe title
     const title = document.createElement('p');
     title.classList.add('title');
-    const href = document.createElement('a');
-
-    const urlParams = new URLSearchParams(window.location.search);
-    href.setAttribute('href',
-        window.location.origin +
-        window.location.pathname.replace('Explore.html', 'Recipe.html') +
-            '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-            'id=' + data.id);
-    href.innerText = data.name;
-    title.append(href);
+    title.innerText = data.name;
 
     // Create the time for recipe
     const time = document.createElement('div');
