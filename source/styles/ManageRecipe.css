@@ -4,6 +4,22 @@ body {
   background-color:var(--midnight-purple);
   overflow:hidden;
 }
+::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--purple-gray);
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta-purple);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-purple);
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,
@@ -17,7 +33,7 @@ textarea:-webkit-autofill:focus {
   border: solid 0.15vw transparent;
   border-radius: 7px;
   background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
-                    linear-gradient(var(--electric-purple), var(--violet-purple));
+                    linear-gradient(var(--electric-purple), var(--indigo-purple));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -140,6 +156,7 @@ header {
   width: 41.69vw;
   height: 35vh;
   font-size: 2.25vmin;
+  resize: none;
 }
 #tag-box {
   width: 41.69vw;
@@ -239,7 +256,7 @@ footer {
 .progress-box {
   height: 2.5vmin;
   width: 2.5vmin;
-  background-color: var(--muted-purple);
+  background-color: var(--purple-gray);
   margin: 0 1vw;
   transition: all 0.15s ease-in-out;
   border-radius: 4px;
