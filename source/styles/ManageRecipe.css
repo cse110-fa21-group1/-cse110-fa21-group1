@@ -14,10 +14,10 @@ textarea:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 500px var(--midnight-purple) inset;
 }
 .grd-brdr {
-  border:  solid 0.15vw transparent;
+  border: solid 0.15vw transparent;
   border-radius: 7px;
   background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
-                    linear-gradient(var(--electric-purple), var(--muted-purple));
+                    linear-gradient(var(--electric-purple), var(--violet-purple));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -59,6 +59,10 @@ header {
   height: 7vh;
   font-size: 2vmin;
   font-family: 'Montserrat';
+}
+.big-button:hover {
+  cursor: pointer;
+  box-shadow: var(--subtle-purple-glow);
 }
 #current-name {
   width: 30vw;
@@ -239,14 +243,26 @@ footer {
 .progress-box {
   height: 2.5vmin;
   width: 2.5vmin;
-  background-color: #41355B;
+  background-color: var(--muted-purple);
   margin: 0 1vw;
+  transition: all 0.15s ease-in-out;
 } 
-
+.progress-box:hover {
+  cursor: pointer;
+}
 .active-box {
   background-color: var(--electric-purple);
-} 
-
+}
+#back-button {
+  border: solid 0.15vw var(--electric-purple);
+  color: white;
+  background-color: transparent;
+}
+#next-button {
+  border: none;
+  color: white;
+  background-color: var(--electric-purple);
+}
 .fade {
   visibility: hidden;
 }
