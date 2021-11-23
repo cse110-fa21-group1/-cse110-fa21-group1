@@ -40,10 +40,11 @@ storage.generateNewId = () => {
 
 /**
  * Return an array of all saved recipes
- * @return {Array} An array of all saved recipes
+ * @return {Array} An array of all saved recipes' id
  */
 storage.getRecipes = () => {
-  return JSON.parse(localStorage.getItem('recipes')) || [];
+  const ids = storage.getRecipeIDs();
+  return ids.map((id) => storage.getRecipe(id)) || [];
 };
 
 /**
@@ -53,11 +54,12 @@ storage.getRecipes = () => {
  */
 storage.addRecipe = function(recipe) {
   // Get current recipes
-  const currRecipes = storage.getRecipes();
+  const currRecipes = storage.getRecipeIDs();
   // Add recipe to recipes
   recipe.id = storage.generateNewId();
-  currRecipes.push(recipe);
+  currRecipes.push(recipe.id);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
+  localStorage.setItem(recipe.id, JSON.stringify(recipe));
   return recipe.id;
 };
 
@@ -69,7 +71,7 @@ storage.addRecipe = function(recipe) {
 storage.getRecipeIndex = function(id) {
   const currRecipes = storage.getRecipes();
   for (let i = 0; i < currRecipes.length; i++) {
-    if (currRecipes[i].id == id) {
+    if (currRecipes[i] == id) {
       return i;
     }
   }
@@ -85,9 +87,10 @@ storage.removeRecipe = function(id) {
   const currRecipes = storage.getRecipes();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(id);
-  // Remove that index of the item to remove from the recipes
+  // Remove the recipe
   if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
+  localStorage.removeItem(id);
 };
 
 /**
@@ -96,8 +99,6 @@ storage.removeRecipe = function(id) {
  * @return {String} id of the reciped being edited
  */
 storage.editRecipe = function(recipe) {
-  // Get the current recipes
-  const currRecipes = storage.getRecipes();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(recipe.id);
   // Error checking - if the recipe is actually new but not editing an old one
@@ -106,7 +107,7 @@ storage.editRecipe = function(recipe) {
     return newId;
   } else {
     currRecipes[indexOfId] = recipe;
-    localStorage.setItem('recipes', JSON.stringify(currRecipes));
+    localStorage.setItem(recipe.id, JSON.stringify(recipe));
     return recipe.id;
   }
 };
@@ -117,24 +118,15 @@ storage.editRecipe = function(recipe) {
  * @return {Recipe} requestedrecipe object
  */
 storage.getRecipe = function(id) {
-  const currRecipes = storage.getRecipes();
-  for (let i = 0; i < currRecipes.length; i++) {
-    // Get Recipe by comparing ids
-    if (currRecipes[i].id == id) {
-      return currRecipes[i];
-    }
-  }
-  // Return empty object when not found (error)
-  return {};
+  return JSON.parse(localStorage.getItem(id)) || {};
 };
 
 /**
  * Return a set of recipe ids in localstorage
- * @return {Set} Set of recipe ids in localstorage
+ * @return {Array} List of recipe ids in localstorage
  */
 storage.getRecipeIDs = function() {
-  const currRecipes = storage.getRecipes();
-  return new Set(currRecipes.map((a) => a['id']) || []);
+  return JSON.parse(localStorage.getItem('recipes')) || [];
 };
 
 /**
@@ -229,6 +221,7 @@ storage.formatRecipe = function(recipe) {
   }
   // Recipe id (from spoonacular)
   formatted.id = recipe['id'];
+  formatted.pin = false;
 
   return formatted;
 };
