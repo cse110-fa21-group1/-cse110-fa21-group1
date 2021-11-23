@@ -17,7 +17,7 @@ textarea:-webkit-autofill:focus {
   border:  solid 0.15vw transparent;
   border-radius: 7px;
   background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
-                    linear-gradient(var(--electric-purple), #333399);
+                    linear-gradient(var(--electric-purple), var(--muted-purple));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
