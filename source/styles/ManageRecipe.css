@@ -1,28 +1,86 @@
+@import url(styles.css) all;
 body {
   margin:0;
+  background-color:var(--midnight-purple);
+  overflow:hidden;
+}
+::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--purple-gray);
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta-purple);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-purple);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 500px var(--midnight-purple) inset;
 }
 .grd-brdr {
-  border:  solid 2px transparent;
+  border: solid 0.15vw transparent;
   border-radius: 7px;
-  background-image: linear-gradient(white, white), 
-                    linear-gradient(#C728FF, #333399);
+  background-image: linear-gradient(var(--midnight-purple), var(--midnight-purple)), 
+                    linear-gradient(var(--electric-purple), var(--indigo-purple));
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+.grd-brdr > * {
+  background-color: transparent;
+  border: 0;
+}
+.text-input > * {
+  color:white;
+}
+.text-input > *:focus {
+  outline: none;
+}
 .ing-instr {
-  font-size: 3vmin;
+  font-family: "Montserrat";
+  font-size: 3vh;
   text-align: center;
   margin-bottom: 2vh;
+  color:white;
 }
 .grd-brdr:focus {
   outline: none;
+  
 }
-header {
-  display: flex;
+.url-section {
+  width: 42vw;
+  height: 7vh;
+  display:flex;
+  align-content: center;
   justify-content: space-between;
-  width: 90vw;
-  height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+}
+.url-tb {
+  width: 33vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+.plus-button {
+  font-size: 4vmin;
+  width: 7vw;
+  height: 7vh;
+  border-radius: 7px;
+  background-color: transparent;
+  color: white;
+}
+.plus-button:hover {
+  cursor: pointer;
+  box-shadow: var(--subtle-purple-glow);
 }
 .big-button {
   margin-top: 2vh;
@@ -30,17 +88,32 @@ header {
   height: 7vh;
   font-size: 2vmin;
   font-family: 'Montserrat';
+  border-radius: 7px;
+}
+.big-button:hover {
+  cursor: pointer;
+  box-shadow: var(--subtle-purple-glow);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+  padding: 0vh 5vw 0vh 5vw;
 }
 #current-name {
-  width: 30vw;
+  width: 60vw;
   height: 10vh;
-  font-size: 3vmin;
+  font-size: 4vh;
+  text-align: center;
+  color:white;
   font-family: 'Montserrat';
 }
-
+#blank-space {
+  width: 12vw;
+  height: 7vh;
+}
 .middle {
   /* border: 3px double #4C4C4C; */
-  width: 90vw;
   height: 65vh;
   padding: 5vh 5vw 0vh 5vw;
 }
@@ -55,39 +128,38 @@ header {
   height: 60vh;
   display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
 }
 #recipe-pic {
   width: 42vw;
   height: 50vh;
 }
-#pic-url {
-  width: 32vw;
-  height: 6.25vh;
-  font-size: 2vmin;
-}
-#pic-button {
-  font-size: 4vmin;
-  width: 9vw;
-  height: 7vh;
+#pic-wrap {
+  width: 41.69vw;
+  height: 49.5vh;
+  border-radius: 15px;
+  overflow: hidden;
 }
 .right-half {
   width: 42vw;
   height: 60vh;
   display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
 }
 #name-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #desc-box {
-  width: 42vw;
-  height: 40vh;
+  width: 41.69vw;
+  height: 35vh;
   font-size: 2.25vmin;
+  resize: none;
 }
 #tag-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
@@ -96,33 +168,46 @@ header {
 .page-two {
   width: 90vw;
   height: 55vh;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #ing-box {
-  overflow-y:scroll;
+  overflow: auto;
   height: 40vh;
+  width: 85vw;
+}
+#ing-bottom {
+  width: 85vw;
+  height: 7vh;
+  display:flex;
+  justify-content: right;
 }
 #ing-button {
   font-size: 4vmin;
-  float: right;
-  margin: 1vh 3vw 1vh 3vw;
-  display: block;
 }
 
 /* The third page and all of its elements */
 .page-three {
   width: 90vw;
   height: 55vh;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 #instr-box {
-  margin-left: 1vw;
-  overflow-y:scroll;
+  overflow: auto;
   height: 40vh;
+  width: 85vw;
+}
+#instr-bottom {
+  width: 85vw;
+  height: 7vh;
+  display:flex;
+  justify-content: right;
 }
 #instr-button {
   font-size: 4vmin;
-  float: right;
-  margin: 1vh 3vw 1vh 3vw;
-  display: block;
 }
 
 /* The third page and all of its elements */
@@ -131,17 +216,17 @@ header {
   justify-content: space-between;
 }
 #time-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #serving-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #recipe-vid {
-  width: 42vw;
+  width: 41.69vw;
   height: 50vh;
 }
 #pin-section {
@@ -151,26 +236,16 @@ header {
 #pin-text {
   font-family: 'Montserrat';
   font-size: 3vmin;
+  color:white;
 }
 .heart {
   content: '&hearts';
-}
-#vid-url {
-  width: 32vw;
-  height: 6.25vh;
-  font-size: 2vmin;
-}
-#vid-button {
-  font-size: 4vmin;
-  width: 9vw;
-  height: 7vh;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90vw;
   height: 10vh;
   padding: 0vh 5vw 0vh 5vw;
 }
@@ -181,14 +256,27 @@ footer {
 .progress-box {
   height: 2.5vmin;
   width: 2.5vmin;
-  background-color: #41355B;
+  background-color: var(--purple-gray);
   margin: 0 1vw;
+  transition: all 0.15s ease-in-out;
+  border-radius: 4px;
 } 
-
+.progress-box:hover {
+  cursor: pointer;
+}
 .active-box {
-  background-color: #C728FF;
-} 
-
+  background-color: var(--electric-purple);
+}
+#back-button {
+  border: solid 0.15vw var(--electric-purple);
+  background-color: transparent;
+  color: white;
+}
+#next-button {
+  border: none;
+  background-color: var(--electric-purple);
+  color: white;
+}
 .fade {
   visibility: hidden;
 }
