@@ -40,18 +40,31 @@ textarea:-webkit-autofill:focus {
 }
 .grd-brdr:focus {
   outline: none;
+  
 }
 .url-section {
   width: 42vw;
   height: 7vh;
   display:flex;
   align-content: center;
-}
-header {
-  display: flex;
   justify-content: space-between;
-  height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+}
+.url-tb {
+  width: 33vw;
+  height: 6.25vh;
+  font-size: 2vmin;
+}
+.plus-button {
+  font-size: 4vmin;
+  width: 7vw;
+  height: 7vh;
+  border-radius: 7px;
+  background-color: transparent;
+  color: white;
+}
+.plus-button:hover {
+  cursor: pointer;
+  box-shadow: var(--subtle-purple-glow);
 }
 .big-button {
   margin-top: 2vh;
@@ -59,19 +72,30 @@ header {
   height: 7vh;
   font-size: 2vmin;
   font-family: 'Montserrat';
+  border-radius: 7px;
 }
 .big-button:hover {
   cursor: pointer;
   box-shadow: var(--subtle-purple-glow);
 }
-#current-name {
-  width: 30vw;
+header {
+  display: flex;
+  justify-content: space-between;
   height: 10vh;
-  font-size: 3.25vh;
+  padding: 0vh 5vw 0vh 5vw;
+}
+#current-name {
+  width: 60vw;
+  height: 10vh;
+  font-size: 4vh;
+  text-align: center;
   color:white;
   font-family: 'Montserrat';
 }
-
+#blank-space {
+  width: 12vw;
+  height: 7vh;
+}
 .middle {
   /* border: 3px double #4C4C4C; */
   height: 65vh;
@@ -95,20 +119,10 @@ header {
   height: 50vh;
 }
 #pic-wrap {
-  width: 41.5vw;
+  width: 41.69vw;
   height: 49.5vh;
   border-radius: 15px;
   overflow: hidden;
-}
-#pic-url {
-  width: 32vw;
-  height: 6.25vh;
-  font-size: 2vmin;
-}
-#pic-button {
-  font-size: 4vmin;
-  width: 9vw;
-  height: 7vh;
 }
 .right-half {
   width: 42vw;
@@ -118,29 +132,19 @@ header {
   align-content: space-between;
 }
 #name-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #desc-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 35vh;
   font-size: 2.25vmin;
 }
 #tag-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
-}
-#baseline-url {
-  width: 32vw;
-  height: 6.25vh;
-  font-size: 2vmin;
-}
-#baseline-button {
-  font-size: 4vmin;
-  width: 9vw;
-  height: 7vh;
 }
 
 /* The second page and all of its elements */
@@ -158,6 +162,7 @@ header {
 }
 #ing-bottom {
   width: 85vw;
+  height: 7vh;
   display:flex;
   justify-content: right;
 }
@@ -180,6 +185,7 @@ header {
 }
 #instr-bottom {
   width: 85vw;
+  height: 7vh;
   display:flex;
   justify-content: right;
 }
@@ -193,17 +199,17 @@ header {
   justify-content: space-between;
 }
 #time-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #serving-box {
-  width: 42vw;
+  width: 41.69vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #recipe-vid {
-  width: 42vw;
+  width: 41.69vw;
   height: 50vh;
 }
 #pin-section {
@@ -217,16 +223,6 @@ header {
 }
 .heart {
   content: '&hearts';
-}
-#vid-url {
-  width: 32vw;
-  height: 6.25vh;
-  font-size: 2vmin;
-}
-#vid-button {
-  font-size: 4vmin;
-  width: 9vw;
-  height: 7vh;
 }
 
 footer {
@@ -246,6 +242,7 @@ footer {
   background-color: var(--muted-purple);
   margin: 0 1vw;
   transition: all 0.15s ease-in-out;
+  border-radius: 4px;
 } 
 .progress-box:hover {
   cursor: pointer;
@@ -255,13 +252,13 @@ footer {
 }
 #back-button {
   border: solid 0.15vw var(--electric-purple);
-  color: white;
   background-color: transparent;
+  color: white;
 }
 #next-button {
   border: none;
-  color: white;
   background-color: var(--electric-purple);
+  color: white;
 }
 .fade {
   visibility: hidden;

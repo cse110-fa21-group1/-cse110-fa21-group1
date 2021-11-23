@@ -37,7 +37,7 @@
   <header>
     <button class="big-button" value="button">Back to Recipes</button>
     <p id="current-name">Managing a Recipe...</p>
-    <span></span>
+    <span id="blank-space"></span>
   </header>
 
   <section class="middle">
@@ -46,8 +46,8 @@
       <div class="left-half">
         <div class="grd-brdr" id="pic-wrap"><img id="recipe-pic" src="tba"></div>
         <div class="url-section">
-          <div class="text-input grd-brdr"><input id="pic-url" type="url" placeholder="URL of the image"></div>
-          <button id="pic-button" value="button">+</button>
+          <div class="text-input grd-brdr"><input class="url-tb" id="pic-url" type="url" placeholder="URL of the image"></div>
+          <div class="grd-brdr"><button class="plus-button" id="pic-button" value="button">+</button></div>
         </div>
       </div>
       <div class="right-half">
@@ -55,8 +55,8 @@
         <div class="text-input grd-brdr"><textarea id="desc-box" placeholder="Description"></textarea></div>
         <div class="text-input grd-brdr"><input id="tag-box" type="text" placeholder="Tags"></div>
         <div class="url-section">
-          <div class="text-input grd-brdr"><input id="baseline-url" type="url" placeholder="URL of the base recipe"></div>
-          <button id="baseline-button" value="button">+</button>
+          <div class="text-input grd-brdr"><input class="url-tb" id="baseline-url" type="url" placeholder="URL of the base recipe"></div>
+          <div class="grd-brdr"><button class="plus-button" id="baseline-button" value="button">+</button></div>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
         <li class="ing-instr grd-brdr" id="first-ing" contenteditable="true"></li>
       </ul>
       <div id="ing-bottom">
-        <button id="ing-button" class="big-button" value="button">+</button>
+        <div class="grd-brdr"><button id="ing-button" class="plus-button" value="button">+</button></div>
       </div>
     </div>
     <!-- html for 3rd page (instructions) -->
@@ -75,7 +75,7 @@
         <li class="ing-instr grd-brdr" id="first-instr" contenteditable="true"></li>
       </ol>
       <div id="instr-bottom">
-        <button id="instr-button" class="big-button" value="button">+</button>
+        <div class="grd-brdr"><button id="instr-button" class="plus-button" value="button">+</button></div>
       </div>
     </div>
     <!-- html for 4th page (finishing touches) -->
@@ -92,8 +92,8 @@
       <div class="right-half">
         <div class="grd-brdr"><iframe id="recipe-vid"></iframe></div>
         <div class="url-section">
-          <div class="text-input grd-brdr"><input id="vid-url" type="url" placeholder="URL of the video"></div>
-          <button id="vid-button" value="button">+</button>
+          <div class="text-input grd-brdr"><input class="url-tb" id="vid-url" type="url" placeholder="URL of the video"></div>
+          <div class="grd-brdr"><button class="plus-button" id="vid-button" value="button">+</button></div>
         </div>
       </div>
     </div>
