@@ -148,7 +148,7 @@ header {
   flex-wrap: wrap;
 }
 #ing-box {
-  overflow-y:scroll;
+  overflow: auto;
   height: 40vh;
   width: 85vw;
 }
@@ -170,7 +170,7 @@ header {
   flex-wrap: wrap;
 }
 #instr-box {
-  overflow-y:scroll;
+  overflow: auto;
   height: 40vh;
   width: 85vw;
 }
