@@ -22,6 +22,8 @@ export class Recipe {
   id;
   /* {Array} Recipe tags */
   tags;
+  /* {Boolean} Pinned/not pinned */
+  pinned;
 
   /**
    * Creates an instance of a Recipe.
