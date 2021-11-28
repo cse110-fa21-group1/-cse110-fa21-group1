@@ -93,6 +93,10 @@ main {
   width: 50%;
 }
 
+.clock {
+  padding-left: 20%;
+}
+
 h1 {
   text-align: left;
   justify-content: left;
