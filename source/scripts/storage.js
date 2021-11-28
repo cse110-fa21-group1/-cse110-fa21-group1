@@ -70,8 +70,13 @@ storage.addRecipe = function(recipe) {
  * @return {Int} index of the recipe
  */
 storage.getRecipeIndex = function(id) {
-  const currRecipeIDs = storage.getRecipeIDs();
-  return currRecipeIDs.indexOf(id);
+  const currRecipes = storage.getRecipes();
+  for (let i = 0; i < currRecipes.length; i++) {
+    if (currRecipes[i] == id) {
+      return i;
+    }
+  }
+  return -1;
 };
 
 /**
@@ -102,6 +107,7 @@ storage.editRecipe = function(recipe) {
     const newId = storage.addRecipe(recipe);
     return newId;
   } else {
+    currRecipes[indexOfId] = recipe;
     localStorage.setItem(recipe.id, JSON.stringify(recipe));
     return recipe.id;
   }
@@ -150,7 +156,7 @@ storage.unpinRecipe = function(id) {
  * @return {Boolean} whether recipe is pinned
  */
 storage.isPinned = function(id) {
-  return JSON.parse(localStorage.getItem(id)).pinned == true;
+  return localStorage.getItem(id).pinned == true;
 };
 
 /**
