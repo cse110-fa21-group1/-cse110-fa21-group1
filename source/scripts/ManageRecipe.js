@@ -13,6 +13,7 @@ function init() {
   }
 }
 
+const returnButton = document.getElementById('return-button');
 const leftButton = document.getElementById('back-button');
 const rightButton = document.getElementById('next-button');
 const ingButton = document.getElementById('ing-button');
@@ -152,6 +153,11 @@ function moveToPage(newPage) {
   if (newPage == 3) rightButton.textContent = 'Save';
   currentPage = newPage;
 }
+
+/* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
+returnButton.onclick = function() {
+  window.location.href = window.location.origin + '/source/Explore.html';
+};
 
 /* Adds 'event listeners' for the back and next navigation buttons */
 leftButton.onclick = function() {

@@ -148,18 +148,18 @@ header {
   align-content: space-between;
 }
 #name-box {
-  width: 41.69vw;
+  width: 41.47vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
 #desc-box {
-  width: 41.69vw;
+  width: 41.47vw;
   height: 35vh;
   font-size: 2.25vmin;
   resize: none;
 }
 #tag-box {
-  width: 41.69vw;
+  width: 41.47vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
