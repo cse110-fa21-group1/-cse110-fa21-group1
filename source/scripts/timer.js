@@ -45,8 +45,8 @@ function setTimerText(currHr, currMin, currSec) {
  * Starts/resumes the countdown timer
  */
 function startTimer() {
-  let displayTime = () => {
-  	const displayHours = Math.floor(timeInSeconds / (60 * 60));
+  const displayTime = () => {
+    const displayHours = Math.floor(timeInSeconds / (60 * 60));
     const remainder = timeInSeconds - (displayHours * 60 * 60);
     const displayMinutes = Math.floor(remainder / 60);
     const displaySeconds = remainder - (displayMinutes * 60);
@@ -55,7 +55,7 @@ function startTimer() {
   interval = setInterval(() => {
     displayTime();
     timeInSeconds -= 1;
-  /* When the timer hits 0, revert to the state before the timer started */
+    /* When the timer hits 0, revert to the state before the timer started */
     if (timeInSeconds < 0) {
       clearInterval(interval);
       startButton.classList.remove('hidden');
