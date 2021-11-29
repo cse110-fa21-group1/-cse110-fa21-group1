@@ -50,6 +50,7 @@ textarea:-webkit-autofill:focus {
 .ing-instr {
   font-family: "Montserrat";
   font-size: 3vh;
+  text-align: center;
   margin-bottom: 2vh;
   color:white;
 }
