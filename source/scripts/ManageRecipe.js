@@ -30,6 +30,9 @@ const ingList = document.getElementById('ing-box');
 const instrList = document.getElementById('instr-box');
 const firstIng = document.getElementById('first-ing');
 const firstInstr = document.getElementById('first-instr');
+const hourBox = document.getElementById('hour-box');
+const minuteBox = document.getElementById('minute-box');
+const servingBox = document.getElementById('serving-box');
 const box1 = document.getElementById('b1');
 const box2 = document.getElementById('b2');
 const box3 = document.getElementById('b3');
@@ -355,4 +358,18 @@ firstInstr.addEventListener('keydown', (event) => {
     firstInstr.parentNode.insertBefore(newInstr(), firstInstr.nextSibling);
     firstInstr.nextSibling.focus();
   }
+});
+
+/**
+ * Adds event listeners to the serving and cooking time input boxes
+ * so that only numbers can be inputted.
+ */
+ hourBox.addEventListener('keypress', (e) => {
+  if (isNaN(e.key)) e.preventDefault();
+});
+minuteBox.addEventListener('keypress', (e) => {
+  if (isNaN(e.key)) e.preventDefault();
+});
+servingBox.addEventListener('keypress', (e) => {
+  if (isNaN(e.key)) e.preventDefault();
 });

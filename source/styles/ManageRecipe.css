@@ -50,7 +50,6 @@ textarea:-webkit-autofill:focus {
 .ing-instr {
   font-family: "Montserrat";
   font-size: 3vh;
-  text-align: center;
   margin-bottom: 2vh;
   color:white;
 }
@@ -61,7 +60,7 @@ textarea:-webkit-autofill:focus {
 .url-section {
   width: 42vw;
   height: 7vh;
-  display:flex;
+  display: flex;
   align-content: center;
   justify-content: space-between;
 }
@@ -191,7 +190,7 @@ header {
 .page-three {
   width: 90vw;
   height: 55vh;
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -203,20 +202,26 @@ header {
 #instr-bottom {
   width: 85vw;
   height: 7vh;
-  display:flex;
+  display: flex;
   justify-content: right;
 }
 #instr-button {
   font-size: 4vmin;
 }
 
-/* The third page and all of its elements */
+/* The fourth page and all of its elements */
 .page-four {
   display: flex;
   justify-content: space-between;
 }
-#time-box {
+#time-section {
   width: 41.69vw;
+  height: 7vh;
+  display: flex;
+  justify-content: space-between;
+}
+.time-box {
+  width: 18vw;
   height: 6.25vh;
   font-size: 2vmin;
 }
