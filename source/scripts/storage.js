@@ -10,6 +10,11 @@ storage.init = () => {
     localStorage.setItem('numRecipesCreated', '0');
     localStorage.setItem('pinned', '[]');
   }
+//   if (localStorage.getItem('pinned') == undefined ||
+//       localStorage.getItem('pinned') == 'NaN') {
+//     localStorage.setItem('pinned', '[]');
+//     console.log('here');
+//   }
 };
 
 /** Increase number of recipes created, mainly for creating id */
@@ -70,13 +75,8 @@ storage.addRecipe = function(recipe) {
  * @return {Int} index of the recipe
  */
 storage.getRecipeIndex = function(id) {
-  const currRecipes = storage.getRecipes();
-  for (let i = 0; i < currRecipes.length; i++) {
-    if (currRecipes[i] == id) {
-      return i;
-    }
-  }
-  return -1;
+  const currRecipeIDs = storage.getRecipeIDs();
+  return currRecipeIDs.indexOf(id);
 };
 
 /**
@@ -107,7 +107,6 @@ storage.editRecipe = function(recipe) {
     const newId = storage.addRecipe(recipe);
     return newId;
   } else {
-    currRecipes[indexOfId] = recipe;
     localStorage.setItem(recipe.id, JSON.stringify(recipe));
     return recipe.id;
   }
@@ -135,9 +134,14 @@ storage.getRecipeIDs = function() {
  * @param {String} id id of the recipe to be pinned
  */
 storage.pinRecipe = function(id) {
-  const recipe = JSON.parse(localStorage.getItem(id));
-  recipe.pinned = true;
-  storage.editRecipe(recipe);
+  if (storage.getRecipeIndex(id) != -1) {
+    const recipe = JSON.parse(localStorage.getItem(id));
+    recipe.pinned = true;
+    storage.editRecipe(recipe);
+  }
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  pinnedRecipe.push(id);
+  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
 };
 
 /**
@@ -145,9 +149,17 @@ storage.pinRecipe = function(id) {
  * @param {String} id id of the recipe to be unpinned
  */
 storage.unpinRecipe = function(id) {
-  const recipe = JSON.parse(localStorage.getItem(id));
-  recipe.pinned = false;
-  storage.editRecipe(recipe);
+  if (storage.getRecipeIndex(id) != -1) {
+    const recipe = JSON.parse(localStorage.getItem(id));
+    recipe.pinned = false;
+    storage.editRecipe(recipe);
+  }
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const index = pinnedRecipe.indexOf(id);
+  if (index > -1) {
+    pinnedRecipe.splice(index, 1);
+  }
+  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
 };
 
 /**
@@ -156,16 +168,25 @@ storage.unpinRecipe = function(id) {
  * @return {Boolean} whether recipe is pinned
  */
 storage.isPinned = function(id) {
-  return localStorage.getItem(id).pinned == true;
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  for (let i = 0; i < pinnedRecipe.length; i++) {
+    if (pinnedRecipe[i] == id) {
+      return true;
+    }
+  }
+  return false;
+  // const recipe = JSON.parse(localStorage.getItem(id));
+  // return recipe.pinned == true;
 };
 
 /**
  * Return a list of pinned recipe ids
- * @return {Array} List of pinned recipe pids
+ * @return {Array} List of pinned recipe ids
  */
 storage.getPinnedRecipes = function() {
-  const ids = storage.getRecipeIDs();
-  return ids.filter((id) => storage.isPinned(id)) || [];
+  // const ids = storage.getRecipeIDs();
+  // return ids.filter((id) => storage.isPinned(id)) || [];
+  return JSON.parse(localStorage.getItem('pinned'));
 };
 
 /**
