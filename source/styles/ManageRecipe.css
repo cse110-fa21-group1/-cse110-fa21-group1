@@ -216,13 +216,13 @@ header {
   justify-content: space-between;
 }
 #time-section {
-  width: 41.69vw;
+  width: 42vw;
   height: 7vh;
   display: flex;
   justify-content: space-between;
 }
 .time-box {
-  width: 18vw;
+  width: 12vw;
   height: 6.25vh;
   font-size: 2vmin;
 }

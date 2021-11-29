@@ -32,6 +32,7 @@ const firstIng = document.getElementById('first-ing');
 const firstInstr = document.getElementById('first-instr');
 const hourBox = document.getElementById('hour-box');
 const minuteBox = document.getElementById('minute-box');
+const secondBox = document.getElementById('second-box');
 const servingBox = document.getElementById('serving-box');
 const box1 = document.getElementById('b1');
 const box2 = document.getElementById('b2');
@@ -368,6 +369,9 @@ firstInstr.addEventListener('keydown', (event) => {
   if (isNaN(e.key)) e.preventDefault();
 });
 minuteBox.addEventListener('keypress', (e) => {
+  if (isNaN(e.key)) e.preventDefault();
+});
+secondBox.addEventListener('keypress', (e) => {
   if (isNaN(e.key)) e.preventDefault();
 });
 servingBox.addEventListener('keypress', (e) => {
