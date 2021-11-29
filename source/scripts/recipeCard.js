@@ -33,7 +33,7 @@ class RecipeCard extends HTMLElement {
     const urlParams = new URLSearchParams(window.location.search);
     wrapper.onclick = function(e) {
       // console.log('here');
-      if (e.target.id != 'heartbutton'){
+      if (e.target.id != 'heartbutton') {
         window.location.href =
           window.location.origin +
           window.location.pathname.replace('Explore.html', 'Recipe.html') +
@@ -51,29 +51,29 @@ class RecipeCard extends HTMLElement {
     const heartWrapper = document.createElement('div');
     heartWrapper.classList.add('placement');
     const heart = document.createElement('div');
-    
+
     const HeartButton = document.createElement('button');
     HeartButton.setAttribute('id', 'heartbutton');
     storage.init();
     if (storage.isPinned(data.id)) {
-        HeartButton.innerText = 'unpin';
+      HeartButton.innerText = 'unpin';
     } else {
-        HeartButton.innerText = 'pin';
+      HeartButton.innerText = 'pin';
     }
     imgWrapper.append(HeartButton);
     HeartButton.onclick = function() {
-        if (!storage.isPinned(data.id)) {
-            storage.pinRecipe(data.id);
-            // console.log('here');
-            // change button innerText
-            HeartButton.innerText = 'unpin';
-        } else {
-            storage.unpinRecipe(data.id);
-            // console.log('there');
-            // change button innerText
-            HeartButton.innerText = 'pin';
-        }
-    }
+      if (!storage.isPinned(data.id)) {
+        storage.pinRecipe(data.id);
+        // console.log('here');
+        // change button innerText
+        HeartButton.innerText = 'unpin';
+      } else {
+        storage.unpinRecipe(data.id);
+        // console.log('there');
+        // change button innerText
+        HeartButton.innerText = 'pin';
+      }
+    };
 
     heart.classList.add('heart');
     heartWrapper.append(heart);

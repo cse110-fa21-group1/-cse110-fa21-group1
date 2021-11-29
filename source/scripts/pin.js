@@ -13,7 +13,7 @@ if (storage.isPinned(id) == true) {
 }
 
 Button.addEventListener('click', (event) => {
-    // if this recipe is not stored in local storage, thus from spoonacular
+  // if this recipe is not stored in local storage, thus from spoonacular
   if (!storage.isPinned(id)) {
     storage.pinRecipe(id);
     // console.log('here');
@@ -26,6 +26,3 @@ Button.addEventListener('click', (event) => {
     Button.innerText = 'Add to favorite';
   }
 });
-
-
-
