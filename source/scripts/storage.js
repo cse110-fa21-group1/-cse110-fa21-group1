@@ -175,8 +175,6 @@ storage.isPinned = function(id) {
     }
   }
   return false;
-  // const recipe = JSON.parse(localStorage.getItem(id));
-  // return recipe.pinned == true;
 };
 
 /**
