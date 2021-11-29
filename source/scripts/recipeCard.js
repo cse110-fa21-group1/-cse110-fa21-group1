@@ -1,6 +1,5 @@
 // recipeCard.js
-
-import( '../styles/explore.css' );
+import("../styles/explore.css");
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -11,7 +10,7 @@ class RecipeCard extends HTMLElement {
    */
   constructor() {
     super(); // inherets everything from HTMLElement
-    this.attachShadow({mode: 'open'}); // Creates the Shadow DOM
+    this.attachShadow({ mode: "open" }); // Creates the Shadow DOM
   }
 
   /**
@@ -22,47 +21,58 @@ class RecipeCard extends HTMLElement {
     this.json = data; // Store the data passed in for later
 
     // const styles = document.createElement('style');
-    const styles = document.createElement('link');
-    styles.setAttribute('href', 'styles/explore.css');
-    styles.setAttribute('rel', 'stylesheet');
-    styles.setAttribute('type', 'text/css');
+    const styles = document.createElement("link");
+    styles.setAttribute("href", "styles/explore.css");
+    styles.setAttribute("rel", "stylesheet");
+    styles.setAttribute("type", "text/css");
 
     // Create the outer wrapper for the recipe to nest inside
-    const wrapper = document.createElement('article');
+    const wrapper = document.createElement("article");
     const urlParams = new URLSearchParams(window.location.search);
-    wrapper.onclick = function() {
+    wrapper.onclick = function () {
       window.location.href =
-          window.location.origin +
-          window.location.pathname.replace('Explore.html', 'Recipe.html') +
-          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-          'id=' + data.id;
+        window.location.origin +
+        window.location.pathname.replace("Explore.html", "Recipe.html") +
+        "?" +
+        (urlParams.get("searched") != null ? "searched=true&" : "") +
+        "id=" +
+        data.id;
     };
 
     // Create the recipe image element
-    const imgWrapper = document.createElement('div');
-    imgWrapper.classList.add('image-wrapper');
-    const img = document.createElement('img');
-    img.setAttribute('src', data.image);
-    img.setAttribute('alt', data.name);
-    const heartWrapper = document.createElement('div');
-    heartWrapper.classList.add('placement');
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
+    const imgWrapper = document.createElement("div");
+    imgWrapper.classList.add("image-wrapper");
+    const img = document.createElement("img");
+    img.setAttribute("src", data.image);
+    img.setAttribute("alt", data.name);
+
+    // Create the like buttons for each recipe
+    const heartWrapper = document.createElement("div");
+    heartWrapper.classList.add("heart-wrapper");
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.onclick = function () {
+      if (heart.classList.contains("liked")) {
+        heart.classList.remove("liked");
+      } else {
+        heart.classList.add("liked");
+      }
+    };
     heartWrapper.append(heart);
     imgWrapper.append(img, heartWrapper);
 
     // Create the recipe title
-    const title = document.createElement('p');
-    title.classList.add('title');
+    const title = document.createElement("p");
+    title.classList.add("title");
     title.innerText = data.name;
 
     // Create the time for recipe
-    const time = document.createElement('div');
-    time.classList.add('time-wrapper');
+    const time = document.createElement("div");
+    time.classList.add("time-wrapper");
 
     // Create the tags for recipe
-    const tag = document.createElement('tag');
-    tag.classList.add('tag-wrapper');
+    const tag = document.createElement("tag");
+    tag.classList.add("tag-wrapper");
 
     // Add all of the above elements to the wrapper
     wrapper.append(imgWrapper, title, time, tag);
@@ -80,4 +90,4 @@ class RecipeCard extends HTMLElement {
   }
 }
 
-customElements.define('recipe-card', RecipeCard);
+customElements.define("recipe-card", RecipeCard);
