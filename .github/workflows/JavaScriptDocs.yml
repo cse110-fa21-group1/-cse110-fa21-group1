@@ -28,4 +28,5 @@ jobs:
           recurse: true
           output_dir: ../../source/docs
           template: minami
+          front_page: README.md
 
