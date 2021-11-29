@@ -1,6 +1,5 @@
 // recipeCard.js
-
-import( '../styles/explore.css' );
+import('../styles/explore.css');
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -32,10 +31,12 @@ class RecipeCard extends HTMLElement {
     const urlParams = new URLSearchParams(window.location.search);
     wrapper.onclick = function() {
       window.location.href =
-          window.location.origin +
-          window.location.pathname.replace('Explore.html', 'Recipe.html') +
-          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-          'id=' + data.id;
+        window.location.origin +
+        window.location.pathname.replace('Explore.html', 'Recipe.html') +
+        '?' +
+        (urlParams.get('searched') != null ? 'searched=true&' : '') +
+        'id=' +
+        data.id;
     };
 
     // Create the recipe image element
@@ -44,10 +45,19 @@ class RecipeCard extends HTMLElement {
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
     img.setAttribute('alt', data.name);
+
+    // Create the like buttons for each recipe
     const heartWrapper = document.createElement('div');
-    heartWrapper.classList.add('placement');
+    heartWrapper.classList.add('heart-wrapper');
     const heart = document.createElement('div');
     heart.classList.add('heart');
+    heart.onclick = function() {
+      if (heart.classList.contains('liked')) {
+        heart.classList.remove('liked');
+      } else {
+        heart.classList.add('liked');
+      }
+    };
     heartWrapper.append(heart);
     imgWrapper.append(img, heartWrapper);
 
