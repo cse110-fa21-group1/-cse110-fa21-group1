@@ -10,6 +10,7 @@
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
     <script src="scripts/recipeDisplay.js" type="module" defer></script>
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
+    <script src="scripts/timer.js" type="text/javascript" defer></script>
     <link href="styles/recipe.css" rel="stylesheet" type="text/css" />
     <link href="styles/navbar.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
@@ -79,16 +80,41 @@
                 <video src='nonexistentvideo.mp4' controls></video>
             </div>
         </div>
-        <div class="header-text">
-            <h2>Instructions</h2>
-            <div>
-                <ol id='insutrctionList'>
-                    <li>step 1</li>
-                    <li>step 2</li>
-                    <li>step 3</li>
-                    <li>step 4</li>
-                    <li>step 5</li>
-                </ol>
+        <div class="section">
+            <div class="half-size">
+                <h2>Instructions</h2>
+                <div>
+                    <ol id='insutrctionList'>
+                        <li>step 1</li>
+                        <li>step 2</li>
+                        <li>step 3</li>
+                        <li>step 4</li>
+                        <li>step 5</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="half-size">
+                <div class="clock">
+                    <div class="timer-display">
+                        <div class="time-div">
+                            <span id="hours" class="time-num" contenteditable="true">00</span>
+                            <span class="time-label">Hrs</span>
+                        </div>
+                        <div class="time-div">
+                            <span id="minutes" class="time-num" contenteditable="true">00</span>
+                            <span class="time-label">Min</span>
+                        </div>
+                        <div class="time-div">
+                            <span id="seconds" class="time-num" contenteditable="true">00</span>
+                            <span class="time-label">Sec</span>
+                        </div>
+                    </div>
+                    <div class="button-display">
+                        <button class="timer-button" id="start-button">Start Cooking!</button>
+                        <button class="timer-button hidden" id="pause-button">Pause</button>
+                        <button class="timer-button hidden" id="stop-button">Stop</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
