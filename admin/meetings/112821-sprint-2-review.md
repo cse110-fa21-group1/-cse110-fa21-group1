@@ -13,7 +13,10 @@ Finish timer w/ Matt Sunday.
 - Matthew: On Monday I did most of the styling in terms of adding color and some icons for the Recipe.html page (still some bugs to work out), fasts forward to Saturday/Sunday, I worked on a very buggy/rough implementation of a user settable countdown timer (as seen today)
 - Jennifer: On Monday, I finished up the styling for the homepage. From Tuesday onwards, I was with family and didn't work on anything. I did attend the meetings on Saturday and Sunday though.
 - Zimo: For the past 3 days and starting from Wednesday was implementing the pin feature, I debugged the feature for a while and I believe it works properly, was gone for most of Thanksgiving
-- Crisostomo:
+- Crisostomo: Did the entire styling of the cards for each recipe card (technically wasn't pushed until post discussion but it was done pre-discussion)
+Premade the styling of the tags and time in case they're implemented
+Added the favorite button to each recipe card with animation included
+Fixed a bug on main that caused styling to not apply to the titles of each recipe card due to a change that occured when transitioning from title links to card links.
 - Mike: The week before thanksgiving I was focusing on the CRUD part for the project and mostly on the return to recipe button and the edit feature. That is around Wednesday to Friday. Then I was focusing on the timer function last week and waiting for a template for the timer.
 ### Tasks completed as a whole project wise
 Throughout this sprint, we have implemented or plan to implement the following later in the week:

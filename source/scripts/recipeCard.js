@@ -48,8 +48,10 @@ class RecipeCard extends HTMLElement {
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
     img.setAttribute('alt', data.name);
+
+    // Create the like buttons for each recipe
     const heartWrapper = document.createElement('div');
-    heartWrapper.classList.add('placement');
+    heartWrapper.classList.add('heart-wrapper');
     const heart = document.createElement('div');
 
     const HeartButton = document.createElement('button');
@@ -76,6 +78,13 @@ class RecipeCard extends HTMLElement {
     };
 
     heart.classList.add('heart');
+    heart.onclick = function() {
+      if (heart.classList.contains('liked')) {
+        heart.classList.remove('liked');
+      } else {
+        heart.classList.add('liked');
+      }
+    };
     heartWrapper.append(heart);
     imgWrapper.append(img, heartWrapper);
 
