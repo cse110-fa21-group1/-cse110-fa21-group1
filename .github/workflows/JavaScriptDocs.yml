@@ -26,6 +26,6 @@ jobs:
         with:
           source_dir: ./source/scripts
           recurse: true
-          output_dir: ./source/docs
+          output_dir: ../../source/docs
           template: minami
 
