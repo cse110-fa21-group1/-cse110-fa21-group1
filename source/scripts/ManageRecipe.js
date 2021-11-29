@@ -63,7 +63,7 @@ function populateRecipeHelper(id) {
  * @param {String} url url of the recipe to be fetched from
  */
 async function populateBaseline(url) {
-  const queryURL = 'https://api.spoonacular.com/recipes/extract?' +
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?' +
         'apiKey=' + apiKey +
         '&url=' + url;
   await (new Promise((resolve, reject) => {

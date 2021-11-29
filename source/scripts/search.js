@@ -54,7 +54,7 @@ function populateCards() {
  * @param {String} query Query string for the search
  */
 async function fetchRecipesHelper(query) {
-  const queryURL = 'https://api.spoonacular.com/recipes/complexSearch?query=' + query +
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
         '&number=3' +
         '&instructionsRequired=true' +
