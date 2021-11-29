@@ -3,31 +3,31 @@ let minutes = 0;
 let seconds = 0;
 let timeInSeconds = 0;
 let interval = null;
-let startButton = document.getElementById('start-button');
-let pauseButton = document.getElementById('pause-button');
-let stopButton = document.getElementById('stop-button');
-let hourNum = document.getElementById('hours');
-let minNum = document.getElementById('minutes');
-let secNum = document.getElementById('seconds');
+const startButton = document.getElementById('start-button');
+const pauseButton = document.getElementById('pause-button');
+const stopButton = document.getElementById('stop-button');
+const hourNum = document.getElementById('hours');
+const minNum = document.getElementById('minutes');
+const secNum = document.getElementById('seconds');
 
 /**
  * Adds event listeners to the editable numbers so that
  * only numbers can be inputted and that there cannot be
  * more than 2 numbers.
  */
-hourNum.addEventListener('keypress', e => {
-  let isFull = hourNum.innerHTML.length >= 2;
-  let notNum = isNaN(e.key);
+hourNum.addEventListener('keypress', (e) => {
+  const isFull = hourNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
   if (isFull || notNum) e.preventDefault();
 });
-minNum.addEventListener('keypress', e => {
-  let isFull = minNum.innerHTML.length >= 2;
-  let notNum = isNaN(e.key);
+minNum.addEventListener('keypress', (e) => {
+  const isFull = minNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
   if (isFull || notNum) e.preventDefault();
 });
-secNum.addEventListener('keypress', e => {
-  let isFull = secNum.innerHTML.length >= 2;
-  let notNum = isNaN(e.key);
+secNum.addEventListener('keypress', (e) => {
+  const isFull = secNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
   if (isFull || notNum) e.preventDefault();
 });
 /**
@@ -41,28 +41,30 @@ function setTimerText(currHr, currMin, currSec) {
   minNum.innerHTML = (currMin < 10) ? ('0' + currMin.toString()) : currMin;
   secNum.innerHTML = (currSec < 10) ? ('0' + currSec.toString()) : currSec;
 }
-/* Starts/resumes the countdown timer */
+/**
+ * Starts/resumes the countdown timer
+ */
 function startTimer() {
   let displayTime = () => {
-  	let displayHours = Math.floor(timeInSeconds / (60 * 60));
-    let remainder = timeInSeconds - (displayHours * 60 * 60);
-    let displayMinutes = Math.floor(remainder / 60);
-    let displaySeconds = remainder - (displayMinutes * 60);
-	setTimerText(displayHours, displayMinutes, displaySeconds);
+  	const displayHours = Math.floor(timeInSeconds / (60 * 60));
+    const remainder = timeInSeconds - (displayHours * 60 * 60);
+    const displayMinutes = Math.floor(remainder / 60);
+    const displaySeconds = remainder - (displayMinutes * 60);
+    setTimerText(displayHours, displayMinutes, displaySeconds);
   };
-	interval = setInterval(() => {
-  	displayTime();
-  	timeInSeconds -= 1;
-	/* When the timer hits 0, revert to the state before the timer started */
+  interval = setInterval(() => {
+    displayTime();
+    timeInSeconds -= 1;
+  /* When the timer hits 0, revert to the state before the timer started */
     if (timeInSeconds < 0) {
       clearInterval(interval);
-	  startButton.classList.remove('hidden');
-	  pauseButton.classList.add('hidden');
-	  stopButton.classList.add('hidden');
-	  hourNum.setAttribute('contenteditable', 'true');
-	  minNum.setAttribute('contenteditable', 'true');
-	  secNum.setAttribute('contenteditable', 'true');
-	  setTimerText(hours, minutes, seconds);
+      startButton.classList.remove('hidden');
+      pauseButton.classList.add('hidden');
+      stopButton.classList.add('hidden');
+      hourNum.setAttribute('contenteditable', 'true');
+      minNum.setAttribute('contenteditable', 'true');
+      secNum.setAttribute('contenteditable', 'true');
+      setTimerText(hours, minutes, seconds);
     }
   }, 1000);
 }
@@ -78,12 +80,12 @@ startButton.addEventListener('click', () => {
   minutes = (minNum.innerHTML.length == 0) ? 0 : parseInt(minNum.innerHTML);
   seconds = (secNum.innerHTML.length == 0) ? 0 : parseInt(secNum.innerHTML);
   if (seconds > 59) {
-	minutes++;
-	seconds -= 60;
+    minutes++;
+    seconds -= 60;
   }
   if (minutes > 59) {
-	hours++;
-	minutes -= 60;
+    hours++;
+    minutes -= 60;
   }
   setTimerText(hours, minutes, seconds);
   timeInSeconds = (hours * 60 * 60) +
@@ -103,11 +105,11 @@ startButton.addEventListener('click', () => {
  */
 pauseButton.addEventListener('click', () => {
   if (pauseButton.innerHTML == 'Pause') {
-	pauseButton.innerHTML = 'Resume';
-	clearInterval(interval);
+    pauseButton.innerHTML = 'Resume';
+    clearInterval(interval);
   } else {
     pauseButton.innerHTML = 'Pause';
-	startTimer();
+    startTimer();
   }
 });
 /**
@@ -123,4 +125,4 @@ stopButton.addEventListener('click', () => {
   hourNum.setAttribute('contenteditable', 'true');
   minNum.setAttribute('contenteditable', 'true');
   secNum.setAttribute('contenteditable', 'true');
-  });
+});
