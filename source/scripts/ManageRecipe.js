@@ -3,7 +3,7 @@ import {isEdit, isSearched} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
+const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 
 /** Initialize the manage page */
 function init() {
@@ -64,7 +64,7 @@ function populateRecipeHelper(id) {
  */
 async function populateBaseline(url) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?' +
-        'apiKey=' + apiKey +
+        'rapidapi-key=' + apiKey +
         '&url=' + url;
   await (new Promise((resolve, reject) => {
     fetch(queryURL)
