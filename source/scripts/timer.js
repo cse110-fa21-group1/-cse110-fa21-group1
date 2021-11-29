@@ -1,6 +1,7 @@
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
+let timeInSeconds = 0;
 let interval = null;
 let startButton = document.getElementById('start-button');
 let pauseButton = document.getElementById('pause-button');
@@ -34,9 +35,6 @@ function setTimerText(currHr, currMin, currSec) {
 }
 
 function startTimer() {
-  let timeInSeconds = (hours * 60 * 60) +
-  (minutes * 60) +
-  seconds;
   let displayTime = () => {
   	let displayHours = Math.floor(timeInSeconds / (60 * 60));
     let remainder = timeInSeconds - (displayHours * 60 * 60);
@@ -74,6 +72,9 @@ startButton.addEventListener('click', () => {
 	minutes -= 60;
   }
   setTimerText(hours, minutes, seconds);
+  timeInSeconds = (hours * 60 * 60) +
+  (minutes * 60) +
+  seconds;
   startTimer();
   startButton.classList.add('hidden');
   pauseButton.classList.remove('hidden');
@@ -83,3 +84,23 @@ startButton.addEventListener('click', () => {
   secNum.setAttribute('contenteditable', 'false');
 });
 
+pauseButton.addEventListener('click', () => {
+  if (pauseButton.innerHTML == 'Pause') {
+	pauseButton.innerHTML = 'Resume';
+	clearInterval(interval);
+  } else {
+	pauseButton.innerHTML = 'Pause';
+	startTimer();
+  }
+});
+
+stopButton.addEventListener('click', () => {
+	clearInterval(interval);
+	setTimerText(hours, minutes, seconds);
+	startButton.classList.remove('hidden');
+	pauseButton.classList.add('hidden');
+	stopButton.classList.add('hidden');
+	hourNum.setAttribute('contenteditable', 'true');
+	minNum.setAttribute('contenteditable', 'true');
+	secNum.setAttribute('contenteditable', 'true');
+  });
