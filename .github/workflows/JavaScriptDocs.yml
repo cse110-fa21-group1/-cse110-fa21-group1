@@ -35,8 +35,8 @@ jobs:
         run: |
           git config --global user.name "nabutabu"
           git config --global user.email "nabu.tabu2402@gmail.com"
-          git clone https://github.com/cse110-fa21-group1/-cse110-fa21-group1.git
-          cd source
-          git add docs/
-          git commit -m 'Update JSDocs'
-          git push origin nabutabu-patch-1
+          git remote add JSDocs https://github.com/cse110-fa21-group1/-cse110-fa21-group1.git
+          git checkout main
+          git add /source/docs
+          git commit -m "JSDocs Update"
+          git push JSDocs HEAD
