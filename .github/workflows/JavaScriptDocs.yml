@@ -28,14 +28,9 @@ jobs:
           recurse: true
           output_dir: ./source/docs
           template: minami
-          front_page: README.md
 
       - name: Add
-        working-directory: ./source
-        run: |
-          git config --global user.name "nabutabu"
-          git config --global user.email "nabu.tabu2402@gmail.com"
-          git clone https://github.com/cse110-fa21-group1/-cse110-fa21-group1.git
-          git checkout main
-          git add docs/
-          git -f push
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: ./source/docs
+          message: 'Update JSDocs'
