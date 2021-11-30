@@ -109,25 +109,31 @@ body {
   }
 
 .hamburger-menu {
+    padding:0;
     display: none;
-    margin-top:0;
+    margin:0;
     right:0;
     position: absolute;
     background-color: var(--midnight-purple);
-    width: 200px;
-    min-height: 100%;
     text-align: left;
     z-index: 5;
     transition: all .4s ease-in-out;
 }
 
 .hamburger-menu li {
-    padding: 10px;
+    width: 200px;
+    padding: 10px 40px;
     display: block;
     text-decoration: none;
     color:black;
     font-size: 24px;
     font-weight: 500;
+    border-spacing: 1px;
+    line-height: 250%;
+}
+
+.active{
+    background-color: var(--purple-gray);
 }
 
 .hamburger-menu li a{
