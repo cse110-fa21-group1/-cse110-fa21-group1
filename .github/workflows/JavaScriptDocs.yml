@@ -30,11 +30,13 @@ jobs:
           template: minami
           front_page: README.md
 
-      - name: list
+      - name: Add
         working-directory: ./source
         run: |
           git config --global user.name "nabutabu"
           git config --global user.email "nabu.tabu2402@gmail.com"
+          git clone https://github.com/cse110-fa21-group1/-cse110-fa21-group1.git
+          cd ./source
           git add docs/
           git commit -m 'Update JSDocs'
-          git push origin main
+          git push origin nabutabu-patch-1
