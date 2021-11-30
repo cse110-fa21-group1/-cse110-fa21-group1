@@ -168,7 +168,7 @@ storage.unpinRecipe = function(id) {
  * @return {Boolean} whether recipe is pinned
  */
 storage.isPinned = function(id) {
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
   for (let i = 0; i < pinnedRecipe.length; i++) {
     if (pinnedRecipe[i] == id) {
       return true;
