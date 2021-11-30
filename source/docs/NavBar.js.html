@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NavBar.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Recipe.html">Recipe</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RecipeCard.html">RecipeCard</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addNavigation">addNavigation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addSearchFunction">addSearchFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipes">fetchRecipes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isEdit">isEdit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isSearched">isSearched</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#moveToPage">moveToPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newIng">newIng</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newInstr">newInstr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateBaseline">populateBaseline</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCards">populateCards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipe">populateRecipe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setTimerText">setTimerText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startTimer">startTimer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#youtubeID">youtubeID</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">NavBar.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>window.addEventListener('DOMContentLoaded', init);
+
+/** Adds event listeners to the navbar once page is loaded. */
+function init() {
+  openHamburgerMenu();
+  addSearchFunction();
+  addNavigation();
+}
+
+/** Adds an event listener to the hamburger menu */
+function openHamburgerMenu() {
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
+  hamburgerIcon.addEventListener('click', (event) =>{
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    hamburgerIcon.classList.toggle('hamburger-shown');
+    if (hamburgerIcon.classList.contains('hamburger-shown')) {
+      hamburgerMenu.style.display = 'block';
+    } else {
+      hamburgerMenu.style.display = 'none';
+    }
+  });
+}
+
+/** Add event listener for submitting the search form -
+ *  navigate to explore page with query string
+ */
+function addSearchFunction() {
+  const searchForm = document.querySelector('.search-container');
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = document.querySelector('#search-bar').value;
+    window.location.href = 'http://127.0.0.1:5501/source/Explore.html?searched=true&amp;q=' + query;
+  });
+}
+
+/**
+ * Add event listener to buttons in the nav bar
+ */
+function addNavigation() {
+  const homeButton = document.getElementById('nav-home');
+  const recipeButton = document.getElementById('nav-recipes');
+  const viewButton = document.getElementById('nav-view');
+  const addButton = document.getElementById('nav-add');
+  const editButton = document.getElementById('nav-edit');
+  // const deleteButton = document.getElementById('nav-delete');
+  const logoutButton = document.getElementById('nav-logout');
+
+  homeButton.addEventListener('click', (event) => {
+    // Remove default behavior of reloading
+    event.preventDefault();
+    window.location.href = window.location.origin + '/source/Home.html';
+  });
+
+  recipeButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = window.location.origin + '/source/Explore.html';
+  });
+
+  viewButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = window.location.origin + '/source/Explore.html';
+  });
+
+  addButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href =
+      window.location.origin +
+      '/source/ManageRecipe.html' +
+      window.location.search;
+  });
+
+  editButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('id');
+    window.location.href =
+      window.location.origin + '/source/ManageRecipe.html?id=' + id;
+  });
+
+  // Delete button implemented in deleteRecipe.js
+
+  logoutButton.addEventListener('click', (event) => {
+    // TODO
+  });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Tue Nov 30 2021 23:27:25 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
