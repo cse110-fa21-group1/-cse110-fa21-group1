@@ -37,4 +37,4 @@ jobs:
           git config --global user.email "nabu.tabu2402@gmail.com"
           git add docs/
           git commit -m 'Update JSDocs'
-          git push origin HEAD
+          git push origin main
