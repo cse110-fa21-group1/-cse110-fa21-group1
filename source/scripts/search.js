@@ -2,7 +2,7 @@ import {storage} from './storage.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
+const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 // const recipeData = [];
 let recipes;
 
@@ -54,12 +54,12 @@ function populateCards() {
  * @param {String} query Query string for the search
  */
 async function fetchRecipesHelper(query) {
-  const queryURL = 'https://api.spoonacular.com/recipes/complexSearch?query=' + query +
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
         '&number=3' +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
-        '&apiKey=' + apiKey;
+        '&rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
   } catch (err) {
