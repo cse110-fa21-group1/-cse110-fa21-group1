@@ -6,7 +6,7 @@
 Ready Meal One is a web application that allows users to find recipes of different cuisines and ingredients, from across the internet. Our focus is to provide a simple and easy way for users to find recipes that they can make. This repository contains all the necessary files and code to run the application.
 
 # Ready Meal One
-[Go to the App!](https://boring-euler-57ddc5.netlify.app/)
+[Go to the App!](https://cse110-fa21-team1.netlify.app/)
 
 # Navigaton
 - [/.github](https://github.com/cse110-fa21-group1/-cse110-fa21-group1/tree/main/.github) has all issue templates, pull request templates and other GitHub actions that are running on this repository.
