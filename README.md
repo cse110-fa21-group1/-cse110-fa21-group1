@@ -14,5 +14,8 @@ Ready Meal One is a web application that allows users to find recipes of differe
 - [/source](https://github.com/cse110-fa21-group1/-cse110-fa21-group1/tree/main/source) has the source code of the application.
 - [/specs](https://github.com/cse110-fa21-group1/-cse110-fa21-group1/tree/main/specs) contains all of our scratch work which we created behind the scenes before development of the code.
 
+# Documentation
+Our documentation is automatically generated from our code by the JSDocs action. You can view the docs [here](https://cse110-fa21-group1.github.io/-cse110-fa21-group1/source/jsdocs/index.html).
+
 # More Information
 Visit our [Wiki!](https://github.com/cse110-sp21-group13/cse110-sp21-group13/wiki)
