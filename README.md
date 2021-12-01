@@ -1,6 +1,7 @@
 # -cse110-fa21-group1
 ![Our logo](https://github.com/cse110-fa21-group1/-cse110-fa21-group1/blob/main/source/assets/logo.png)
 [![CodeFactor](https://www.codefactor.io/repository/github/cse110-fa21-group1/-cse110-fa21-group1/badge)](https://www.codefactor.io/repository/github/cse110-fa21-group1/-cse110-fa21-group1)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/facb1a86-8cc6-423c-9af1-3c177f96ca35/deploy-status)](https://app.netlify.com/sites/cse110-fa21-team1/deploys)
 
 # Introduction
 Ready Meal One is a web application that allows users to find recipes of different cuisines and ingredients, from across the internet. Our focus is to provide a simple and easy way for users to find recipes that they can make. This repository contains all the necessary files and code to run the application.
