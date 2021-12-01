@@ -26,7 +26,11 @@ jobs:
         with:
           source_dir: ./source
           recurse: true
-          output_dir: ./source/docs
+          output_dir: ./source/jsdocs
           template: minami
-          front_page: README.md
 
+      - name: Add
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: ./source/jsdocs
+          message: 'Update JSDocs'

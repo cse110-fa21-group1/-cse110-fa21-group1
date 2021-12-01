@@ -4,12 +4,20 @@
   "description": "Created on Nov 11, 2021",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"No test so no error: no test specified\" && exit 0"
+    "test": "jest --coverage --runInBand --detectOpenHandles --forceExit --passWithNoTests"
   },
   "author": "Darwin",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.2.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "jsdoc": "^3.6.3",
+    "jest": "^26.6.3",
+    "jest-puppeteer": "^5.0.3",
+    "puppeteer": "^9.1.1"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
   }
 }
