@@ -10,11 +10,11 @@ module.exports = {
     'ecmaVersion': 13,
     'sourceType': 'module',
   },
-  "overrides": [
+  'overrides': [
     {
-      "files": ["source/docs/*"], // Or *.test.js
-      "rules": {
-        "require-jsdoc": "off"
+      'files': ['source/docs/*'], // Or *.test.js
+      'rules': {
+        'require-jsdoc': 'off',
       }
     }
   ],
