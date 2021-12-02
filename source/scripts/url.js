@@ -69,6 +69,20 @@ navigation.toManageRecipe = (isAdd = true) => {
 };
 
 /**
+ * Navigate to Recipe.html
+ * @param {String} id id of the recipe
+ */
+navigation.toRecipe = (id) => {
+  window.location.href =
+    window.location.origin +
+    (isDevelopment() ? '/source' : '') +
+    '/Recipe.html?' +
+    (isSearched() ?
+      'searched=true&id=' + id :
+      'id=' + id);
+};
+
+/**
  * Determine if we are in development stage (in source folder)
  * @param {String} s window.location.pathname
  * @return {Boolean} whether we are in development stage
