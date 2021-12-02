@@ -71,11 +71,6 @@ function addNavigation() {
   editButton.addEventListener('click', (event) => {
     event.preventDefault();
     navigation.toManageRecipe(false);
-    // const queryString = window.location.search;
-    // const urlParams = new URLSearchParams(queryString);
-    // const id = urlParams.get('id');
-    // window.location.href =
-    //   window.location.origin + '/source/ManageRecipe.html?id=' + id;
   });
 
   // Delete button implemented in deleteRecipe.js

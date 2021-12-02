@@ -3,6 +3,7 @@
 // recipe should be removed and the user should be lead to the home pagex
 
 import {storage} from './storage.js';
+import {navigation} from './url.js';
 
 const deleteButton = document.getElementById('nav-delete');
 
@@ -18,7 +19,5 @@ deleteButton.addEventListener('click', (event) => {
   storage.removeRecipe(id);
 
   // Go back to home page
-  window.location.href =
-    window.location.origin +
-    window.location.pathname.replace('Recipe.html', 'Home.html');
+  navigation.toHome();
 });

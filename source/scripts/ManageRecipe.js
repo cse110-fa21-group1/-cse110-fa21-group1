@@ -156,7 +156,7 @@ function moveToPage(newPage) {
 
 /* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
 returnButton.onclick = function() {
-  window.location.href = window.location.origin + '/source/Explore.html';
+  navigation.toExplore('', false);
 };
 
 /* Adds 'event listeners' for the back and next navigation buttons */
@@ -215,31 +215,6 @@ rightButton.onclick = function() {
     }
 
     navigation.toRecipe(id);
-
-    // let id = isEdit();
-    // if (isSearched()) {
-    //   id = storage.addRecipe(recp);
-    //   // navigate to the new recipecard page
-    //   window.location.href = window.location.origin +
-    //     window.location.pathname.replace('ManageRecipe.html'
-    //         , 'Recipe.html?id=' + id);
-    // } else if (id != '-1') {
-    //   // edit recipe
-    //   recp.id = id;
-    //   storage.editRecipe(recp);
-    //   // go back to recipe
-    //   navigation.toRecipe(id)
-    //   // window.location.href =
-    //   //   window.location.pathname.replace(
-    //   //       'ManageRecipe.html', 'Recipe.html?id=' + id);
-    // } else {
-    //   id = storage.addRecipe(recp);
-    //   // navigate to the new recipecard page
-    //   navigation.toRecipe(id);
-    //   // window.location.href = window.location.origin +
-    //   //   window.location.pathname.replace('ManageRecipe.html'
-    //   //       , 'Recipe.html?id=' + id);
-    // }
   } else {
     moveToPage(currentPage + 1);
   }
