@@ -2,6 +2,7 @@
 
 import( '../styles/explore.css' );
 import {storage} from './storage.js';
+import {navigation} from './url.js';
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -30,15 +31,16 @@ class RecipeCard extends HTMLElement {
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');
-    const urlParams = new URLSearchParams(window.location.search);
+    // const urlParams = new URLSearchParams(window.location.search);
     wrapper.onclick = function(e) {
       // console.log('here');
       if (e.target.id != 'heartbutton') {
-        window.location.href =
-          window.location.origin +
-          window.location.pathname.replace('Explore.html', 'Recipe.html') +
-          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-          'id=' + data.id;
+        navigation.toRecipe(data.id);
+        // window.location.href =
+        //   window.location.origin +
+        //   window.location.pathname.replace('Explore.html', 'Recipe.html') +
+        //   '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
+        //   'id=' + data.id;
       }
     };
 
