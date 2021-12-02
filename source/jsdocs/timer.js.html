@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>timer.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Recipe.html">Recipe</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RecipeCard.html">RecipeCard</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addNavigation">addNavigation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addSearchFunction">addSearchFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipes">fetchRecipes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isEdit">isEdit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isSearched">isSearched</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#moveToPage">moveToPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newIng">newIng</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newInstr">newInstr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateBaseline">populateBaseline</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCards">populateCards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipe">populateRecipe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setTimerText">setTimerText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startTimer">startTimer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#youtubeID">youtubeID</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">timer.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let hours = 0;
+let minutes = 0;
+let seconds = 0;
+let timeInSeconds = 0;
+let interval = null;
+const startButton = document.getElementById('start-button');
+const pauseButton = document.getElementById('pause-button');
+const stopButton = document.getElementById('stop-button');
+const hourNum = document.getElementById('hours');
+const minNum = document.getElementById('minutes');
+const secNum = document.getElementById('seconds');
+
+/**
+ * Adds event listeners to the editable numbers so that
+ * only numbers can be inputted and that there cannot be
+ * more than 2 numbers.
+ */
+hourNum.addEventListener('keypress', (e) => {
+  const isFull = hourNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
+  if (isFull || notNum) e.preventDefault();
+});
+minNum.addEventListener('keypress', (e) => {
+  const isFull = minNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
+  if (isFull || notNum) e.preventDefault();
+});
+secNum.addEventListener('keypress', (e) => {
+  const isFull = secNum.innerHTML.length >= 2;
+  const notNum = isNaN(e.key);
+  if (isFull || notNum) e.preventDefault();
+});
+/**
+ * Updates the timer's text with an hour, min, and sec value.
+ * @param {Int} currHr Number to replace hour's text in the timer
+ * @param {Int} currMin Number to replace min's text in the timer
+ * @param {Int} currSec Number to replace sec's text in the timer
+ */
+function setTimerText(currHr, currMin, currSec) {
+  hourNum.innerHTML = (currHr &lt; 10) ? ('0' + currHr.toString()) : currHr;
+  minNum.innerHTML = (currMin &lt; 10) ? ('0' + currMin.toString()) : currMin;
+  secNum.innerHTML = (currSec &lt; 10) ? ('0' + currSec.toString()) : currSec;
+}
+/**
+ * Starts/resumes the countdown timer
+ */
+function startTimer() {
+  const displayTime = () => {
+    const displayHours = Math.floor(timeInSeconds / (60 * 60));
+    const remainder = timeInSeconds - (displayHours * 60 * 60);
+    const displayMinutes = Math.floor(remainder / 60);
+    const displaySeconds = remainder - (displayMinutes * 60);
+    setTimerText(displayHours, displayMinutes, displaySeconds);
+  };
+  interval = setInterval(() => {
+    displayTime();
+    timeInSeconds -= 1;
+    /* When the timer hits 0, revert to the state before the timer started */
+    if (timeInSeconds &lt; 0) {
+      clearInterval(interval);
+      startButton.classList.remove('hidden');
+      pauseButton.classList.add('hidden');
+      stopButton.classList.add('hidden');
+      hourNum.setAttribute('contenteditable', 'true');
+      minNum.setAttribute('contenteditable', 'true');
+      secNum.setAttribute('contenteditable', 'true');
+      setTimerText(hours, minutes, seconds);
+    }
+  }, 1000);
+}
+/**
+ * Adds an event listener to start button: changes seconds, minutes, and
+ * hours such that minutes and seconds are &lt; 60, sets the timer's text
+ * accordingly, and starts the timer. Additionally, replaces the start
+ * button with a pause and a stop button and prevents time from being
+ * edited.
+ */
+startButton.addEventListener('click', () => {
+  hours = (hourNum.innerHTML.length == 0) ? 0 : parseInt(hourNum.innerHTML);
+  minutes = (minNum.innerHTML.length == 0) ? 0 : parseInt(minNum.innerHTML);
+  seconds = (secNum.innerHTML.length == 0) ? 0 : parseInt(secNum.innerHTML);
+  if (seconds > 59) {
+    minutes++;
+    seconds -= 60;
+  }
+  if (minutes > 59) {
+    hours++;
+    minutes -= 60;
+  }
+  setTimerText(hours, minutes, seconds);
+  timeInSeconds = (hours * 60 * 60) +
+  (minutes * 60) +
+  seconds;
+  startTimer();
+  startButton.classList.add('hidden');
+  pauseButton.classList.remove('hidden');
+  stopButton.classList.remove('hidden');
+  hourNum.setAttribute('contenteditable', 'false');
+  minNum.setAttribute('contenteditable', 'false');
+  secNum.setAttribute('contenteditable', 'false');
+});
+/**
+ * Adds an event listener to the pause/resume button, which
+ * pause the timer and resume the timer accordingly.
+ */
+pauseButton.addEventListener('click', () => {
+  if (pauseButton.innerHTML == 'Pause') {
+    pauseButton.innerHTML = 'Resume';
+    clearInterval(interval);
+  } else {
+    pauseButton.innerHTML = 'Pause';
+    startTimer();
+  }
+});
+/**
+ * Adds an event listener to the stop button, which resets the
+ * timer back to the state before the timer was started.
+ */
+stopButton.addEventListener('click', () => {
+  clearInterval(interval);
+  setTimerText(hours, minutes, seconds);
+  startButton.classList.remove('hidden');
+  pauseButton.classList.add('hidden');
+  stopButton.classList.add('hidden');
+  hourNum.setAttribute('contenteditable', 'true');
+  minNum.setAttribute('contenteditable', 'true');
+  secNum.setAttribute('contenteditable', 'true');
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Wed Dec 01 2021 18:33:29 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
