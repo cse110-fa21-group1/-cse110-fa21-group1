@@ -1,3 +1,5 @@
+import {navigation} from './url.js';
+
 window.addEventListener('DOMContentLoaded', init);
 
 /** Adds event listeners to the navbar once page is loaded. */
@@ -29,8 +31,7 @@ function addSearchFunction() {
   searchForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const query = document.querySelector('#search-bar').value;
-    window.location.href =
-      window.location.origin + '/source/Explore.html?searched=true&q=' + query;
+    navigation.toExplore(query, true);
   });
 }
 
@@ -49,34 +50,32 @@ function addNavigation() {
   homeButton.addEventListener('click', (event) => {
     // Remove default behavior of reloading
     event.preventDefault();
-    window.location.href = window.location.origin + '/source/Home.html';
+    navigation.toHome();
   });
 
   recipeButton.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href = window.location.origin + '/source/Explore.html';
+    navigation.toExplore('', false);
   });
 
   viewButton.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href = window.location.origin + '/source/Explore.html';
+    navigation.toExplore('', false);
   });
 
   addButton.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href =
-      window.location.origin +
-      '/source/ManageRecipe.html' +
-      window.location.search;
+    navigation.toManageRecipe(true);
   });
 
   editButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('id');
-    window.location.href =
-      window.location.origin + '/source/ManageRecipe.html?id=' + id;
+    navigation.toManageRecipe(false);
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const id = urlParams.get('id');
+    // window.location.href =
+    //   window.location.origin + '/source/ManageRecipe.html?id=' + id;
   });
 
   // Delete button implemented in deleteRecipe.js

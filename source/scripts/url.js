@@ -1,5 +1,7 @@
 // url.js
 
+export const navigation = {};
+
 /**
  * Check if we are editing a recipe
  * @return {String} the editing recipe id if editing, else '-1'
@@ -23,4 +25,54 @@ export function isSearched() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('searched') != null;
+}
+
+/**
+ * Helper function for search/explore
+ * @param {String} query Query string for search/exploring
+ * @param {Boolean} search Whether we are searching or exploring user's recipes
+ */
+navigation.toExplore = (query = '', search = true) => {
+  window.location.href =
+      window.location.origin +
+      (isDevelopment() ? '/source' : '') +
+      '/Explore.html' +
+      (search ? '?searched=true&q=' + query : '');
+};
+
+/** Navigate to Home.html */
+navigation.toHome = () => {
+  window.location.href =
+      window.location.origin +
+      (isDevelopment() ? '/source' : '') +
+      '/Home.html';
+};
+
+/**
+ * Navigate to ManageRecipe.html
+ * @param {Boolean} isAdd is adding a recipe, if not then edit
+ */
+navigation.toManageRecipe = (isAdd = true) => {
+  let param = '';
+  if (isSearched()) {
+    param = window.location.search;
+  } else if (isAdd) {
+    param = '';
+  } else {
+    param = (isEdit() != -1 ? '?id=' + isEdit() : '');
+  }
+  window.location.href =
+      window.location.origin +
+      (isDevelopment() ? '/source' : '') +
+      '/ManageRecipe.html' +
+      param;
+};
+
+/**
+ * Determine if we are in development stage (in source folder)
+ * @param {String} s window.location.pathname
+ * @return {Boolean} whether we are in development stage
+ */
+export function isDevelopment() {
+  return window.location.pathname.startsWith('/source');
 }
