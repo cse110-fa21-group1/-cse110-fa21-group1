@@ -32,7 +32,7 @@ jobs:
           npm install -g jsdoc
 
       - name: Build Documentation
-        run: npm run jsdoc -c ./source/jsdoc.conf.json
+        run: jsdoc -c ./source/jsdoc.conf.json
 
       - name: Add
         uses: EndBug/add-and-commit@v7
