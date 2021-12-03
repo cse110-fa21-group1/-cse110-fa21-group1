@@ -154,9 +154,12 @@ function moveToPage(newPage) {
   currentPage = newPage;
 }
 
-/* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
+/**
+ * Adds 'event listener' for 'Return to Recipes' button
+ * to return to previous page
+ */
 returnButton.onclick = function() {
-  navigation.toExplore('', false);
+  window.history.back();
 };
 
 /* Adds 'event listeners' for the back and next navigation buttons */
