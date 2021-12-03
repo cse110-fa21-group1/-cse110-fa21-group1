@@ -27,7 +27,9 @@ jobs:
           node-version: 15.x
 
       - name: Configure Node.js
-        run: npm install
+        run: |
+          npm install
+          npm install -g jsdoc
 
       - name: Build Documentation
         run: npm run jsdocs -c ./source/jsdoc.conf.json
