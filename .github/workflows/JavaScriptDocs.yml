@@ -21,13 +21,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build
-        uses: andstor/jsdoc-action@v1
+      - name: Get Node.js
+        uses: actions/setup-node@v2
         with:
-          source_dir: ./source
-          recurse: true
-          output_dir: ./source/jsdocs
-          template: minami
+          node-version: 15.x
+
+      - name: Configure Node.js
+        run: npm ci
+
+      - name: Build Documentation
+        run: npm run jsdocs -c ./source/jsdoc.conf.json
 
       - name: Add
         uses: EndBug/add-and-commit@v7
