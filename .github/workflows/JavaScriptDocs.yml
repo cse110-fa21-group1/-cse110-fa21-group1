@@ -29,10 +29,10 @@ jobs:
       - name: Configure Node.js
         run: |
           npm install
-          npm install -g jsdocs
+          npm install -g jsdoc
 
       - name: Build Documentation
-        run: npm run jsdocs -c ./source/jsdoc.conf.json
+        run: npm run jsdoc -c ./source/jsdoc.conf.json
 
       - name: Add
         uses: EndBug/add-and-commit@v7
