@@ -29,7 +29,7 @@ jobs:
       - name: Configure Node.js
         run: |
           npm install
-          npm install -g jsdoc
+          npm install -g jsdocs
 
       - name: Build Documentation
         run: npm run jsdocs -c ./source/jsdoc.conf.json
