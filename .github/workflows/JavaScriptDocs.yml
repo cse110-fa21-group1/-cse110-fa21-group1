@@ -24,7 +24,7 @@ jobs:
       - name: Get Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: [15.x]
+          node-version: 15.x
 
       - name: Configure Node.js
         run: npm ci
