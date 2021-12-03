@@ -1,4 +1,5 @@
 import {storage} from './storage.js';
+import {isSearched} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -11,7 +12,7 @@ async function init() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  if (urlParams.get('searched') == 'true') {
+  if (isSearched()) {
     // Attempt to fetch recipes
     try {
       await fetchRecipesHelper(urlParams.get('q'));
@@ -24,14 +25,6 @@ async function init() {
     recipes = storage.getRecipes();
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
-
-  // storage.addItem(JSON.stringify(recipeData[0]));
-  // const recipeCard = document.querySelector('.recipe-cards--wrapper');
-  // const img = recipeCard.querySelector('img');
-  // img.setAttribute('src', recipeData[0]['image']);
-  // const title = recipeCard.querySelector('p').querySelector('a');
-  // title.innerText = recipeData[0]['title'];
-  // title.href = recipeData[0]['sourceUrl'];
 }
 
 /**
@@ -82,11 +75,6 @@ async function fetchRecipes(url) {
             recipes = storage.getSearchedRecipes();
             resolve();
           }
-          // const length = data['results'].length;
-          // for (let i = 0; i < length; i++) {
-          //   recipeData[recipeData.length] = data['results'][i];
-          // }
-          // resolve();
         })
         .catch((err) => {
           console.log(`Error loading the ${url} recipe`);

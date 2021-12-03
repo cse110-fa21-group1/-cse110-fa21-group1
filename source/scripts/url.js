@@ -16,6 +16,14 @@ export function isEdit() {
 }
 
 /**
+ * Return id query in url
+ * @return {String} id query in url, -1 if not found
+ */
+export function getURLid() {
+  return isEdit();
+}
+
+/**
  * Check if we are editing from a searched recipe
  * @return {Boolean} true if yes, else false
  */

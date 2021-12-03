@@ -31,16 +31,9 @@ class RecipeCard extends HTMLElement {
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');
-    // const urlParams = new URLSearchParams(window.location.search);
     wrapper.onclick = function(e) {
-      // console.log('here');
-      if (e.target.id != 'heartbutton') {
+      if (e.path[0].classList[0] != 'heart') {
         navigation.toRecipe(data.id);
-        // window.location.href =
-        //   window.location.origin +
-        //   window.location.pathname.replace('Explore.html', 'Recipe.html') +
-        //   '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-        //   'id=' + data.id;
       }
     };
 
