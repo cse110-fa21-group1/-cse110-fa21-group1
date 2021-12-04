@@ -98,7 +98,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  padding: 0, 5vw;
+  padding: 0 5vw;
 }
 #current-name {
   width: 60vw;
@@ -217,7 +217,7 @@ header {
   justify-content: space-between;
 }
 .time-box {
-  width: 12vw;
+  width: 18vw;
   height: 6.25vh;
   font-size: 2vmin;
 }

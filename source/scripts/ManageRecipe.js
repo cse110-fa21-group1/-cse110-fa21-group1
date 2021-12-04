@@ -32,7 +32,6 @@ const firstIng = document.getElementById('first-ing');
 const firstInstr = document.getElementById('first-instr');
 const hourBox = document.getElementById('hour-box');
 const minuteBox = document.getElementById('minute-box');
-const secondBox = document.getElementById('second-box');
 const servingBox = document.getElementById('serving-box');
 const box1 = document.getElementById('b1');
 const box2 = document.getElementById('b2');
@@ -101,9 +100,6 @@ function populateRecipe(recipe) {
   document.getElementById('name-box').value = recipe.name;
   // Populate description
   document.getElementById('desc-box').value = recipe.description;
-  // Populate tags
-  document.getElementById('tag-box').value =
-    recipe.tag == null ? '' : recipe.tag;
 
   // Populate ingredients
   for (let i=0; i<recipe.recipeIngredient.length; i++) {
@@ -132,7 +128,11 @@ function populateRecipe(recipe) {
   }
 
   // Populate cooktime and servings
-  document.querySelector('#time-box').value = recipe.totalTime;
+  let splitTime = 
+  recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  document.querySelector('#hour-box').value = splitTime[1];
+  document.querySelector('#minute-box').value = splitTime[2];
+  
   document.querySelector('#serving-box').value = recipe.recipeYield;
 
   // Populate videoUrl
@@ -189,8 +189,11 @@ rightButton.onclick = function() {
     recp.datePublished = today;
 
     recp.description = document.getElementById('desc-box').value;
-
-    recp.totalTime = document.getElementById('time-box').value;
+    hourBox.value = (hourBox.value.length == 0) ?
+    '0' : hourBox.value;
+    minuteBox.value = (minuteBox.value.length == 0) ?
+    '0' : minuteBox.value;
+    recp.totalTime = hourBox.value + 'H' + minuteBox.value + 'M';
     recp.recipeYield = document.getElementById('serving-box').value;
 
     const IngreArray = [];
@@ -280,6 +283,9 @@ function newIng() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') ingList.removeChild(created);
@@ -314,6 +320,9 @@ function newInstr() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') instrList.removeChild(created);
@@ -363,9 +372,6 @@ firstInstr.addEventListener('keydown', (event) => {
   if (isNaN(e.key)) e.preventDefault();
 });
 minuteBox.addEventListener('keypress', (e) => {
-  if (isNaN(e.key)) e.preventDefault();
-});
-secondBox.addEventListener('keypress', (e) => {
   if (isNaN(e.key)) e.preventDefault();
 });
 servingBox.addEventListener('keypress', (e) => {
