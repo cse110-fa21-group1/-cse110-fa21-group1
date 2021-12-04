@@ -206,7 +206,7 @@ rightButton.onclick = function() {
     // recp.tag
 
     let id = isEdit();
-
+    // console.log(parseInt(id) > 0)
     // Decide id for navigation
     if (isSearched()) {
       id = storage.addRecipe(recp);
