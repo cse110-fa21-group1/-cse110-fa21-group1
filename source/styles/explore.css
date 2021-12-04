@@ -59,9 +59,77 @@ article:hover {
   transform: scale(1.02);
   overflow: visible;
 }
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.heart {
+  position: absolute;
+  top: 5%;
+  right: 23%;
+  width: 5px;
+  height: 5px;
+  transform: scale(0.4);
+}
 
-.title > a {
-  margin: 3%;
+.heart:before {
+  position: absolute;
+  top: 0;
+  left: 80px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+  background-color: dimgrey;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+.heart:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  border-top: 3px solid white;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  background-color: dimgrey;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.heart.liked::before,
+.heart.liked::after {
+  background-color: #c728ff;
+}
+.heart.liked {
+  animation: liked 0.4s ease;
+}
+@keyframes liked {
+  0% {
+    transform: scale(0.2);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(0.4);
+  }
+}
+
+.title {
+  margin-left: 3%;
+  margin-top: 1%;
+  margin-bottom: 1%;
   text-align: left;
   font-weight: 700;
   font-size: 18;
@@ -70,7 +138,9 @@ article:hover {
 }
 
 .time-wrapper {
-  /*margin: 3%;*/
+  /*  margin-left: 3%;
+  margin-top: 1%;
+  margin-bottom: 1%;*/
 }
 
 .time-wrapper > p {
@@ -87,7 +157,9 @@ article:hover {
   align-items: flex-start;
   row-gap: 3%;
   column-gap: 3%;
-  /*margin: 3%;*/
+  /*  margin-left: 3%;
+  margin-top: 1%;
+  margin-bottom: 1%;*/
 }
 
 .tag-wrapper > p {

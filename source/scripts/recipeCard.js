@@ -1,6 +1,8 @@
 // recipeCard.js
 
 import( '../styles/explore.css' );
+import {storage} from './storage.js';
+import {navigation} from './url.js';
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -29,13 +31,10 @@ class RecipeCard extends HTMLElement {
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');
-    const urlParams = new URLSearchParams(window.location.search);
-    wrapper.onclick = function() {
-      window.location.href =
-          window.location.origin +
-          window.location.pathname.replace('Explore.html', 'Recipe.html') +
-          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-          'id=' + data.id;
+    wrapper.onclick = function(e) {
+      if (e.path[0].classList[0] != 'heart') {
+        navigation.toRecipe(data.id);
+      }
     };
 
     // Create the recipe image element
@@ -44,10 +43,43 @@ class RecipeCard extends HTMLElement {
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
     img.setAttribute('alt', data.name);
+
+    // Create the like buttons for each recipe
     const heartWrapper = document.createElement('div');
-    heartWrapper.classList.add('placement');
+    heartWrapper.classList.add('heart-wrapper');
     const heart = document.createElement('div');
+
+    const HeartButton = document.createElement('button');
+    HeartButton.setAttribute('id', 'heartbutton');
+    storage.init();
+    if (storage.isPinned(data.id)) {
+      HeartButton.innerText = 'unpin';
+    } else {
+      HeartButton.innerText = 'pin';
+    }
+    imgWrapper.append(HeartButton);
+    HeartButton.onclick = function() {
+      if (!storage.isPinned(data.id)) {
+        storage.pinRecipe(data.id);
+        // console.log('here');
+        // change button innerText
+        HeartButton.innerText = 'unpin';
+      } else {
+        storage.unpinRecipe(data.id);
+        // console.log('there');
+        // change button innerText
+        HeartButton.innerText = 'pin';
+      }
+    };
+
     heart.classList.add('heart');
+    heart.onclick = function() {
+      if (heart.classList.contains('liked')) {
+        heart.classList.remove('liked');
+      } else {
+        heart.classList.add('liked');
+      }
+    };
     heartWrapper.append(heart);
     imgWrapper.append(img, heartWrapper);
 

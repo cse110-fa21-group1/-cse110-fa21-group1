@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="scripts/NavBar.js" type="text/javascript" defer></script>
+    <script src="scripts/NavBar.js" type="module" defer></script>
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
+    <script src="scripts/pin.js" type="module" defer></script>
     <script src="scripts/recipeDisplay.js" type="module" defer></script>
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
     <script src="scripts/timer.js" type="text/javascript" defer></script>
@@ -30,18 +31,18 @@
         </div>
         <ul class="hamburger-menu">
             <li id="nav-home"><a href=""><img src="assets/home.png" alt="Home Icon">Home</a></li>
-            <li id="nav-recipes"><a href=""><img src="assets/recipe.png" alt="Recipes Icon">Recipes</a></li>
+            <li class="active" id="nav-recipes"><a href=""><img src="assets/recipe.png" alt="Recipes Icon">Recipes</a></li>
             <li id="nav-view" class="recipe-menu"><a href=""><img src="assets/search.png" alt="View Icon">View All</a>
             </li>
             <li id="nav-add" class="recipe-menu"><a href=""><img src="assets/add.png" alt="Add Icon">Add</a></li>
             <li id="nav-edit" class="recipe-menu"><a href=""><img src="assets/edit.png" alt="Edit Icon">Edit</a></li>
             <li id="nav-delete" class="recipe-menu"><a href=""><img src="assets/delete.png" alt="Delete Icon">Delete</a>
             </li>
-            <li id="nav-logout"><a href=""><img src="assets/logout.png" alt="Logout Icon">Login/Logout</a></li>
         </ul>
     </nav>
     <div class="header-image"></div>
     <main>
+        <button id="pin-button" class="button" value="button">Add to favorite</button>
         <div class="header-text">
             <h1 id="title">Recipe Name</h1>
             <button class="heart"></button>
