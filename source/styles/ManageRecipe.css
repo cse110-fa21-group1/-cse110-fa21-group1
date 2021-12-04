@@ -98,7 +98,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+  padding: 0, 5vw;
 }
 #current-name {
   width: 60vw;
@@ -115,7 +115,7 @@ header {
 .middle {
   /* border: 3px double #4C4C4C; */
   height: 65vh;
-  padding: 5vh 5vw 0vh 5vw;
+  padding: 5vh 5vw 0;
 }
 
 /* The first page and all of its elements */
@@ -236,7 +236,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+  padding: 0 5vw;
 }
 .box-group {
   display: flex;
