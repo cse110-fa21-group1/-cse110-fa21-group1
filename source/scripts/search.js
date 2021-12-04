@@ -1,16 +1,21 @@
 import {storage} from './storage.js';
-import {isSearched} from './url.js';
+import {isSearched, getQuery, getOffset, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-// const recipeData = [];
+const perPageCount = 10;
+const previousPageBtn = document.getElementById('previous-page');
+const nextPageBtn = document.getElementById('next-page');
 let recipes;
 
 /** Populate recipe cards */
 async function init() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+  if (getOffset() < perPageCount) {
+    previousPageBtn.style.display = 'none';
+  }
 
   if (isSearched()) {
     // Attempt to fetch recipes
@@ -49,9 +54,10 @@ function populateCards() {
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
-        '&number=3' +
+        '&number=' + perPageCount +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
+        '&offset=' + getOffset() +
         '&rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
@@ -82,3 +88,20 @@ async function fetchRecipes(url) {
         });
   });
 }
+
+/**
+ * Go back to previous page of search results
+ */
+previousPageBtn.onclick = () => {
+  const offset = getOffset();
+  navigation.toExplore(getQuery(), true,
+        (offset >= perPageCount) ? (offset - perPageCount) : 0 );
+};
+/**
+ * Go back to next page of search results
+ */
+nextPageBtn.onclick = () => {
+  const offset = getOffset();
+  console.log(getQuery());
+  navigation.toExplore(getQuery(), true, offset + perPageCount );
+};

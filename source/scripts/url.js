@@ -28,7 +28,6 @@ export function getURLid() {
  * @return {Boolean} true if yes, else false
  */
 export function isSearched() {
-  // console.log('storage:' + storage);
   // Extract query id
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -36,16 +35,38 @@ export function isSearched() {
 }
 
 /**
+ * Return offset for recipe search
+ * @return {Integer} offset for recipe search
+ */
+export function getOffset() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return parseInt(urlParams.get('offset')) || 0;
+}
+
+/**
+ * Return search query
+ * @return {String} search query
+ */
+export function getQuery() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('q') || '';
+}
+
+/**
  * Helper function for search/explore
  * @param {String} query Query string for search/exploring
  * @param {Boolean} search Whether we are searching or exploring user's recipes
+ * @param {Integer} offset Offset for search results
  */
-navigation.toExplore = (query = '', search = true) => {
+navigation.toExplore = (query = '', search = true, offset = 0) => {
   window.location.href =
       window.location.origin +
       (isDevelopment() ? '/source' : '') +
       '/Explore.html' +
-      (search ? '?searched=true&q=' + query : '');
+      (search ? '?searched=true&q=' + query : '') +
+      (offset > 0 ? '&offset=' + offset : '');
 };
 
 /** Navigate to Home.html */
