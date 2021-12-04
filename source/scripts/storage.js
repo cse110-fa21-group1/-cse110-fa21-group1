@@ -85,7 +85,7 @@ storage.getRecipeIndex = function(id) {
  */
 storage.removeRecipe = function(id) {
   // Get the current recipes
-  const currRecipes = storage.getRecipes();
+  const currRecipes = storage.getRecipeIDs();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(id);
   // Remove the recipe
