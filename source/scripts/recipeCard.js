@@ -53,30 +53,35 @@ class RecipeCard extends HTMLElement {
     HeartButton.setAttribute('id', 'heartbutton');
     storage.init();
     if (storage.isPinned(data.id)) {
-      HeartButton.innerText = 'unpin';
+      // HeartButton.innerText = 'unpin';
+      heart.classList.add('liked');
     } else {
-      HeartButton.innerText = 'pin';
+      // HeartButton.innerText = 'pin';
     }
-    imgWrapper.append(HeartButton);
-    HeartButton.onclick = function() {
-      if (!storage.isPinned(data.id)) {
-        storage.pinRecipe(data.id);
-        // console.log('here');
-        // change button innerText
-        HeartButton.innerText = 'unpin';
-      } else {
-        storage.unpinRecipe(data.id);
-        // console.log('there');
-        // change button innerText
-        HeartButton.innerText = 'pin';
-      }
-    };
+    // imgWrapper.append(HeartButton);
+    // HeartButton.onclick = function(e) {
+    //   console.log('Here')
+    //   if (!storage.isPinned(data.id)) {
+    //     storage.pinRecipe(data.id);
+    //     // console.log('here');
+    //     // change button innerText
+    //     HeartButton.innerText = 'unpin';
+    //   } else {
+    //     storage.unpinRecipe(data.id);
+    //     // console.log('there');
+    //     // change button innerText
+    //     HeartButton.innerText = 'pin';
+    //   }
+    // };
 
     heart.classList.add('heart');
+
     heart.onclick = function() {
       if (heart.classList.contains('liked')) {
+        storage.unpinRecipe(data.id);
         heart.classList.remove('liked');
       } else {
+        storage.pinRecipe(data.id);
         heart.classList.add('liked');
       }
     };
