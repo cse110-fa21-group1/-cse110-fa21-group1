@@ -6,7 +6,11 @@ Clarity, Autonomy, Engagement, Communication, Mastery
 Mastery: 4 (Understanding how most of the app works now fairly well)
 - Darwin: Clarity: 5,Autonomy: 4, a bit slow on everything in the first half of the week Engagement: 4, a bit slow during the first part of the week like under autonomy Communication: 5 Mastery: 4
 - Mike: Clarity: 5, thanks to our team leads and Sanat , I am able to clearly understand the structure of the project with no confusions . Autonomy I will give a 4, as a member I feel like we have the right amount of freedom to work, and this helped us to finish the tasks. Engagement: 4, we are all pretty engaged on the work and material, especially during sprint. Communication: 3 since we do have some miscommunication parts we can do better on. But we are be able to catch up later. Mastery: 3.5? Since there are still a lot of technique we do not know, like image resizing and display issues with the navbar.
-- Chrisostomo:
+- Chrisostomo: Clarity: 5. Figma helps a lot with knowing what I need to do. Issues are properly done and organized.
+Autonomy: 5. I can figure out and fix my things without being blocked by others work for the most part.
+Engagement: 4 I've been fairly busy, but I try to attend every meeting when I can
+Communication: 4 Everything that needs to be heard is usually told
+Mastery: 4.5 Outside of some minor things I had to learn, there wasn't much blocked due to inexperience.
 - Jennifer: Clarity: 4 - Sometimes I wish that there was a more detailed explanation for bugs like pictures, but it's not a big deal.
 Autonomy: 4 - I think that people have been working pretty autonmously, although there were times when backend had to wait on the frontend to work on stuff.
 Engagement: 3 -This week has been a bit busy for everyone, so engagement went a bit down. It'll proabably go back to normal later.
@@ -22,7 +26,7 @@ Next we asked our team how they feel regarding the entire project (on a scale of
 - John: 4. Styling looks pretty much done for the pages, except for explore (need the rows for ingredient of week and own recipes), and CRUD is working. There are quite a few bugs though and we still need to implement one more domain specific functionality, which is a bit worrisome. However, everything is coming together thanks to the backend team's efforts, which is great. We still look on track to finish.
 - Darwin: 4.5 - I think overall our project has good process, just some bugs waiting to be fixed, and some features to be implemented. We are going to work of those items this week, to further prefect our app. Otherwise, it is functional and things comes together pretty well, looks satisfying!
 - Mike: I will say a 4 for the project. The good parts are the autonomy engagement, thanks to our team leads and Darwin to make everything clear for us. And I also enjoy collaborations we had during the sprint. The team is pretty productive during the sprints. The disappointed part will probably be communication issues and mastery on different stuff. There are still many thing we need to learn to make sure everything goes smoothly.
-- Chrisostomo:
+- Chrisostomo: 4.5 I think we did a great job getting everything assembled according to our prototype. Not much to be disappointed about from the top of my head
 - Jennifer: I'll rate our entire project a 4. At first, I was a bit worried about our progress but Sanat told us that we were doing ok. I do feel a bit burnt out because it's week 10 though, so I wonder if anyone else will feel the same way and if that will affect our progess in the future. I'm glad that we were able to get most of the frontend styling done though!
 - Matthew: 4.5 - pretty good regarding on where the whole project is going, glad on how fast we’re making progress as a team, not much to be disappointed about? Because as big issues arise, we can usually brute force get to the bottom of it before a somewhat hard deadline.
 - Zimo: (4) Well done so far. Readibility may need to improve, backend features need to finish and get tested.

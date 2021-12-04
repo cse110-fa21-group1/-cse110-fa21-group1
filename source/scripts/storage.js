@@ -10,6 +10,11 @@ storage.init = () => {
     localStorage.setItem('numRecipesCreated', '0');
     localStorage.setItem('pinned', '[]');
   }
+//   if (localStorage.getItem('pinned') == undefined ||
+//       localStorage.getItem('pinned') == 'NaN') {
+//     localStorage.setItem('pinned', '[]');
+//     console.log('here');
+//   }
 };
 
 /** Increase number of recipes created, mainly for creating id */
@@ -129,9 +134,14 @@ storage.getRecipeIDs = function() {
  * @param {String} id id of the recipe to be pinned
  */
 storage.pinRecipe = function(id) {
-  const recipe = JSON.parse(localStorage.getItem(id));
-  recipe.pinned = true;
-  storage.editRecipe(recipe);
+  if (storage.getRecipeIndex(id) != -1) {
+    const recipe = JSON.parse(localStorage.getItem(id));
+    recipe.pinned = true;
+    storage.editRecipe(recipe);
+  }
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  pinnedRecipe.push(id);
+  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
 };
 
 /**
@@ -139,9 +149,17 @@ storage.pinRecipe = function(id) {
  * @param {String} id id of the recipe to be unpinned
  */
 storage.unpinRecipe = function(id) {
-  const recipe = JSON.parse(localStorage.getItem(id));
-  recipe.pinned = false;
-  storage.editRecipe(recipe);
+  if (storage.getRecipeIndex(id) != -1) {
+    const recipe = JSON.parse(localStorage.getItem(id));
+    recipe.pinned = false;
+    storage.editRecipe(recipe);
+  }
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const index = pinnedRecipe.indexOf(id);
+  if (index > -1) {
+    pinnedRecipe.splice(index, 1);
+  }
+  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
 };
 
 /**
@@ -150,16 +168,23 @@ storage.unpinRecipe = function(id) {
  * @return {Boolean} whether recipe is pinned
  */
 storage.isPinned = function(id) {
-  return JSON.parse(localStorage.getItem(id)).pinned == true;
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
+  for (let i = 0; i < pinnedRecipe.length; i++) {
+    if (pinnedRecipe[i] == id) {
+      return true;
+    }
+  }
+  return false;
 };
 
 /**
  * Return a list of pinned recipe ids
- * @return {Array} List of pinned recipe pids
+ * @return {Array} List of pinned recipe ids
  */
 storage.getPinnedRecipes = function() {
-  const ids = storage.getRecipeIDs();
-  return ids.filter((id) => storage.isPinned(id)) || [];
+  // const ids = storage.getRecipeIDs();
+  // return ids.filter((id) => storage.isPinned(id)) || [];
+  return JSON.parse(localStorage.getItem('pinned'));
 };
 
 /**

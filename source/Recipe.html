@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="scripts/NavBar.js" type="text/javascript" defer></script>
+    <script src="scripts/NavBar.js" type="module" defer></script>
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
+    <script src="scripts/pin.js" type="module" defer></script>
     <script src="scripts/recipeDisplay.js" type="module" defer></script>
     <script src="scripts/deleteRecipe.js" type="module" defer></script>
     <script src="scripts/timer.js" type="text/javascript" defer></script>
@@ -41,6 +42,7 @@
     </nav>
     <div class="header-image"></div>
     <main>
+        <button id="pin-button" class="button" value="button">Add to favorite</button>
         <div class="header-text">
             <h1 id="title">Recipe Name</h1>
             <button class="heart"></button>

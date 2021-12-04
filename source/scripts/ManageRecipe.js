@@ -1,9 +1,9 @@
 import {storage} from './storage.js';
-import {isEdit, isSearched} from './url.js';
+import {isEdit, isSearched, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
-const apiKey = 'f3bf8897ca244c709c20214793a7b5b1';
+const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 
 /** Initialize the manage page */
 function init() {
@@ -64,8 +64,8 @@ function populateRecipeHelper(id) {
  * @param {String} url url of the recipe to be fetched from
  */
 async function populateBaseline(url) {
-  const queryURL = 'https://api.spoonacular.com/recipes/extract?' +
-        'apiKey=' + apiKey +
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/extract?' +
+        'rapidapi-key=' + apiKey +
         '&url=' + url;
   await (new Promise((resolve, reject) => {
     fetch(queryURL)
@@ -156,7 +156,7 @@ function moveToPage(newPage) {
 
 /* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
 returnButton.onclick = function() {
-  window.location.href = window.location.origin + '/source/Explore.html';
+  navigation.toExplore('', false);
 };
 
 /* Adds 'event listeners' for the back and next navigation buttons */
@@ -203,27 +203,18 @@ rightButton.onclick = function() {
     // recp.tag
 
     let id = isEdit();
+
+    // Decide id for navigation
     if (isSearched()) {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
     } else if (id != '-1') {
-      // edit recipe
       recp.id = id;
       storage.editRecipe(recp);
-      // go back to recipe
-      window.location.href =
-        window.location.pathname.replace(
-            'ManageRecipe.html', 'Recipe.html?id=' + id);
     } else {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
     }
+
+    navigation.toRecipe(id);
   } else {
     moveToPage(currentPage + 1);
   }
