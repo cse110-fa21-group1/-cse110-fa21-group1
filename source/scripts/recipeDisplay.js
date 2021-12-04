@@ -63,4 +63,11 @@ function populateRecipe() {
     instruction.innerText = recipe.recipeInstruction[i];
     instructionList.appendChild(instruction);
   }
+  // Populate video
+  const vdoBlock = document.querySelector('video');
+  if (recipe.video != 'undefined') {
+    vdoBlock.src = recipe.video;
+  } else {
+    vdoBlock.style.display = 'none';
+  }
 }
