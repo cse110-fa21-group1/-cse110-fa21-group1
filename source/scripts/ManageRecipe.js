@@ -217,7 +217,7 @@ rightButton.onclick = function() {
       id = storage.addRecipe(recp);
     }
 
-    navigation.toRecipe(id);
+    navigation.toRecipe(id, true);
   } else {
     moveToPage(currentPage + 1);
   }

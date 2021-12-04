@@ -79,13 +79,14 @@ navigation.toManageRecipe = (isAdd = true) => {
 /**
  * Navigate to Recipe.html
  * @param {String} id id of the recipe
+ * @param {Boolean} isNew is opening a new recipe
  */
-navigation.toRecipe = (id) => {
+navigation.toRecipe = (id, isNew=false) => {
   window.location.href =
     window.location.origin +
     (isDevelopment() ? '/source' : '') +
     '/Recipe.html?' +
-    (isSearched() ?
+    (!isNew && isSearched() ?
       'searched=true&id=' + id :
       'id=' + id);
 };
