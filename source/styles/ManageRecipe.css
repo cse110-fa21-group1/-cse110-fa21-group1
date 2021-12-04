@@ -230,18 +230,6 @@ header {
   width: 41.69vw;
   height: 50vh;
 }
-#pin-section {
-  display: flex;
-  justify-content: space-evenly;
-}
-#pin-text {
-  font-family: 'Montserrat';
-  font-size: 3vmin;
-  color:white;
-}
-.heart {
-  content: '&hearts';
-}
 
 footer {
   display: flex;
