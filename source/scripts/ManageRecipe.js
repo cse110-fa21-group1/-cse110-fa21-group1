@@ -210,7 +210,7 @@ rightButton.onclick = function() {
     // Decide id for navigation
     if (isSearched()) {
       id = storage.addRecipe(recp);
-    } else if (id != '-1') {
+    } else if (id) {
       recp.id = id;
       storage.editRecipe(recp);
     } else {
