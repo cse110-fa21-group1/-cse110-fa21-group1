@@ -157,7 +157,7 @@ storage.pinRecipe = function(id, isUser = true) {
     storage.editRecipe(recipe);
   }
   const pinnedRecipe = storage.getPinnedRecipesID(isUser);
-  pinnedRecipe.push(id);
+  pinnedRecipe.unshift(id);
   storage.setPinnedRecipes(JSON.stringify(pinnedRecipe), isUser);
 };
 
