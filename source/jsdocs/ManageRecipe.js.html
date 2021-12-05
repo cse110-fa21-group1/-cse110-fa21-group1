@@ -2,35 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ManageRecipe.js - Documentation</title>
+    <title>JSDoc: Source: ManageRecipe.js</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Recipe.html">Recipe</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RecipeCard.html">RecipeCard</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addNavigation">addNavigation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addSearchFunction">addSearchFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipes">fetchRecipes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isEdit">isEdit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isSearched">isSearched</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#moveToPage">moveToPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newIng">newIng</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newInstr">newInstr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateBaseline">populateBaseline</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCards">populateCards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipe">populateRecipe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setTimerText">setTimerText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startTimer">startTimer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#youtubeID">youtubeID</a></span></li>
-</nav>
-
 <div id="main">
-    
-    <h1 class="page-title">ManageRecipe.js</h1>
-    
+
+    <h1 class="page-title">Source: ManageRecipe.js</h1>
 
     
 
@@ -40,7 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import {storage} from './storage.js';
-import {isEdit, isSearched} from './url.js';
+import {url, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -48,7 +35,7 @@ const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 
 /** Initialize the manage page */
 function init() {
-  const id = isEdit();
+  const id = url.isEdit();
   if (id != '-1') {
     populateRecipeHelper(id);
   }
@@ -93,7 +80,7 @@ const titleTexts = [
  * @param {String} id id of the recipe
  */
 function populateRecipeHelper(id) {
-  if (isSearched() &amp;&amp; id != '-1') {
+  if (url.isSearched() &amp;&amp; id != '-1') {
     populateRecipe(storage.getSearchedRecipe(id));
   } else {
     populateRecipe(storage.getRecipe(id));
@@ -195,9 +182,12 @@ function moveToPage(newPage) {
   currentPage = newPage;
 }
 
-/* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
+/**
+ * Adds 'event listener' for 'Return to Recipes' button
+ * to return to previous page
+ */
 returnButton.onclick = function() {
-  window.location.href = window.location.origin + '/source/Explore.html';
+  window.history.back();
 };
 
 /* Adds 'event listeners' for the back and next navigation buttons */
@@ -243,28 +233,19 @@ rightButton.onclick = function() {
 
     // recp.tag
 
-    let id = isEdit();
-    if (isSearched()) {
+    let id = url.isEdit();
+    // console.log(parseInt(id) > 0)
+    // Decide id for navigation
+    if (url.isSearched()) {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
-    } else if (id != '-1') {
-      // edit recipe
+    } else if (parseInt(id) > 0) {
       recp.id = id;
       storage.editRecipe(recp);
-      // go back to recipe
-      window.location.href =
-        window.location.pathname.replace(
-            'ManageRecipe.html', 'Recipe.html?id=' + id);
     } else {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
     }
+
+    navigation.toRecipe(id, true);
   } else {
     moveToPage(currentPage + 1);
   }
@@ -406,13 +387,17 @@ firstInstr.addEventListener('keydown', (event) => {
 
 </div>
 
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+</nav>
+
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Wed Dec 01 2021 18:33:29 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 06:05:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

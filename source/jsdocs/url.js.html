@@ -2,35 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>url.js - Documentation</title>
+    <title>JSDoc: Source: url.js</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Recipe.html">Recipe</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RecipeCard.html">RecipeCard</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addNavigation">addNavigation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addSearchFunction">addSearchFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipes">fetchRecipes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isEdit">isEdit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isSearched">isSearched</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#moveToPage">moveToPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newIng">newIng</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newInstr">newInstr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateBaseline">populateBaseline</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCards">populateCards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipe">populateRecipe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setTimerText">setTimerText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startTimer">startTimer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#youtubeID">youtubeID</a></span></li>
-</nav>
-
 <div id="main">
-    
-    <h1 class="page-title">url.js</h1>
-    
+
+    <h1 class="page-title">Source: url.js</h1>
 
     
 
@@ -41,30 +28,140 @@
         <article>
             <pre class="prettyprint source linenums"><code>// url.js
 
+export const navigation = {};
+export const url = {};
+
 /**
  * Check if we are editing a recipe
  * @return {String} the editing recipe id if editing, else '-1'
  */
-export function isEdit() {
+url.isEdit = () => {
   // console.log('storage:' + storage);
   // Extract query id
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id');
   return id != null ? id : '-1';
-}
+};
+
+/**
+ * Return id query in url
+ * @return {String} id query in url, -1 if not found
+ */
+url.getURLid = () => {
+  return url.isEdit();
+};
 
 /**
  * Check if we are editing from a searched recipe
  * @return {Boolean} true if yes, else false
  */
-export function isSearched() {
-  // console.log('storage:' + storage);
+url.isSearched = () => {
   // Extract query id
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('searched') != null;
-}
+};
+
+/**
+ * Return offset for recipe search
+ * @return {Integer} offset for recipe search
+ */
+url.getOffset = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return parseInt(urlParams.get('offset')) || 0;
+};
+
+/**
+ * Return search query
+ * @return {String} search query
+ */
+url.getQuery = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('q') || '';
+};
+
+/**
+ * Return if is getting pinned recipes only
+ * @return {Boolean} is getting pinned recipes
+ */
+url.isPinnedRecipes = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('pinned') == 'true';
+};
+
+/**
+ * Determine if we are in development stage (in source folder)
+ * @param {String} s window.location.pathname
+ * @return {Boolean} whether we are in development stage
+ */
+url.isDevelopment = () => {
+  return window.location.pathname.startsWith('/source');
+};
+
+/**
+ * Helper function for search/explore
+ * @param {String} query Query string for search/exploring
+ * @param {Boolean} search Whether we are searching or exploring user's recipes
+ * @param {Integer} offset Offset for search results
+ * @param {Boolean} pinned Whether we are seeing pinned recipes only or not
+ */
+navigation.toExplore =
+  (query = '', search = false, offset = 0, pinned = false) => {
+    window.location.href =
+        window.location.origin +
+        (url.isDevelopment() ? '/source' : '') +
+        '/Explore.html?' +
+        (search ? 'searched=true&amp;q=' + query + '&amp;' : '') +
+        (offset > 0 ? '&amp;offset=' + offset + '&amp;' : '') +
+        (pinned ? 'pinned=true' : '');
+  };
+
+/** Navigate to Home.html */
+navigation.toHome = () => {
+  window.location.href =
+      window.location.origin +
+      (url.isDevelopment() ? '/source' : '') +
+      '/Home.html';
+};
+
+/**
+ * Navigate to ManageRecipe.html
+ * @param {Boolean} isAdd is adding a recipe, if not then edit
+ */
+navigation.toManageRecipe = (isAdd = true) => {
+  let param = '';
+  if (url.isSearched()) {
+    param = window.location.search;
+  } else if (isAdd) {
+    param = '';
+  } else {
+    param = (url.isEdit() != -1 ? '?id=' + url.isEdit() : '');
+  }
+  window.location.href =
+      window.location.origin +
+      (url.isDevelopment() ? '/source' : '') +
+      '/ManageRecipe.html' +
+      param;
+};
+
+/**
+ * Navigate to Recipe.html
+ * @param {String} id id of the recipe
+ * @param {Boolean} isNew is opening a new recipe
+ */
+navigation.toRecipe = (id, isNew=false) => {
+  window.location.href =
+    window.location.origin +
+    (url.isDevelopment() ? '/source' : '') +
+    '/Recipe.html?' +
+    (!isNew &amp;&amp; url.isSearched() ?
+      'searched=true&amp;id=' + id :
+      'id=' + id);
+};
 </code></pre>
         </article>
     </section>
@@ -74,13 +171,17 @@ export function isSearched() {
 
 </div>
 
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+</nav>
+
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Wed Dec 01 2021 18:33:29 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 06:05:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

@@ -2,35 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>storage.js - Documentation</title>
+    <title>JSDoc: Source: storage.js</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Recipe.html">Recipe</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="RecipeCard.html">RecipeCard</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addNavigation">addNavigation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#addSearchFunction">addSearchFunction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipes">fetchRecipes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isEdit">isEdit</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isSearched">isSearched</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#moveToPage">moveToPage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newIng">newIng</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#newInstr">newInstr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateBaseline">populateBaseline</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateCards">populateCards</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipe">populateRecipe</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#setTimerText">setTimerText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#startTimer">startTimer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#youtubeID">youtubeID</a></span></li>
-</nav>
-
 <div id="main">
-    
-    <h1 class="page-title">storage.js</h1>
-    
+
+    <h1 class="page-title">Source: storage.js</h1>
 
     
 
@@ -46,10 +33,10 @@ export const storage = {};
 /** Initialize localstorage for counting recipes created */
 storage.init = () => {
   // Initialize our recipe count for generating IDs
-  if (localStorage.getItem('numRecipesCreated') == undefined ||
-      localStorage.getItem('numRecipesCreated') == 'NaN') {
+  if (!localStorage.getItem('numRecipesCreated')) {
     localStorage.setItem('numRecipesCreated', '0');
     localStorage.setItem('pinned', '[]');
+    localStorage.setItem('pinnedSearch', '[]');
   }
 //   if (localStorage.getItem('pinned') == undefined ||
 //       localStorage.getItem('pinned') == 'NaN') {
@@ -60,7 +47,7 @@ storage.init = () => {
 
 /** Increase number of recipes created, mainly for creating id */
 storage.increaseCount = () => {
-  const newCount = (storage.currentCount()+1).toString();
+  const newCount = ((storage.currentCount()+1) || 1).toString();
   localStorage.setItem('numRecipesCreated', newCount);
 };
 
@@ -87,11 +74,27 @@ storage.generateNewId = () => {
 
 /**
  * Return an array of all saved recipes
+ * @param {Boolean} isUser is getting user recipes
  * @return {Array} An array of all saved recipes' id
  */
-storage.getRecipes = () => {
+storage.getRecipes = (isUser = false) => {
   const ids = storage.getRecipeIDs();
   return ids.map((id) => storage.getRecipe(id)) || [];
+};
+
+/**
+ * Return an array of all pinned recipes (currently only for users)
+ * @param {Boolean} isUser is getting user pinned recieps
+ * @return {Array} An array of all pinned recipes
+ */
+storage.getPinnedRecipes = (isUser = true) => {
+  if (isUser) {
+    return storage
+        .getPinnedRecipesID(isUser)
+        .map((id) => storage.getRecipe(id)) || [];
+  } else {
+    return [];
+  }
 };
 
 /**
@@ -126,7 +129,7 @@ storage.getRecipeIndex = function(id) {
  */
 storage.removeRecipe = function(id) {
   // Get the current recipes
-  const currRecipes = storage.getRecipes();
+  const currRecipes = storage.getRecipeIDs();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(id);
   // Remove the recipe
@@ -173,43 +176,46 @@ storage.getRecipeIDs = function() {
 /**
  * Pin recipe with given id
  * @param {String} id id of the recipe to be pinned
+ * @param {Boolean} isUser is pinning a user recipe
  */
-storage.pinRecipe = function(id) {
-  if (storage.getRecipeIndex(id) != -1) {
+storage.pinRecipe = function(id, isUser = true) {
+  if (isUser &amp;&amp; storage.getRecipeIndex(id) != -1) {
     const recipe = JSON.parse(localStorage.getItem(id));
     recipe.pinned = true;
     storage.editRecipe(recipe);
   }
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   pinnedRecipe.push(id);
-  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
+  storage.setPinnedRecipes(JSON.stringify(pinnedRecipe), isUser);
 };
 
 /**
  * Unpin recipe with given id
  * @param {String} id id of the recipe to be unpinned
+ * @param {Boolean} isUser is unpinning a user recipe
  */
-storage.unpinRecipe = function(id) {
-  if (storage.getRecipeIndex(id) != -1) {
+storage.unpinRecipe = function(id, isUser = true) {
+  if (isUser &amp;&amp; storage.getRecipeIndex(id) != -1) {
     const recipe = JSON.parse(localStorage.getItem(id));
     recipe.pinned = false;
     storage.editRecipe(recipe);
   }
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   const index = pinnedRecipe.indexOf(id);
   if (index > -1) {
     pinnedRecipe.splice(index, 1);
   }
-  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
+  storage.setPinnedRecipes(JSON.stringify(pinnedRecipe), isUser);
 };
 
 /**
  * Check if a recipe is pinned
  * @param {String} id id of the recipe to be checked
+ * @param {Boolean} isUser is pinning a user recipe
  * @return {Boolean} whether recipe is pinned
  */
-storage.isPinned = function(id) {
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
+storage.isPinned = function(id, isUser = true) {
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   for (let i = 0; i &lt; pinnedRecipe.length; i++) {
     if (pinnedRecipe[i] == id) {
       return true;
@@ -220,12 +226,28 @@ storage.isPinned = function(id) {
 
 /**
  * Return a list of pinned recipe ids
+ * @param {Boolean} isUser is pinning a user recipe
  * @return {Array} List of pinned recipe ids
  */
-storage.getPinnedRecipes = function() {
-  // const ids = storage.getRecipeIDs();
-  // return ids.filter((id) => storage.isPinned(id)) || [];
-  return JSON.parse(localStorage.getItem('pinned'));
+storage.getPinnedRecipesID = function(isUser = true) {
+  if (isUser) {
+    return JSON.parse(localStorage.getItem('pinned')) || [];
+  } else {
+    return JSON.parse(localStorage.getItem('pinnedSearch')) || [];
+  }
+};
+
+/**
+ * Set pinned recipe ids
+ * @param {String} ids list of pinned ids in JSON string
+ * @param {Boolean} isUser is pinning a user recipe
+ */
+storage.setPinnedRecipes = function(ids, isUser = true) {
+  if (isUser) {
+    localStorage.setItem('pinned', ids);
+  } else {
+    localStorage.setItem('pinnedSearch', ids);
+  }
 };
 
 /**
@@ -341,13 +363,17 @@ storage.reset = function() {
 
 </div>
 
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+</nav>
+
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Wed Dec 01 2021 18:33:29 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 06:05:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

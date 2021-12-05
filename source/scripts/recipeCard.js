@@ -2,6 +2,7 @@
 
 import( '../styles/explore.css' );
 import {storage} from './storage.js';
+import {url, navigation} from './url.js';
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -30,15 +31,9 @@ class RecipeCard extends HTMLElement {
 
     // Create the outer wrapper for the recipe to nest inside
     const wrapper = document.createElement('article');
-    const urlParams = new URLSearchParams(window.location.search);
     wrapper.onclick = function(e) {
-      // console.log('here');
-      if (e.target.id != 'heartbutton') {
-        window.location.href =
-          window.location.origin +
-          window.location.pathname.replace('Explore.html', 'Recipe.html') +
-          '?' + (urlParams.get('searched') != null ? 'searched=true&' : '') +
-          'id=' + data.id;
+      if (e.path[0].classList[0] != 'heart') {
+        navigation.toRecipe(data.id);
       }
     };
 
@@ -57,31 +52,17 @@ class RecipeCard extends HTMLElement {
     const HeartButton = document.createElement('button');
     HeartButton.setAttribute('id', 'heartbutton');
     storage.init();
-    if (storage.isPinned(data.id)) {
-      HeartButton.innerText = 'unpin';
-    } else {
-      HeartButton.innerText = 'pin';
+    if (storage.isPinned(data.id, !(url.isSearched()))) {
+      heart.classList.add('liked');
     }
-    imgWrapper.append(HeartButton);
-    HeartButton.onclick = function() {
-      if (!storage.isPinned(data.id)) {
-        storage.pinRecipe(data.id);
-        // console.log('here');
-        // change button innerText
-        HeartButton.innerText = 'unpin';
-      } else {
-        storage.unpinRecipe(data.id);
-        // console.log('there');
-        // change button innerText
-        HeartButton.innerText = 'pin';
-      }
-    };
-
     heart.classList.add('heart');
+
     heart.onclick = function() {
       if (heart.classList.contains('liked')) {
+        storage.unpinRecipe(data.id, !(url.isSearched()));
         heart.classList.remove('liked');
       } else {
+        storage.pinRecipe(data.id, !(url.isSearched()));
         heart.classList.add('liked');
       }
     };

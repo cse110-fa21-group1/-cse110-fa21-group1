@@ -1,5 +1,5 @@
 import {storage} from './storage.js';
-import {isEdit, isSearched} from './url.js';
+import {url, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -7,7 +7,7 @@ const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 
 /** Initialize the manage page */
 function init() {
-  const id = isEdit();
+  const id = url.isEdit();
   if (id != '-1') {
     populateRecipeHelper(id);
   }
@@ -52,7 +52,7 @@ const titleTexts = [
  * @param {String} id id of the recipe
  */
 function populateRecipeHelper(id) {
-  if (isSearched() && id != '-1') {
+  if (url.isSearched() && id != '-1') {
     populateRecipe(storage.getSearchedRecipe(id));
   } else {
     populateRecipe(storage.getRecipe(id));
@@ -154,9 +154,12 @@ function moveToPage(newPage) {
   currentPage = newPage;
 }
 
-/* Adds 'event listener' for 'Return to Recipes' button (returns to explore) */
+/**
+ * Adds 'event listener' for 'Return to Recipes' button
+ * to return to previous page
+ */
 returnButton.onclick = function() {
-  window.location.href = window.location.origin + '/source/Explore.html';
+  window.history.back();
 };
 
 /* Adds 'event listeners' for the back and next navigation buttons */
@@ -202,28 +205,19 @@ rightButton.onclick = function() {
 
     // recp.tag
 
-    let id = isEdit();
-    if (isSearched()) {
+    let id = url.isEdit();
+    // console.log(parseInt(id) > 0)
+    // Decide id for navigation
+    if (url.isSearched()) {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
-    } else if (id != '-1') {
-      // edit recipe
+    } else if (parseInt(id) > 0) {
       recp.id = id;
       storage.editRecipe(recp);
-      // go back to recipe
-      window.location.href =
-        window.location.pathname.replace(
-            'ManageRecipe.html', 'Recipe.html?id=' + id);
     } else {
       id = storage.addRecipe(recp);
-      // navigate to the new recipecard page
-      window.location.href = window.location.origin +
-        window.location.pathname.replace('ManageRecipe.html'
-            , 'Recipe.html?id=' + id);
     }
+
+    navigation.toRecipe(id, true);
   } else {
     moveToPage(currentPage + 1);
   }

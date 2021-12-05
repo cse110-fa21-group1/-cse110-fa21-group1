@@ -1,37 +1,61 @@
 import {storage} from './storage.js';
+import {url, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-// const recipeData = [];
-let recipes;
+const perPageCount = 10;
+// const offsetToggle = document.querySelector('.offset-toggle');
+const previousPageBtn = document.getElementById('previous-page');
+const nextPageBtn = document.getElementById('next-page');
+const moreRandomBtn = document.getElementById('random-toggle');
+const spoonResultBtn = document.getElementById('search-spoon');
+const userResultBtn = document.getElementById('search-user');
+const isPinnedDiv = document.querySelector('.filter-pinned');
+const isPinnedCheck = isPinnedDiv.querySelector('input');
+let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-
-  if (urlParams.get('searched') == 'true') {
+  if (url.isSearched()) {
+    spoonResultBtn.checked = true;
     // Attempt to fetch recipes
     try {
-      await fetchRecipesHelper(urlParams.get('q'));
+      if (url.getQuery() == '') {
+        // Random recipes
+        moreRandomBtn.hidden = false;
+        await fetchRandomRecipesHelper();
+      } else {
+        // Search from query
+        if (url.getOffset() >= perPageCount) {
+          previousPageBtn.hidden = false;
+        }
+        nextPageBtn.hidden = false;
+        await fetchRecipesHelper(url.getQuery());
+      }
     } catch (err) {
       console.log(`Error fetch recipes: ${err}`);
       return; // Return if fetch fails
     }
   } else {
+    userResultBtn.checked = true;
+    isPinnedDiv.hidden = false;
+    isPinnedCheck.checked = url.isPinnedRecipes();
     // Displaying our own recipes
-    recipes = storage.getRecipes();
+    recipes = url.isPinnedRecipes() ?
+                storage.getPinnedRecipes(true) :
+                storage.getRecipes();
+  }
+  
+  // Updates the search message
+  let query = getQuery();
+
+  if (query == '') {
+    document.querySelector('.search-header > h1').innerText = "Showing random recipes for you!";
+  }else{
+    document.querySelector('.search-header > h1').innerText = `Showing recipes for ${query}...`;
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
-
-  // storage.addItem(JSON.stringify(recipeData[0]));
-  // const recipeCard = document.querySelector('.recipe-cards--wrapper');
-  // const img = recipeCard.querySelector('img');
-  // img.setAttribute('src', recipeData[0]['image']);
-  // const title = recipeCard.querySelector('p').querySelector('a');
-  // title.innerText = recipeData[0]['title'];
-  // title.href = recipeData[0]['sourceUrl'];
 }
 
 /**
@@ -49,16 +73,28 @@ function populateCards() {
   });
 }
 
+/** Helper to populate random recipes from Spoonacular */
+async function fetchRandomRecipesHelper() {
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' +
+        '?number=' + perPageCount +
+        '&rapidapi-key=' + apiKey;
+  try {
+    await fetchRecipes(queryURL, true);
+  } catch (err) {
+    console.log(`Error fetching recipes: ${err}`);
+  }
+}
 /**
- * Populate recipe cards in the page
+ * Helper to populate searched recipe cards in the page
  * @param {String} query Query string for the search
  */
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
-        '&number=3' +
+        '&number=' + perPageCount +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
+        '&offset=' + url.getOffset() +
         '&rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
@@ -70,23 +106,23 @@ async function fetchRecipesHelper(query) {
 /**
  * Fetch recipes from the given url
  * @param {String} url url for fetching recipes
+ * @param {Boolean} isRandom is fetching random recipes
  * @return {Promise} Promise object for identifying job done
  */
-async function fetchRecipes(url) {
+async function fetchRecipes(url, isRandom = false) {
   return new Promise((resolve, reject) => {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            storage.setSearchedRecipes(JSON.stringify(data['results']));
+            if (isRandom) {
+              storage.setSearchedRecipes(JSON.stringify(data['recipes']));
+            } else {
+              storage.setSearchedRecipes(JSON.stringify(data['results']));
+            }
             recipes = storage.getSearchedRecipes();
             resolve();
           }
-          // const length = data['results'].length;
-          // for (let i = 0; i < length; i++) {
-          //   recipeData[recipeData.length] = data['results'][i];
-          // }
-          // resolve();
         })
         .catch((err) => {
           console.log(`Error loading the ${url} recipe`);
@@ -94,3 +130,33 @@ async function fetchRecipes(url) {
         });
   });
 }
+
+/** Go back to previous page of search results */
+previousPageBtn.onclick = () => {
+  const offset = url.getOffset();
+  navigation.toExplore(url.getQuery(), true,
+        (offset >= perPageCount) ? (offset - perPageCount) : 0 );
+};
+/** Go back to next page of search results */
+nextPageBtn.onclick = () => {
+  const offset = url.getOffset();
+  console.log(url.getQuery());
+  navigation.toExplore(url.getQuery(), true, offset + perPageCount );
+};
+/** Show random recipes */
+moreRandomBtn.onclick = () => {
+  navigation.toExplore('', true);
+};
+
+/** Show Spoonacular recipes */
+spoonResultBtn.onchange = () => {
+  navigation.toExplore(url.getQuery(), true);
+};
+/** Show user recipes */
+userResultBtn.onchange = () => {
+  navigation.toExplore();
+};
+/** SHow pinned recipes only */
+isPinnedCheck.onchange = () => {
+  navigation.toExplore('', false, 0, isPinnedCheck.checked);
+};
