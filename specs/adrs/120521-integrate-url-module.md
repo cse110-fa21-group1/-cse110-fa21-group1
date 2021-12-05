@@ -1,4 +1,4 @@
-#  Organizing url module into one single class
+# Organizing url module into one single class
 
 ## Context and Problem Statement
 We have some functions all over the place, like isEdit, getURLid, isSearched, getOffset, getQuery, isPinnedRecipes, isDevelopment. They are spread into differet js file. We want a better way to access them all together.
