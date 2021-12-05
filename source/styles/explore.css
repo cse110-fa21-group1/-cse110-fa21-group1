@@ -172,8 +172,10 @@ article:hover {
 }
 
 .image-wrapper > img {
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  width:100%;
+  height: auto;
 }
 
 @media only screen and (max-width: 1600px) {
