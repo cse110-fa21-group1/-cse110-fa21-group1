@@ -68,6 +68,6 @@ function populateRecipe() {
   if (recipe.video != 'undefined') {
     vdoBlock.src = recipe.video;
   } else {
-    vdoBlock.style.display = 'none';
+    vdoBlock.hidden = true;
   }
 }
