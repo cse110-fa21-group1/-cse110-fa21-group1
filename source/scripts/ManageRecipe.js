@@ -127,7 +127,7 @@ function populateRecipe(recipe) {
   }
 
   // Populate cooktime and servings
-  let splitTime = 
+  const splitTime =
   recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
   document.querySelector('#hour-box').value = splitTime[1];
   document.querySelector('#minute-box').value = splitTime[2];
@@ -188,11 +188,11 @@ rightButton.onclick = function() {
 
     recp.description = document.getElementById('desc-box').value;
 
-    hourBox.value = (isNaN(hourBox.value)
-    || parseInt(isNaN(hourBox.value))) ?
+    hourBox.value = (isNaN(hourBox.value) ||
+    parseInt(isNaN(hourBox.value))) ?
     '?' : hourBox.value;
-    minuteBox.value = (isNaN(minuteBox.value)
-    || parseInt(isNaN(minuteBox.value))) ?
+    minuteBox.value = (isNaN(minuteBox.value) ||
+    parseInt(isNaN(minuteBox.value))) ?
     '?' : minuteBox.value;
     recp.totalTime = 'PT' + hourBox.value + 'H' + minuteBox.value + 'M';
     recp.recipeYield = document.getElementById('serving-box').value;
