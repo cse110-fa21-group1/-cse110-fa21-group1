@@ -29,58 +29,102 @@
             <pre class="prettyprint source linenums"><code>// url.js
 
 export const navigation = {};
+export const url = {};
 
 /**
  * Check if we are editing a recipe
  * @return {String} the editing recipe id if editing, else '-1'
  */
-export function isEdit() {
+url.isEdit = () => {
   // console.log('storage:' + storage);
   // Extract query id
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const id = urlParams.get('id');
   return id != null ? id : '-1';
-}
+};
 
 /**
  * Return id query in url
  * @return {String} id query in url, -1 if not found
  */
-export function getURLid() {
-  return isEdit();
-}
+url.getURLid = () => {
+  return url.isEdit();
+};
 
 /**
  * Check if we are editing from a searched recipe
  * @return {Boolean} true if yes, else false
  */
-export function isSearched() {
-  // console.log('storage:' + storage);
+url.isSearched = () => {
   // Extract query id
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('searched') != null;
-}
+};
+
+/**
+ * Return offset for recipe search
+ * @return {Integer} offset for recipe search
+ */
+url.getOffset = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return parseInt(urlParams.get('offset')) || 0;
+};
+
+/**
+ * Return search query
+ * @return {String} search query
+ */
+url.getQuery = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('q') || '';
+};
+
+/**
+ * Return if is getting pinned recipes only
+ * @return {Boolean} is getting pinned recipes
+ */
+url.isPinnedRecipes = () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('pinned') == 'true';
+};
+
+/**
+ * Determine if we are in development stage (in source folder)
+ * @param {String} s window.location.pathname
+ * @return {Boolean} whether we are in development stage
+ */
+url.isDevelopment = () => {
+  return window.location.pathname.startsWith('/source');
+};
 
 /**
  * Helper function for search/explore
  * @param {String} query Query string for search/exploring
  * @param {Boolean} search Whether we are searching or exploring user's recipes
+ * @param {Integer} offset Offset for search results
+ * @param {Boolean} pinned Whether we are seeing pinned recipes only or not
  */
-navigation.toExplore = (query = '', search = true) => {
-  window.location.href =
-      window.location.origin +
-      (isDevelopment() ? '/source' : '') +
-      '/Explore.html' +
-      (search ? '?searched=true&amp;q=' + query : '');
-};
+navigation.toExplore =
+  (query = '', search = false, offset = 0, pinned = false) => {
+    window.location.href =
+        window.location.origin +
+        (url.isDevelopment() ? '/source' : '') +
+        '/Explore.html?' +
+        (search ? 'searched=true&amp;q=' + query + '&amp;' : '') +
+        (offset > 0 ? '&amp;offset=' + offset + '&amp;' : '') +
+        (pinned ? 'pinned=true' : '');
+  };
 
 /** Navigate to Home.html */
 navigation.toHome = () => {
   window.location.href =
       window.location.origin +
-      (isDevelopment() ? '/source' : '') +
+      (url.isDevelopment() ? '/source' : '') +
       '/Home.html';
 };
 
@@ -90,16 +134,16 @@ navigation.toHome = () => {
  */
 navigation.toManageRecipe = (isAdd = true) => {
   let param = '';
-  if (isSearched()) {
+  if (url.isSearched()) {
     param = window.location.search;
   } else if (isAdd) {
     param = '';
   } else {
-    param = (isEdit() != -1 ? '?id=' + isEdit() : '');
+    param = (url.isEdit() != -1 ? '?id=' + url.isEdit() : '');
   }
   window.location.href =
       window.location.origin +
-      (isDevelopment() ? '/source' : '') +
+      (url.isDevelopment() ? '/source' : '') +
       '/ManageRecipe.html' +
       param;
 };
@@ -112,21 +156,12 @@ navigation.toManageRecipe = (isAdd = true) => {
 navigation.toRecipe = (id, isNew=false) => {
   window.location.href =
     window.location.origin +
-    (isDevelopment() ? '/source' : '') +
+    (url.isDevelopment() ? '/source' : '') +
     '/Recipe.html?' +
-    (!isNew &amp;&amp; isSearched() ?
+    (!isNew &amp;&amp; url.isSearched() ?
       'searched=true&amp;id=' + id :
       'id=' + id);
 };
-
-/**
- * Determine if we are in development stage (in source folder)
- * @param {String} s window.location.pathname
- * @return {Boolean} whether we are in development stage
- */
-export function isDevelopment() {
-  return window.location.pathname.startsWith('/source');
-}
 </code></pre>
         </article>
     </section>
@@ -137,13 +172,13 @@ export function isDevelopment() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#getURLid">getURLid</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isDevelopment">isDevelopment</a></li><li><a href="global.html#isEdit">isEdit</a></li><li><a href="global.html#isSearched">isSearched</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 00:03:17 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 06:05:56 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

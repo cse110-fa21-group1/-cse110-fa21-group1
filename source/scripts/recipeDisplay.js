@@ -1,7 +1,7 @@
 // recipeDisplay.js
 
 import {storage} from './storage.js';
-import {getURLid, isSearched} from './url.js';
+import {url} from './url.js';
 // import {recipeDemo} from './Recipe.js';
 
 window.addEventListener('DOMContentLoaded', init);
@@ -24,9 +24,9 @@ function init() {
  */
 function populateRecipe() {
   // Extract query id
-  const id = getURLid();
+  const id = url.getURLid();
   // Fetch recipe from local storage
-  const recipe = (isSearched()) ?
+  const recipe = (url.isSearched()) ?
                     storage.getSearchedRecipe(id) :
                     storage.getRecipe(id);
   if (Object.keys(recipe).length == 0) return; // TODO: catch error
