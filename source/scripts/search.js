@@ -54,7 +54,7 @@ async function init() {
     document.querySelector('.search-header > h1').innerText =
     'Showing random recipes for you!';
   } else {
-    document.querySelector('.search-header > h1').innerText = 
+    document.querySelector('.search-header > h1').innerText =
     `Showing recipes for ${query}...`;
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
