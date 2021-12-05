@@ -1,5 +1,5 @@
 import {storage} from './storage.js';
-import {getURLid, isSearched} from './url.js';
+import {url} from './url.js';
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
@@ -21,9 +21,9 @@ window.addEventListener('DOMContentLoaded', init);
 /** Adds event listeners to the timer after page is loaded. */
 function init() {
   // Extract query id
-  const id = getURLid();
+  const id = url.getURLid();
   // Fetch recipe from local storage
-  const recipe = (isSearched()) ?
+  const recipe = (url.isSearched()) ?
                     storage.getSearchedRecipe(id) :
                     storage.getRecipe(id);
   if (Object.keys(recipe).length == 0) return;
