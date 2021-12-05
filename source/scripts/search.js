@@ -4,7 +4,7 @@ import {url, navigation} from './url.js';
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-const perPageCount = 10;
+const perPageCount = 12;
 // const offsetToggle = document.querySelector('.offset-toggle');
 const previousPageBtn = document.getElementById('previous-page');
 const nextPageBtn = document.getElementById('next-page');
@@ -78,8 +78,8 @@ function populateCards() {
 /** Helper to populate random recipes from Spoonacular */
 async function fetchRandomRecipesHelper() {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' +
-        '?number=' + perPageCount +
-        '&rapidapi-key=' + apiKey;
+        `?number=${perPageCount}` +
+        `&rapidapi-key=${apiKey}`;
   try {
     await fetchRecipes(queryURL, true);
   } catch (err) {
@@ -93,11 +93,11 @@ async function fetchRandomRecipesHelper() {
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
-        '&number=' + perPageCount +
+        `&number=${perPageCount}` +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
-        '&offset=' + url.getOffset() +
-        '&rapidapi-key=' + apiKey;
+        `&offset=${url.getOffset()}` +
+        `&rapidapi-key=${apiKey}`;
   try {
     await fetchRecipes(queryURL);
   } catch (err) {
