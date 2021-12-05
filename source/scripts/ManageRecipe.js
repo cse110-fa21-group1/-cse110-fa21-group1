@@ -189,10 +189,10 @@ rightButton.onclick = function() {
     recp.description = document.getElementById('desc-box').value;
 
     hourBox.value = (isNaN(hourBox.value) ||
-    parseInt(isNaN(hourBox.value))) ?
+    hourBox.value.length == 0) ?
     '?' : hourBox.value;
     minuteBox.value = (isNaN(minuteBox.value) ||
-    parseInt(isNaN(minuteBox.value))) ?
+    minuteBox.value.length == 0) ?
     '?' : minuteBox.value;
     recp.totalTime = 'PT' + hourBox.value + 'H' + minuteBox.value + 'M';
     recp.recipeYield = document.getElementById('serving-box').value;
