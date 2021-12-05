@@ -117,8 +117,7 @@ function timerFinish(forced) {
     soundInterval = setTimeout(() => {
       endAlarm();
     }, 20000);
-  }
-  else {
+  } else {
     resetTimerView();
   }
 }
