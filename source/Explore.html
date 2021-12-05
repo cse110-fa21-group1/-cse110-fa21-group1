@@ -56,9 +56,18 @@
       <div class="search-header">
         <h1>Showing results for SEARCH TERM</h1>
       </div>
-      <div class="offset-taggle">
-        <button type="button" id="previous-page">Previous page</button>
-        <button type="button" id="next-page">Next page</button>
+      <div class="offset-toggle">
+        <button type="button" id="previous-page" hidden>Previous page</button>
+        <button type="button" id="next-page" hidden>Next page</button>
+        <button type="button" id="random-toggle" hidden>More random recipes!</button>
+      </div>
+      <div class="spoon-or-user">
+        <fieldset id="send-copy" name="send-copy">
+          <input type="radio" id="search-spoon" name="spoon-or-user">
+          <label for="search-spoon">Results from Spoonacular</label><br>
+          <input type="radio" id="search-user" name="spoon-or-user">
+          <label for="search-user">Your Recipes</label>
+      </fieldset>
       </div>
       <div class="recipe-cards--wrapper" id="recipe-cards--wrapper">
         <!-- <article>

@@ -60,7 +60,7 @@ export function getQuery() {
  * @param {Boolean} search Whether we are searching or exploring user's recipes
  * @param {Integer} offset Offset for search results
  */
-navigation.toExplore = (query = '', search = true, offset = 0) => {
+navigation.toExplore = (query = '', search = false, offset = 0) => {
   window.location.href =
       window.location.origin +
       (isDevelopment() ? '/source' : '') +
