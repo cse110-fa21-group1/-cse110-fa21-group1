@@ -17,12 +17,15 @@ let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
-  if (url.isSearched()) {
-    spoonResultBtn.checked = true;
-    // Attempt to fetch recipes
-    try {
+  try {
+    if (url.isSearched() && url.isPinnedRecipes()) {
+      isPinnedCheck.checked = true;
+      // Search pinned spoonacular recipes
+      await fetchPinnedSearchHelper();
+    } else if (url.isSearched()) {
+      spoonResultBtn.checked = true;
       if (url.getQuery() == '') {
-        // Random recipes
+        // Search random spoonacular recipes
         moreRandomBtn.hidden = false;
         await fetchRandomRecipesHelper();
       } else {
@@ -33,18 +36,18 @@ async function init() {
         nextPageBtn.hidden = false;
         await fetchRecipesHelper(url.getQuery());
       }
-    } catch (err) {
-      console.log(`Error fetch recipes: ${err}`);
-      return; // Return if fetch fails
+    } else {
+      userResultBtn.checked = true;
+      isPinnedDiv.hidden = false;
+      isPinnedCheck.checked = url.isPinnedRecipes();
+      // Displaying our own recipes
+      recipes = url.isPinnedRecipes() ?
+                  storage.getPinnedRecipes(true) :
+                  storage.getRecipes();
     }
-  } else {
-    userResultBtn.checked = true;
-    isPinnedDiv.hidden = false;
-    isPinnedCheck.checked = url.isPinnedRecipes();
-    // Displaying our own recipes
-    recipes = url.isPinnedRecipes() ?
-                storage.getPinnedRecipes(true) :
-                storage.getRecipes();
+  } catch (err) {
+    console.log(`Error fetch recipes: ${err}`);
+    return; // Return if fetch fails
   }
 
   // Updates the search message
@@ -73,6 +76,18 @@ function populateCards() {
     // Add card to the page
     document.querySelector('#recipe-cards--wrapper').appendChild(recipeCard);
   });
+}
+
+/** Helper to populate pinned search recipes */
+async function fetchPinnedSearchHelper() {
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk' +
+        `?ids=${storage.getPinnedRecipesID(false).join(',')}` +
+        `&rapidapi-key=${apiKey}`;
+  try {
+    await fetchRecipes(queryURL, true);
+  } catch (err) {
+    console.log(`Error fetching recipes: ${err}`);
+  }
 }
 
 /** Helper to populate random recipes from Spoonacular */
@@ -107,17 +122,20 @@ async function fetchRecipesHelper(query) {
 
 /**
  * Fetch recipes from the given url
- * @param {String} url url for fetching recipes
+ * @param {String} queryURL url for fetching recipes
  * @param {Boolean} isRandom is fetching random recipes
  * @return {Promise} Promise object for identifying job done
  */
-async function fetchRecipes(url, isRandom = false) {
+async function fetchRecipes(queryURL, isRandom = false) {
   return new Promise((resolve, reject) => {
-    fetch(url)
+    fetch(queryURL)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            if (isRandom) {
+            if (isPinnedCheck.checked) {
+              console.log(data);
+              storage.setSearchedRecipes(JSON.stringify(data));
+            } else if (isRandom) {
               storage.setSearchedRecipes(JSON.stringify(data['recipes']));
             } else {
               storage.setSearchedRecipes(JSON.stringify(data['results']));
@@ -127,7 +145,7 @@ async function fetchRecipes(url, isRandom = false) {
           }
         })
         .catch((err) => {
-          console.log(`Error loading the ${url} recipe`);
+          console.log(`Error loading the ${queryURL} recipe`);
           reject(err);
         });
   });
@@ -160,5 +178,5 @@ userResultBtn.onchange = () => {
 };
 /** SHow pinned recipes only */
 isPinnedCheck.onchange = () => {
-  navigation.toExplore('', false, 0, isPinnedCheck.checked);
+  navigation.toExplore('', spoonResultBtn.checked, 0, isPinnedCheck.checked);
 };
