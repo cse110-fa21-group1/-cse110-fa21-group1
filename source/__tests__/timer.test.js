@@ -1,6 +1,6 @@
 describe('Timer', () => {
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5501/source/Recipe.html');
+    await page.goto('http://localhost:9999/source/Recipe.html');
   });
 
   // Check to make sure input hour counts down
