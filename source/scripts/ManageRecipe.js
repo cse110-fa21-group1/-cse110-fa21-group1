@@ -97,9 +97,6 @@ function populateRecipe(recipe) {
   document.getElementById('name-box').value = recipe.name;
   // Populate description
   document.getElementById('desc-box').value = recipe.description;
-  // Populate tags
-  document.getElementById('tag-box').value =
-    recipe.tag == null ? '' : recipe.tag;
 
   // Populate ingredients
   for (let i=0; i<recipe.recipeIngredient.length; i++) {
