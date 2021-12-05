@@ -48,12 +48,12 @@ function addInputLimitations(time) {
     const isFull = time.innerHTML.length >= 2;
     const notNum = isNaN(e.key);
     if (notNum) {
-      e.preventDefault(); 
+      e.preventDefault();
     } else {
       if (isFull) {
         if (window.getSelection()) {
-          let toReplace = window.getSelection();
-          let range = toReplace.getRangeAt(0);
+          const toReplace = window.getSelection();
+          const range = toReplace.getRangeAt(0);
           if (range.toString().length > 0) {
             range.deleteContents();
             range.insertNode(document.createTextNode(e.key));
@@ -81,7 +81,7 @@ function addTimeTextListeners() {
  * @param {Int} currMin Number to replace min's text in the timer
  * @param {Int} currSec Number to replace sec's text in the timer
  */
- function setTimerText(currHr, currMin, currSec) {
+function setTimerText(currHr, currMin, currSec) {
   hourNum.innerHTML = (currHr < 10) ? ('0' + currHr.toString()) : currHr;
   minNum.innerHTML = (currMin < 10) ? ('0' + currMin.toString()) : currMin;
   secNum.innerHTML = (currSec < 10) ? ('0' + currSec.toString()) : currSec;
@@ -114,7 +114,9 @@ function timerFinish(forced) {
   if (!forced) {
     soundButton.classList.remove('hidden');
     audio.play();
-    soundInterval = setTimeout(() => {endAlarm()}, 20000);
+    soundInterval = setTimeout(() => {
+      endAlarm();
+    }, 20000);
   }
   else {
     resetTimerView();
@@ -142,7 +144,7 @@ function startTimer() {
 }
 /** Adds event listeners to the timer buttons. */
 function addButtonListeners() {
-    /**
+  /**
    * Adds an event listener to start button: changes seconds, minutes, and
    * hours such that minutes and seconds are < 60, sets the timer's text
    * accordingly, and starts the timer. Additionally, replaces the start
