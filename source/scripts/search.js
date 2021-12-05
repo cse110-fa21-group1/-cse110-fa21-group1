@@ -48,11 +48,11 @@ async function init() {
   }
 
   // Updates the search message
-  let query = getQuery();
+  const query = getQuery();
 
   if (query == '') {
     document.querySelector('.search-header > h1').innerText =
-    "Showing random recipes for you!";
+    'Showing random recipes for you!';
   } else {
     document.querySelector('.search-header > h1').innerText =
     `Showing recipes for ${query}...`;
