@@ -46,6 +46,15 @@ async function init() {
                 storage.getPinnedRecipes(true) :
                 storage.getRecipes();
   }
+  
+  // Updates the search message
+  let query = getQuery();
+
+  if (query == '') {
+    document.querySelector('.search-header > h1').innerText = "Showing random recipes for you!";
+  }else{
+    document.querySelector('.search-header > h1').innerText = `Showing recipes for ${query}...`;
+  }
   populateCards(); // Add <recipe-card> elements to page with fetched data
 }
 
