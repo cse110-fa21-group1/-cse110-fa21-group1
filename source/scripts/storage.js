@@ -5,10 +5,10 @@ export const storage = {};
 /** Initialize localstorage for counting recipes created */
 storage.init = () => {
   // Initialize our recipe count for generating IDs
-  if (localStorage.getItem('numRecipesCreated') == undefined ||
-      localStorage.getItem('numRecipesCreated') == 'NaN') {
+  if (!localStorage.getItem('numRecipesCreated')) {
     localStorage.setItem('numRecipesCreated', '0');
     localStorage.setItem('pinned', '[]');
+    localStorage.setItem('pinnedSearch', '[]');
   }
 //   if (localStorage.getItem('pinned') == undefined ||
 //       localStorage.getItem('pinned') == 'NaN') {
@@ -46,11 +46,27 @@ storage.generateNewId = () => {
 
 /**
  * Return an array of all saved recipes
+ * @param {Boolean} isUser is getting user recipes
  * @return {Array} An array of all saved recipes' id
  */
-storage.getRecipes = () => {
+storage.getRecipes = (isUser = false) => {
   const ids = storage.getRecipeIDs();
   return ids.map((id) => storage.getRecipe(id)) || [];
+};
+
+/**
+ * Return an array of all pinned recipes (currently only for users)
+ * @param {Boolean} isUser is getting user pinned recieps
+ * @return {Array} An array of all pinned recipes
+ */
+storage.getPinnedRecipes = (isUser = true) => {
+  if (isUser) {
+    return storage
+        .getPinnedRecipesID(isUser)
+        .map((id) => storage.getRecipe(id)) || [];
+  } else {
+    return [];
+  }
 };
 
 /**
@@ -132,43 +148,46 @@ storage.getRecipeIDs = function() {
 /**
  * Pin recipe with given id
  * @param {String} id id of the recipe to be pinned
+ * @param {Boolean} isUser is pinning a user recipe
  */
-storage.pinRecipe = function(id) {
-  if (storage.getRecipeIndex(id) != -1) {
+storage.pinRecipe = function(id, isUser = true) {
+  if (isUser && storage.getRecipeIndex(id) != -1) {
     const recipe = JSON.parse(localStorage.getItem(id));
     recipe.pinned = true;
     storage.editRecipe(recipe);
   }
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   pinnedRecipe.push(id);
-  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
+  storage.setPinnedRecipes(JSON.stringify(pinnedRecipe), isUser);
 };
 
 /**
  * Unpin recipe with given id
  * @param {String} id id of the recipe to be unpinned
+ * @param {Boolean} isUser is unpinning a user recipe
  */
-storage.unpinRecipe = function(id) {
-  if (storage.getRecipeIndex(id) != -1) {
+storage.unpinRecipe = function(id, isUser = true) {
+  if (isUser && storage.getRecipeIndex(id) != -1) {
     const recipe = JSON.parse(localStorage.getItem(id));
     recipe.pinned = false;
     storage.editRecipe(recipe);
   }
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   const index = pinnedRecipe.indexOf(id);
   if (index > -1) {
     pinnedRecipe.splice(index, 1);
   }
-  localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
+  storage.setPinnedRecipes(JSON.stringify(pinnedRecipe), isUser);
 };
 
 /**
  * Check if a recipe is pinned
  * @param {String} id id of the recipe to be checked
+ * @param {Boolean} isUser is pinning a user recipe
  * @return {Boolean} whether recipe is pinned
  */
-storage.isPinned = function(id) {
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
+storage.isPinned = function(id, isUser = true) {
+  const pinnedRecipe = storage.getPinnedRecipesID(isUser);
   for (let i = 0; i < pinnedRecipe.length; i++) {
     if (pinnedRecipe[i] == id) {
       return true;
@@ -179,12 +198,28 @@ storage.isPinned = function(id) {
 
 /**
  * Return a list of pinned recipe ids
+ * @param {Boolean} isUser is pinning a user recipe
  * @return {Array} List of pinned recipe ids
  */
-storage.getPinnedRecipes = function() {
-  // const ids = storage.getRecipeIDs();
-  // return ids.filter((id) => storage.isPinned(id)) || [];
-  return JSON.parse(localStorage.getItem('pinned'));
+storage.getPinnedRecipesID = function(isUser = true) {
+  if (isUser) {
+    return JSON.parse(localStorage.getItem('pinned')) || [];
+  } else {
+    return JSON.parse(localStorage.getItem('pinnedSearch')) || [];
+  }
+};
+
+/**
+ * Set pinned recipe ids
+ * @param {String} ids list of pinned ids in JSON string
+ * @param {Boolean} isUser is pinning a user recipe
+ */
+storage.setPinnedRecipes = function(ids, isUser = true) {
+  if (isUser) {
+    localStorage.setItem('pinned', ids);
+  } else {
+    localStorage.setItem('pinnedSearch', ids);
+  }
 };
 
 /**
