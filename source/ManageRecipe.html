@@ -79,8 +79,18 @@
     <!-- html for 4th page (finishing touches) -->
     <div class="page-four hidden">
       <div class="left-half">
-        <div class="text-input grd-brdr"><input id="time-box" type="text" placeholder="Cooking Time"></div>
-        <div class="text-input grd-brdr"><input id="serving-box" type="text" placeholder="Servings"></div>
+        <div id="time-section">
+          <p>Cooking Time:</p>
+          <div></div>
+          <div class="text-input grd-brdr"><input class="time-box" id="hour-box" type="text"></div>
+          <p>Hour(s)</p>
+          <div class="text-input grd-brdr"><input class="time-box" id="minute-box" type="text"></div>
+          <p>Minutes(s)</p>
+        </div>
+        <div id="serving-section">
+          <div class="text-input grd-brdr"><input id="serving-box" type="text"></div>
+          <p>Servings</p>
+        </div>
         <div id="serving-buffer"></div>
       </div>
       <div class="right-half">

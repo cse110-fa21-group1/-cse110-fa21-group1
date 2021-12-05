@@ -30,6 +30,8 @@ const ingList = document.getElementById('ing-box');
 const instrList = document.getElementById('instr-box');
 const firstIng = document.getElementById('first-ing');
 const firstInstr = document.getElementById('first-instr');
+const hourBox = document.getElementById('hour-box');
+const minuteBox = document.getElementById('minute-box');
 const box1 = document.getElementById('b1');
 const box2 = document.getElementById('b2');
 const box3 = document.getElementById('b3');
@@ -125,7 +127,10 @@ function populateRecipe(recipe) {
   }
 
   // Populate cooktime and servings
-  document.querySelector('#time-box').value = recipe.totalTime;
+  let splitTime = 
+  recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  document.querySelector('#hour-box').value = splitTime[1];
+  document.querySelector('#minute-box').value = splitTime[2];
   document.querySelector('#serving-box').value = recipe.recipeYield;
 
   // Populate videoUrl
@@ -183,7 +188,13 @@ rightButton.onclick = function() {
 
     recp.description = document.getElementById('desc-box').value;
 
-    recp.totalTime = document.getElementById('time-box').value;
+    hourBox.value = (isNaN(hourBox.value)
+    || parseInt(isNaN(hourBox.value))) ?
+    '?' : hourBox.value;
+    minuteBox.value = (isNaN(minuteBox.value)
+    || parseInt(isNaN(minuteBox.value))) ?
+    '?' : minuteBox.value;
+    recp.totalTime = 'PT' + hourBox.value + 'H' + minuteBox.value + 'M';
     recp.recipeYield = document.getElementById('serving-box').value;
 
     const IngreArray = [];

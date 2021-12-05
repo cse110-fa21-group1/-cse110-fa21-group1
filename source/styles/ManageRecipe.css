@@ -209,16 +209,35 @@ header {
 .page-four {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
-#time-box {
-  width: 41.69vw;
+#time-section {
+  width: 35vw;
+  display: flex;
+  justify-content: space-between;
+}
+p {
+  color:white;
+  font-family: 'Montserrat';
+  font-size: 2vh;
+}
+.time-box {
+  width: 4vw;
   height: 6.25vh;
   font-size: 2vmin;
+}
+#serving-section {
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
 }
 #serving-box {
-  width: 41.69vw;
+  width: 4vw;
   height: 6.25vh;
   font-size: 2vmin;
+}
+#serving-buffer {
+  width: 41.69vw;
 }
 #recipe-vid {
   width: 41.69vw;
