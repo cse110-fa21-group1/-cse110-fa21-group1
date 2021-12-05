@@ -67,7 +67,7 @@ p {
   box-shadow: var(--subtle-purple-glow);
 }
 
-#send-copy {
+#recipe-type {
   border:transparent;
   display: flex;
   flex-direction: row;
@@ -76,18 +76,22 @@ p {
   padding: 0;
 }
 
-#send-copy > input {
+input {
   margin-right: .5%;
   margin-left: 0;
 }
 
-#send-copy > label {
+label {
   margin-right: 16px;
   color: white;
   font-weight: 700;
   font-family:('Montserrat');
 }
 
+.filter-pinned {
+  margin-top: .5%;
+  margin-left: 3%;
+}
 
 article {
   align-items: center;
