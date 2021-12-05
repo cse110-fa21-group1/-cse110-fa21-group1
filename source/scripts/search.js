@@ -1,26 +1,42 @@
 import {storage} from './storage.js';
-import {isSearched} from './url.js';
+import {isSearched, getQuery, getOffset, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-// const recipeData = [];
+const perPageCount = 10;
+// const offsetToggle = document.querySelector('.offset-toggle');
+const previousPageBtn = document.getElementById('previous-page');
+const nextPageBtn = document.getElementById('next-page');
+const moreRandomBtn = document.getElementById('random-toggle');
+const spoonResultBtn = document.getElementById('search-spoon');
+const userResultBtn = document.getElementById('search-user');
 let recipes;
 
 /** Populate recipe cards */
 async function init() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-
   if (isSearched()) {
+    spoonResultBtn.checked = true;
     // Attempt to fetch recipes
     try {
-      await fetchRecipesHelper(urlParams.get('q'));
+      if (getQuery() == '') {
+        // Random recipes
+        moreRandomBtn.hidden = false;
+        await fetchRandomRecipesHelper();
+      } else {
+        // Search from query
+        if (getOffset() >= perPageCount) {
+          previousPageBtn.hidden = false;
+        }
+        nextPageBtn.hidden = false;
+        await fetchRecipesHelper(getQuery());
+      }
     } catch (err) {
       console.log(`Error fetch recipes: ${err}`);
       return; // Return if fetch fails
     }
   } else {
+    userResultBtn.checked = true;
     // Displaying our own recipes
     recipes = storage.getRecipes();
   }
@@ -42,16 +58,28 @@ function populateCards() {
   });
 }
 
+/** Helper to populate random recipes from Spoonacular */
+async function fetchRandomRecipesHelper() {
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' +
+        '?number=' + perPageCount +
+        '&rapidapi-key=' + apiKey;
+  try {
+    await fetchRecipes(queryURL, true);
+  } catch (err) {
+    console.log(`Error fetching recipes: ${err}`);
+  }
+}
 /**
- * Populate recipe cards in the page
+ * Helper to populate searched recipe cards in the page
  * @param {String} query Query string for the search
  */
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&addRecipeInformation=true' +
-        '&number=3' +
+        '&number=' + perPageCount +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
+        '&offset=' + getOffset() +
         '&rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
@@ -63,15 +91,20 @@ async function fetchRecipesHelper(query) {
 /**
  * Fetch recipes from the given url
  * @param {String} url url for fetching recipes
+ * @param {Boolean} isRandom is fetching random recipes
  * @return {Promise} Promise object for identifying job done
  */
-async function fetchRecipes(url) {
+async function fetchRecipes(url, isRandom = false) {
   return new Promise((resolve, reject) => {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            storage.setSearchedRecipes(JSON.stringify(data['results']));
+            if (isRandom) {
+              storage.setSearchedRecipes(JSON.stringify(data['recipes']));
+            } else {
+              storage.setSearchedRecipes(JSON.stringify(data['results']));
+            }
             recipes = storage.getSearchedRecipes();
             resolve();
           }
@@ -82,3 +115,33 @@ async function fetchRecipes(url) {
         });
   });
 }
+
+/** Go back to previous page of search results */
+previousPageBtn.onclick = () => {
+  const offset = getOffset();
+  navigation.toExplore(getQuery(), true,
+        (offset >= perPageCount) ? (offset - perPageCount) : 0 );
+};
+/** Go back to next page of search results */
+nextPageBtn.onclick = () => {
+  const offset = getOffset();
+  console.log(getQuery());
+  navigation.toExplore(getQuery(), true, offset + perPageCount );
+};
+/** Show random recipes */
+moreRandomBtn.onclick = () => {
+  navigation.toExplore('', true);
+};
+
+/**
+ * Show Spoonacular recipes
+ */
+spoonResultBtn.onchange = () => {
+  navigation.toExplore(getQuery(), true);
+};
+/**
+ * Show user recipes
+ */
+userResultBtn.onchange = () => {
+  navigation.toExplore();
+};
