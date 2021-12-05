@@ -98,7 +98,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+  padding: 0 5vw;
 }
 #current-name {
   width: 60vw;
@@ -115,7 +115,7 @@ header {
 .middle {
   /* border: 3px double #4C4C4C; */
   height: 65vh;
-  padding: 5vh 5vw 0vh 5vw;
+  padding: 5vh 5vw 0;
 }
 
 /* The first page and all of its elements */
@@ -157,11 +157,6 @@ header {
   height: 35vh;
   font-size: 2.25vmin;
   resize: none;
-}
-#tag-box {
-  width: 41.47vw;
-  height: 6.25vh;
-  font-size: 2vmin;
 }
 
 /* The second page and all of its elements */
@@ -214,32 +209,39 @@ header {
 .page-four {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
-#time-box {
-  width: 41.69vw;
+#time-section {
+  width: 35vw;
+  display: flex;
+  justify-content: space-between;
+}
+p {
+  color:white;
+  font-family: 'Montserrat';
+  font-size: 2vh;
+}
+.time-box {
+  width: 4vw;
   height: 6.25vh;
   font-size: 2vmin;
+}
+#serving-section {
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
 }
 #serving-box {
-  width: 41.69vw;
+  width: 4vw;
   height: 6.25vh;
   font-size: 2vmin;
+}
+#serving-buffer {
+  width: 41.69vw;
 }
 #recipe-vid {
   width: 41.69vw;
   height: 50vh;
-}
-#pin-section {
-  display: flex;
-  justify-content: space-evenly;
-}
-#pin-text {
-  font-family: 'Montserrat';
-  font-size: 3vmin;
-  color:white;
-}
-.heart {
-  content: '&hearts';
 }
 
 footer {
@@ -247,7 +249,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  padding: 0vh 5vw 0vh 5vw;
+  padding: 0 5vw;
 }
 .box-group {
   display: flex;

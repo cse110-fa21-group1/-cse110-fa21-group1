@@ -1,9 +1,9 @@
 import {storage} from './storage.js';
-import {getURLid} from './url.js';
+import {url} from './url.js';
 
 const Button = document.getElementById('pin-button');
 
-const id = getURLid();
+const id = url.getURLid();
 
 if (storage.isPinned(id) == true) {
   Button.innerText = 'Remove from favorite';
