@@ -1,5 +1,5 @@
 import {storage} from './storage.js';
-import {isSearched, getQuery, getOffset, navigation} from './url.js';
+import {url, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -11,25 +11,27 @@ const nextPageBtn = document.getElementById('next-page');
 const moreRandomBtn = document.getElementById('random-toggle');
 const spoonResultBtn = document.getElementById('search-spoon');
 const userResultBtn = document.getElementById('search-user');
-let recipes;
+const isPinnedDiv = document.querySelector('.filter-pinned');
+const isPinnedCheck = isPinnedDiv.querySelector('input');
+let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
-  if (isSearched()) {
+  if (url.isSearched()) {
     spoonResultBtn.checked = true;
     // Attempt to fetch recipes
     try {
-      if (getQuery() == '') {
+      if (url.getQuery() == '') {
         // Random recipes
         moreRandomBtn.hidden = false;
         await fetchRandomRecipesHelper();
       } else {
         // Search from query
-        if (getOffset() >= perPageCount) {
+        if (url.getOffset() >= perPageCount) {
           previousPageBtn.hidden = false;
         }
         nextPageBtn.hidden = false;
-        await fetchRecipesHelper(getQuery());
+        await fetchRecipesHelper(url.getQuery());
       }
     } catch (err) {
       console.log(`Error fetch recipes: ${err}`);
@@ -37,8 +39,12 @@ async function init() {
     }
   } else {
     userResultBtn.checked = true;
+    isPinnedDiv.hidden = false;
+    isPinnedCheck.checked = url.isPinnedRecipes();
     // Displaying our own recipes
-    recipes = storage.getRecipes();
+    recipes = url.isPinnedRecipes() ?
+                storage.getPinnedRecipes(true) :
+                storage.getRecipes();
   }
   populateCards(); // Add <recipe-card> elements to page with fetched data
 }
@@ -79,7 +85,7 @@ async function fetchRecipesHelper(query) {
         '&number=' + perPageCount +
         '&instructionsRequired=true' +
         '&fillIngredients=true' +
-        '&offset=' + getOffset() +
+        '&offset=' + url.getOffset() +
         '&rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
@@ -118,30 +124,30 @@ async function fetchRecipes(url, isRandom = false) {
 
 /** Go back to previous page of search results */
 previousPageBtn.onclick = () => {
-  const offset = getOffset();
-  navigation.toExplore(getQuery(), true,
+  const offset = url.getOffset();
+  navigation.toExplore(url.getQuery(), true,
         (offset >= perPageCount) ? (offset - perPageCount) : 0 );
 };
 /** Go back to next page of search results */
 nextPageBtn.onclick = () => {
-  const offset = getOffset();
-  console.log(getQuery());
-  navigation.toExplore(getQuery(), true, offset + perPageCount );
+  const offset = url.getOffset();
+  console.log(url.getQuery());
+  navigation.toExplore(url.getQuery(), true, offset + perPageCount );
 };
 /** Show random recipes */
 moreRandomBtn.onclick = () => {
   navigation.toExplore('', true);
 };
 
-/**
- * Show Spoonacular recipes
- */
+/** Show Spoonacular recipes */
 spoonResultBtn.onchange = () => {
-  navigation.toExplore(getQuery(), true);
+  navigation.toExplore(url.getQuery(), true);
 };
-/**
- * Show user recipes
- */
+/** Show user recipes */
 userResultBtn.onchange = () => {
   navigation.toExplore();
+};
+/** SHow pinned recipes only */
+isPinnedCheck.onchange = () => {
+  navigation.toExplore('', false, 0, isPinnedCheck.checked);
 };

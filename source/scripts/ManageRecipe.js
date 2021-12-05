@@ -1,5 +1,5 @@
 import {storage} from './storage.js';
-import {isEdit, isSearched, navigation} from './url.js';
+import {url, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
@@ -7,7 +7,7 @@ const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 
 /** Initialize the manage page */
 function init() {
-  const id = isEdit();
+  const id = url.isEdit();
   if (id != '-1') {
     populateRecipeHelper(id);
   }
@@ -52,7 +52,7 @@ const titleTexts = [
  * @param {String} id id of the recipe
  */
 function populateRecipeHelper(id) {
-  if (isSearched() && id != '-1') {
+  if (url.isSearched() && id != '-1') {
     populateRecipe(storage.getSearchedRecipe(id));
   } else {
     populateRecipe(storage.getRecipe(id));
@@ -205,10 +205,10 @@ rightButton.onclick = function() {
 
     // recp.tag
 
-    let id = isEdit();
+    let id = url.isEdit();
     // console.log(parseInt(id) > 0)
     // Decide id for navigation
-    if (isSearched()) {
+    if (url.isSearched()) {
       id = storage.addRecipe(recp);
     } else if (parseInt(id) > 0) {
       recp.id = id;

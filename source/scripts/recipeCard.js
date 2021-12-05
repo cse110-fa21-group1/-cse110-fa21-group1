@@ -2,7 +2,7 @@
 
 import( '../styles/explore.css' );
 import {storage} from './storage.js';
-import {navigation} from './url.js';
+import {url, navigation} from './url.js';
 
 /** Represents a recipe card in the explore page */
 class RecipeCard extends HTMLElement {
@@ -52,36 +52,17 @@ class RecipeCard extends HTMLElement {
     const HeartButton = document.createElement('button');
     HeartButton.setAttribute('id', 'heartbutton');
     storage.init();
-    if (storage.isPinned(data.id)) {
-      // HeartButton.innerText = 'unpin';
+    if (storage.isPinned(data.id, !(url.isSearched()))) {
       heart.classList.add('liked');
-    } else {
-      // HeartButton.innerText = 'pin';
     }
-    // imgWrapper.append(HeartButton);
-    // HeartButton.onclick = function(e) {
-    //   console.log('Here')
-    //   if (!storage.isPinned(data.id)) {
-    //     storage.pinRecipe(data.id);
-    //     // console.log('here');
-    //     // change button innerText
-    //     HeartButton.innerText = 'unpin';
-    //   } else {
-    //     storage.unpinRecipe(data.id);
-    //     // console.log('there');
-    //     // change button innerText
-    //     HeartButton.innerText = 'pin';
-    //   }
-    // };
-
     heart.classList.add('heart');
 
     heart.onclick = function() {
       if (heart.classList.contains('liked')) {
-        storage.unpinRecipe(data.id);
+        storage.unpinRecipe(data.id, !(url.isSearched()));
         heart.classList.remove('liked');
       } else {
-        storage.pinRecipe(data.id);
+        storage.pinRecipe(data.id, !(url.isSearched()));
         heart.classList.add('liked');
       }
     };
