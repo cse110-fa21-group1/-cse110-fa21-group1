@@ -1,3 +1,5 @@
+import {storage} from './storage.js';
+import {getURLid, isSearched} from './url.js';
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
@@ -12,17 +14,27 @@ const secNum = document.getElementById('seconds');
 
 window.addEventListener('DOMContentLoaded', init);
 
-/**
- * Adds event listeners to the editable numbers so that
- * only numbers can be inputted and that there cannot be
- * more than 2 numbers.
- */
 
 /** Adds event listeners to the timer after page is loaded. */
 function init() {
+  // Extract query id
+  const id = getURLid();
+  // Fetch recipe from local storage
+  const recipe = (isSearched()) ?
+                    storage.getSearchedRecipe(id) :
+                    storage.getRecipe(id);
+  if (Object.keys(recipe).length == 0) return;
+  const splitTime =
+  recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  const initHr = (isNaN(parseInt(splitTime[1]))) ?
+  0 : parseInt(splitTime[1]);
+  const initMin = (isNaN(parseInt(splitTime[2]))) ?
+  0 : parseInt(splitTime[2]);
+  setTimerText(initHr, initMin, 0);
   addTimeTextListeners();
   addButtonListeners();
 }
+
 /**
  * Limit's the timer's text to numbers,
  * no more than 2, no pasting.
@@ -58,6 +70,52 @@ function addTimeTextListeners() {
   addInputLimitations(hourNum);
   addInputLimitations(minNum);
   addInputLimitations(secNum);
+}
+
+/**
+ * Updates the timer's text with an hour, min, and sec value.
+ * @param {Int} currHr Number to replace hour's text in the timer
+ * @param {Int} currMin Number to replace min's text in the timer
+ * @param {Int} currSec Number to replace sec's text in the timer
+ */
+ function setTimerText(currHr, currMin, currSec) {
+  hourNum.innerHTML = (currHr < 10) ? ('0' + currHr.toString()) : currHr;
+  minNum.innerHTML = (currMin < 10) ? ('0' + currMin.toString()) : currMin;
+  secNum.innerHTML = (currSec < 10) ? ('0' + currSec.toString()) : currSec;
+}
+/**
+ * Ends the countdown timer, sets numbers to original numbers
+ */
+function timerFinish() {
+  clearInterval(interval);
+  startButton.classList.remove('hidden');
+  pauseButton.classList.add('hidden');
+  stopButton.classList.add('hidden');
+  hourNum.setAttribute('contenteditable', 'true');
+  minNum.setAttribute('contenteditable', 'true');
+  secNum.setAttribute('contenteditable', 'true');
+  setTimerText(hours, minutes, seconds);
+}
+/**
+ * Starts/resumes the countdown timer
+ */
+function startTimer() {
+  const displayTime = () => {
+    const displayHours = Math.floor(timeInSeconds / (60 * 60));
+    const remainder = timeInSeconds - (displayHours * 60 * 60);
+    const displayMinutes = Math.floor(remainder / 60);
+    const displaySeconds = remainder - (displayMinutes * 60);
+    setTimerText(displayHours, displayMinutes, displaySeconds);
+  };
+  timeInSeconds -= 1;
+  interval = setInterval(() => {
+    displayTime();
+    timeInSeconds -= 1;
+    /* When the timer hits 0, revert to the state before the timer started */
+    if (timeInSeconds < 0) {
+      timerFinish();
+    }
+  }, 1000);
 }
 /** Adds event listeners to the timer buttons. */
 function addButtonListeners() {
@@ -112,50 +170,4 @@ function addButtonListeners() {
   stopButton.addEventListener('click', () => {
     timerFinish();
   });
-}
-
-/**
- * Updates the timer's text with an hour, min, and sec value.
- * @param {Int} currHr Number to replace hour's text in the timer
- * @param {Int} currMin Number to replace min's text in the timer
- * @param {Int} currSec Number to replace sec's text in the timer
- */
-function setTimerText(currHr, currMin, currSec) {
-  hourNum.innerHTML = (currHr < 10) ? ('0' + currHr.toString()) : currHr;
-  minNum.innerHTML = (currMin < 10) ? ('0' + currMin.toString()) : currMin;
-  secNum.innerHTML = (currSec < 10) ? ('0' + currSec.toString()) : currSec;
-}
-/**
- * Ends the countdown timer, sets numbers to original numbers
- */
-function timerFinish() {
-  clearInterval(interval);
-  startButton.classList.remove('hidden');
-  pauseButton.classList.add('hidden');
-  stopButton.classList.add('hidden');
-  hourNum.setAttribute('contenteditable', 'true');
-  minNum.setAttribute('contenteditable', 'true');
-  secNum.setAttribute('contenteditable', 'true');
-  setTimerText(hours, minutes, seconds);
-}
-/**
- * Starts/resumes the countdown timer
- */
-function startTimer() {
-  const displayTime = () => {
-    const displayHours = Math.floor(timeInSeconds / (60 * 60));
-    const remainder = timeInSeconds - (displayHours * 60 * 60);
-    const displayMinutes = Math.floor(remainder / 60);
-    const displaySeconds = remainder - (displayMinutes * 60);
-    setTimerText(displayHours, displayMinutes, displaySeconds);
-  };
-  timeInSeconds -= 1;
-  interval = setInterval(() => {
-    displayTime();
-    timeInSeconds -= 1;
-    /* When the timer hits 0, revert to the state before the timer started */
-    if (timeInSeconds < 0) {
-      timerFinish();
-    }
-  }, 1000);
 }
