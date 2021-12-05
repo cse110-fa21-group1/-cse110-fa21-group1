@@ -213,18 +213,18 @@ rightButton.onclick = function() {
     // recp.tag
 
     let id = isEdit();
-
+    // console.log(parseInt(id) > 0)
     // Decide id for navigation
     if (isSearched()) {
       id = storage.addRecipe(recp);
-    } else if (id != '-1') {
+    } else if (parseInt(id) > 0) {
       recp.id = id;
       storage.editRecipe(recp);
     } else {
       id = storage.addRecipe(recp);
     }
 
-    navigation.toRecipe(id);
+    navigation.toRecipe(id, true);
   } else {
     moveToPage(currentPage + 1);
   }

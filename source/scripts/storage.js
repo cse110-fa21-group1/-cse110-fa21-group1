@@ -19,7 +19,7 @@ storage.init = () => {
 
 /** Increase number of recipes created, mainly for creating id */
 storage.increaseCount = () => {
-  const newCount = (storage.currentCount()+1).toString();
+  const newCount = ((storage.currentCount()+1) || 1).toString();
   localStorage.setItem('numRecipesCreated', newCount);
 };
 
@@ -85,7 +85,7 @@ storage.getRecipeIndex = function(id) {
  */
 storage.removeRecipe = function(id) {
   // Get the current recipes
-  const currRecipes = storage.getRecipes();
+  const currRecipes = storage.getRecipeIDs();
   // Get the index of the recipe to remove
   const indexOfId = storage.getRecipeIndex(id);
   // Remove the recipe
@@ -139,7 +139,7 @@ storage.pinRecipe = function(id) {
     recipe.pinned = true;
     storage.editRecipe(recipe);
   }
-  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned'));
+  const pinnedRecipe = JSON.parse(localStorage.getItem('pinned')) || [];
   pinnedRecipe.push(id);
   localStorage.setItem('pinned', JSON.stringify(pinnedRecipe));
 };
