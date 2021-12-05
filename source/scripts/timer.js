@@ -149,6 +149,7 @@ function startTimer() {
     const displaySeconds = remainder - (displayMinutes * 60);
     setTimerText(displayHours, displayMinutes, displaySeconds);
   };
+  timeInSeconds -= 1;
   interval = setInterval(() => {
     displayTime();
     timeInSeconds -= 1;
