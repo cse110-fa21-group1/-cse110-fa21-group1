@@ -39,6 +39,7 @@ function addSearchFunction() {
  * Add event listener to buttons in the nav bar
  */
 function addNavigation() {
+  const logo = document.getElementById('logo');
   const homeButton = document.getElementById('nav-home');
   const recipeButton = document.getElementById('nav-recipes');
   const viewButton = document.getElementById('nav-view');
@@ -47,6 +48,10 @@ function addNavigation() {
   // const deleteButton = document.getElementById('nav-delete');
   const logoutButton = document.getElementById('nav-logout');
 
+  logo.addEventListener('click', (event) => {
+    event.preventDefault();
+    navigation.toHome();
+  });
   homeButton.addEventListener('click', (event) => {
     // Remove default behavior of reloading
     event.preventDefault();

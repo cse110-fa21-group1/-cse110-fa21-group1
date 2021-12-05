@@ -59,7 +59,7 @@ p {
     line-height: 36px;
 }
 
-button {
+#explore-button {
     margin:0;
     float: right;
     border-width: 0;
@@ -71,7 +71,7 @@ button {
     font-weight: 800;
 }
 
-button:hover {
+#explore-button:hover {
     cursor: pointer;
     transition: all 0.2s ease;
     transform: scale(1.02);
@@ -98,7 +98,7 @@ ul {
         padding-bottom: 32px;
     }
 
-    button {
+    #explore-button {
         font-size: 20px;
         padding: 15px 25px;
     }
