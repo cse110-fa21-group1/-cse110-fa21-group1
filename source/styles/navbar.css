@@ -29,6 +29,10 @@ body {
     padding: 10px 10px;
 }
 
+#logo:hover {
+    cursor: pointer;
+}
+
 .search-container {
     margin-top: 25px;
     grid-area: search;
