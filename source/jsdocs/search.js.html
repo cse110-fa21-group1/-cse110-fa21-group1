@@ -32,7 +32,8 @@ import {url, navigation} from './url.js';
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-const perPageCount = 10;
+const perPageCount = 12;
+const errorText = 'Apologies for error. Please contact developer for support';
 // const offsetToggle = document.querySelector('.offset-toggle');
 const previousPageBtn = document.getElementById('previous-page');
 const nextPageBtn = document.getElementById('next-page');
@@ -41,16 +42,24 @@ const spoonResultBtn = document.getElementById('search-spoon');
 const userResultBtn = document.getElementById('search-user');
 const isPinnedDiv = document.querySelector('.filter-pinned');
 const isPinnedCheck = isPinnedDiv.querySelector('input');
+const loadingText = document.querySelector('.loading');
+
 let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
-  if (url.isSearched()) {
-    spoonResultBtn.checked = true;
-    // Attempt to fetch recipes
-    try {
+  try {
+    loadingText.innerText = 'LOADING...';
+    loadingText.hidden = false;
+    if (url.isSearched() &amp;&amp; url.isPinnedRecipes()) {
+      spoonResultBtn.checked = true;
+      isPinnedCheck.checked = true;
+      // Search pinned spoonacular recipes
+      await fetchPinnedSearchHelper();
+    } else if (url.isSearched()) {
+      spoonResultBtn.checked = true;
       if (url.getQuery() == '') {
-        // Random recipes
+        // Search random spoonacular recipes
         moreRandomBtn.hidden = false;
         await fetchRandomRecipesHelper();
       } else {
@@ -61,18 +70,20 @@ async function init() {
         nextPageBtn.hidden = false;
         await fetchRecipesHelper(url.getQuery());
       }
-    } catch (err) {
-      console.log(`Error fetch recipes: ${err}`);
-      return; // Return if fetch fails
+    } else {
+      userResultBtn.checked = true;
+      isPinnedDiv.hidden = false;
+      isPinnedCheck.checked = url.isPinnedRecipes();
+      // Displaying our own recipes
+      recipes = url.isPinnedRecipes() ?
+                  storage.getPinnedRecipes(true) :
+                  storage.getRecipes();
     }
-  } else {
-    userResultBtn.checked = true;
-    isPinnedDiv.hidden = false;
-    isPinnedCheck.checked = url.isPinnedRecipes();
-    // Displaying our own recipes
-    recipes = url.isPinnedRecipes() ?
-                storage.getPinnedRecipes(true) :
-                storage.getRecipes();
+    loadingText.hidden = true;
+  } catch (err) {
+    loadingText.innerText(errorText);
+    console.log(`Error fetch recipes: ${err}`);
+    return; // Return if fetch fails
   }
 
   // Updates the search message
@@ -103,11 +114,23 @@ function populateCards() {
   });
 }
 
+/** Helper to populate pinned search recipes */
+async function fetchPinnedSearchHelper() {
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk' +
+        `?ids=${storage.getPinnedRecipesID(false).join(',')}` +
+        `&amp;rapidapi-key=${apiKey}`;
+  try {
+    await fetchRecipes(queryURL, true);
+  } catch (err) {
+    console.log(`Error fetching recipes: ${err}`);
+  }
+}
+
 /** Helper to populate random recipes from Spoonacular */
 async function fetchRandomRecipesHelper() {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' +
-        '?number=' + perPageCount +
-        '&amp;rapidapi-key=' + apiKey;
+        `?number=${perPageCount}` +
+        `&amp;rapidapi-key=${apiKey}`;
   try {
     await fetchRecipes(queryURL, true);
   } catch (err) {
@@ -121,11 +144,11 @@ async function fetchRandomRecipesHelper() {
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&amp;addRecipeInformation=true' +
-        '&amp;number=' + perPageCount +
+        `&amp;number=${perPageCount}` +
         '&amp;instructionsRequired=true' +
         '&amp;fillIngredients=true' +
-        '&amp;offset=' + url.getOffset() +
-        '&amp;rapidapi-key=' + apiKey;
+        `&amp;offset=${url.getOffset()}` +
+        `&amp;rapidapi-key=${apiKey}`;
   try {
     await fetchRecipes(queryURL);
   } catch (err) {
@@ -135,17 +158,20 @@ async function fetchRecipesHelper(query) {
 
 /**
  * Fetch recipes from the given url
- * @param {String} url url for fetching recipes
+ * @param {String} queryURL url for fetching recipes
  * @param {Boolean} isRandom is fetching random recipes
  * @return {Promise} Promise object for identifying job done
  */
-async function fetchRecipes(url, isRandom = false) {
+async function fetchRecipes(queryURL, isRandom = false) {
   return new Promise((resolve, reject) => {
-    fetch(url)
+    fetch(queryURL)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            if (isRandom) {
+            if (isPinnedCheck.checked) {
+              console.log(data);
+              storage.setSearchedRecipes(JSON.stringify(data));
+            } else if (isRandom) {
               storage.setSearchedRecipes(JSON.stringify(data['recipes']));
             } else {
               storage.setSearchedRecipes(JSON.stringify(data['results']));
@@ -155,7 +181,7 @@ async function fetchRecipes(url, isRandom = false) {
           }
         })
         .catch((err) => {
-          console.log(`Error loading the ${url} recipe`);
+          console.log(`Error loading the ${queryURL} recipe`);
           reject(err);
         });
   });
@@ -188,7 +214,7 @@ userResultBtn.onchange = () => {
 };
 /** SHow pinned recipes only */
 isPinnedCheck.onchange = () => {
-  navigation.toExplore('', false, 0, isPinnedCheck.checked);
+  navigation.toExplore('', spoonResultBtn.checked, 0, isPinnedCheck.checked);
 };
 </code></pre>
         </article>
@@ -200,7 +226,7 @@ isPinnedCheck.onchange = () => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addButtonListeners">addButtonListeners</a></li><li><a href="global.html#addInputLimitations">addInputLimitations</a></li><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#addTimeTextListeners">addTimeTextListeners</a></li><li><a href="global.html#endAlarm">endAlarm</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#resetTimerView">resetTimerView</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#timerFinish">timerFinish</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addButtonListeners">addButtonListeners</a></li><li><a href="global.html#addInputLimitations">addInputLimitations</a></li><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#addTimeTextListeners">addTimeTextListeners</a></li><li><a href="global.html#endAlarm">endAlarm</a></li><li><a href="global.html#fetchPinnedSearchHelper">fetchPinnedSearchHelper</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#resetTimerView">resetTimerView</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#timerFinish">timerFinish</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
 </nav>
 
 <br class="clear">
