@@ -27,28 +27,44 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import {storage} from './storage.js';
-import {isSearched} from './url.js';
+import {isSearched, getQuery, getOffset, navigation} from './url.js';
 
 window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
-// const recipeData = [];
+const perPageCount = 10;
+// const offsetToggle = document.querySelector('.offset-toggle');
+const previousPageBtn = document.getElementById('previous-page');
+const nextPageBtn = document.getElementById('next-page');
+const moreRandomBtn = document.getElementById('random-toggle');
+const spoonResultBtn = document.getElementById('search-spoon');
+const userResultBtn = document.getElementById('search-user');
 let recipes;
 
 /** Populate recipe cards */
 async function init() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-
   if (isSearched()) {
+    spoonResultBtn.checked = true;
     // Attempt to fetch recipes
     try {
-      await fetchRecipesHelper(urlParams.get('q'));
+      if (getQuery() == '') {
+        // Random recipes
+        moreRandomBtn.hidden = false;
+        await fetchRandomRecipesHelper();
+      } else {
+        // Search from query
+        if (getOffset() >= perPageCount) {
+          previousPageBtn.hidden = false;
+        }
+        nextPageBtn.hidden = false;
+        await fetchRecipesHelper(getQuery());
+      }
     } catch (err) {
       console.log(`Error fetch recipes: ${err}`);
       return; // Return if fetch fails
     }
   } else {
+    userResultBtn.checked = true;
     // Displaying our own recipes
     recipes = storage.getRecipes();
   }
@@ -70,16 +86,28 @@ function populateCards() {
   });
 }
 
+/** Helper to populate random recipes from Spoonacular */
+async function fetchRandomRecipesHelper() {
+  const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' +
+        '?number=' + perPageCount +
+        '&amp;rapidapi-key=' + apiKey;
+  try {
+    await fetchRecipes(queryURL, true);
+  } catch (err) {
+    console.log(`Error fetching recipes: ${err}`);
+  }
+}
 /**
- * Populate recipe cards in the page
+ * Helper to populate searched recipe cards in the page
  * @param {String} query Query string for the search
  */
 async function fetchRecipesHelper(query) {
   const queryURL = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=' + query +
         '&amp;addRecipeInformation=true' +
-        '&amp;number=3' +
+        '&amp;number=' + perPageCount +
         '&amp;instructionsRequired=true' +
         '&amp;fillIngredients=true' +
+        '&amp;offset=' + getOffset() +
         '&amp;rapidapi-key=' + apiKey;
   try {
     await fetchRecipes(queryURL);
@@ -91,15 +119,20 @@ async function fetchRecipesHelper(query) {
 /**
  * Fetch recipes from the given url
  * @param {String} url url for fetching recipes
+ * @param {Boolean} isRandom is fetching random recipes
  * @return {Promise} Promise object for identifying job done
  */
-async function fetchRecipes(url) {
+async function fetchRecipes(url, isRandom = false) {
   return new Promise((resolve, reject) => {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
           if (data) {
-            storage.setSearchedRecipes(JSON.stringify(data['results']));
+            if (isRandom) {
+              storage.setSearchedRecipes(JSON.stringify(data['recipes']));
+            } else {
+              storage.setSearchedRecipes(JSON.stringify(data['results']));
+            }
             recipes = storage.getSearchedRecipes();
             resolve();
           }
@@ -110,6 +143,36 @@ async function fetchRecipes(url) {
         });
   });
 }
+
+/** Go back to previous page of search results */
+previousPageBtn.onclick = () => {
+  const offset = getOffset();
+  navigation.toExplore(getQuery(), true,
+        (offset >= perPageCount) ? (offset - perPageCount) : 0 );
+};
+/** Go back to next page of search results */
+nextPageBtn.onclick = () => {
+  const offset = getOffset();
+  console.log(getQuery());
+  navigation.toExplore(getQuery(), true, offset + perPageCount );
+};
+/** Show random recipes */
+moreRandomBtn.onclick = () => {
+  navigation.toExplore('', true);
+};
+
+/**
+ * Show Spoonacular recipes
+ */
+spoonResultBtn.onchange = () => {
+  navigation.toExplore(getQuery(), true);
+};
+/**
+ * Show user recipes
+ */
+userResultBtn.onchange = () => {
+  navigation.toExplore();
+};
 </code></pre>
         </article>
     </section>
@@ -120,13 +183,13 @@ async function fetchRecipes(url) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#getURLid">getURLid</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isDevelopment">isDevelopment</a></li><li><a href="global.html#isEdit">isEdit</a></li><li><a href="global.html#isSearched">isSearched</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#getOffset">getOffset</a></li><li><a href="global.html#getQuery">getQuery</a></li><li><a href="global.html#getURLid">getURLid</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#isDevelopment">isDevelopment</a></li><li><a href="global.html#isEdit">isEdit</a></li><li><a href="global.html#isSearched">isSearched</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 00:03:17 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Dec 05 2021 00:39:09 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
