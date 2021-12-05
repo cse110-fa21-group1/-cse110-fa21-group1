@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', init);
 
 const apiKey = '8f72885ce9msh6733b33c8debaa0p1a7545jsndbc0510e1813';
 const perPageCount = 12;
+const errorText = 'Apologies for error. Please contact developer for support';
 // const offsetToggle = document.querySelector('.offset-toggle');
 const previousPageBtn = document.getElementById('previous-page');
 const nextPageBtn = document.getElementById('next-page');
@@ -13,12 +14,17 @@ const spoonResultBtn = document.getElementById('search-spoon');
 const userResultBtn = document.getElementById('search-user');
 const isPinnedDiv = document.querySelector('.filter-pinned');
 const isPinnedCheck = isPinnedDiv.querySelector('input');
+const loadingText = document.querySelector('.loading');
+
 let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
   try {
+    loadingText.innerText = 'LOADING...';
+    loadingText.hidden = false;
     if (url.isSearched() && url.isPinnedRecipes()) {
+      spoonResultBtn.checked = true;
       isPinnedCheck.checked = true;
       // Search pinned spoonacular recipes
       await fetchPinnedSearchHelper();
@@ -45,7 +51,9 @@ async function init() {
                   storage.getPinnedRecipes(true) :
                   storage.getRecipes();
     }
+    loadingText.hidden = true;
   } catch (err) {
+    loadingText.innerText(errorText);
     console.log(`Error fetch recipes: ${err}`);
     return; // Return if fetch fails
   }
