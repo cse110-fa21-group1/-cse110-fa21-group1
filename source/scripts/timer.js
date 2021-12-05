@@ -5,9 +5,12 @@ let minutes = 0;
 let seconds = 0;
 let timeInSeconds = 0;
 let interval = null;
+let soundInterval = null;
+const audio = new Audio('assets/alarmsound.mp3');
 const startButton = document.getElementById('start-button');
 const pauseButton = document.getElementById('pause-button');
 const stopButton = document.getElementById('stop-button');
+const soundButton = document.getElementById('sound-button');
 const hourNum = document.getElementById('hours');
 const minNum = document.getElementById('minutes');
 const secNum = document.getElementById('seconds');
@@ -83,18 +86,39 @@ function addTimeTextListeners() {
   minNum.innerHTML = (currMin < 10) ? ('0' + currMin.toString()) : currMin;
   secNum.innerHTML = (currSec < 10) ? ('0' + currSec.toString()) : currSec;
 }
-/**
- * Ends the countdown timer, sets numbers to original numbers
- */
-function timerFinish() {
-  clearInterval(interval);
+/** Resets the timer back to the state before it was started. */
+function resetTimerView() {
   startButton.classList.remove('hidden');
-  pauseButton.classList.add('hidden');
-  stopButton.classList.add('hidden');
   hourNum.setAttribute('contenteditable', 'true');
   minNum.setAttribute('contenteditable', 'true');
   secNum.setAttribute('contenteditable', 'true');
   setTimerText(hours, minutes, seconds);
+}
+/** Adds event listeners to the timer text. */
+function endAlarm() {
+  clearTimeout(soundInterval);
+  soundButton.classList.add('hidden');
+  audio.pause();
+  audio.currentTime = 0;
+  resetTimerView();
+}
+/**
+ * Ends the countdown timer, sets numbers to original numbers
+ * @param {Boolean} forced If wasn't forced, play alarm
+ */
+function timerFinish(forced) {
+  pauseButton.classList.add('hidden');
+  stopButton.classList.add('hidden');
+  clearInterval(interval);
+  setTimerText(hours, minutes, seconds);
+  if (!forced) {
+    soundButton.classList.remove('hidden');
+    audio.play();
+    soundInterval = setTimeout(() => {endAlarm()}, 20000);
+  }
+  else {
+    resetTimerView();
+  }
 }
 /**
  * Starts/resumes the countdown timer
@@ -113,7 +137,7 @@ function startTimer() {
     timeInSeconds -= 1;
     /* When the timer hits 0, revert to the state before the timer started */
     if (timeInSeconds < 0) {
-      timerFinish();
+      timerFinish(false);
     }
   }, 1000);
 }
@@ -168,6 +192,9 @@ function addButtonListeners() {
    * timer back to the state before the timer was started.
    */
   stopButton.addEventListener('click', () => {
-    timerFinish();
+    timerFinish(true);
+  });
+  soundButton.addEventListener('click', () => {
+    endAlarm();
   });
 }
