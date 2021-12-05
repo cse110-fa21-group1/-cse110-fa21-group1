@@ -62,12 +62,16 @@
         </div>
       </div>
       <div class="spoon-or-user">
-        <fieldset id="send-copy" name="send-copy">
+        <fieldset id="recipe-type" name="recipe-type">
           <input type="radio" id="search-spoon" name="spoon-or-user">
           <label for="search-spoon">Results from Spoonacular</label><br>
           <input type="radio" id="search-user" name="spoon-or-user">
           <label for="search-user">Your Recipes</label>
-      </fieldset>
+        </fieldset>
+      </div>
+      <div class="filter-pinned" hidden>
+        <input type="checkbox" id="is-pinned">
+        <label for="is-pinned">Pinned recipes only</label>
       </div>
       <div class="recipe-cards--wrapper" id="recipe-cards--wrapper">
         <!-- <article>
