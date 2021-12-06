@@ -4,7 +4,7 @@
   "description": "Created on Nov 11, 2021",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "jest --coverage --runInBand --detectOpenHandles --forceExit --passWithNoTests"
+    "test": "jest --coverage --detectOpenHandles --forceExit --passWithNoTests"
   },
   "author": "Darwin",
   "license": "ISC",
