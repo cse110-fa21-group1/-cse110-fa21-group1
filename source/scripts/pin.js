@@ -15,7 +15,6 @@ heart.addEventListener('click', (event) => {
     heart.classList = '';
     console.log('unliked');
     console.log(localStorage.pinnedSearch);
-
   } else {
     storage.pinRecipe(id, !(url.isSearched()));
     heart.classList = 'liked';
