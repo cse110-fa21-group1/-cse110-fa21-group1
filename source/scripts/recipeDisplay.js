@@ -82,16 +82,16 @@ function populateRecipe() {
   //   vdoBlock.style.display = 'none';
   // }
   const vdoBlock = document.getElementById('rec-vid');
+  const imgBlock = document.getElementById('rec-pic');  
+  imgBlock.src = recipe.image;
   if (!recipe.video || recipe.video.length == 0) {
     vdoBlock.classList.add('hidden');
   } else {
-      const el = document.createElement('script');
-      el.onerror = function () {
-        vdoBlock.classList.add('hidden');
-      }
-      el.innerHTML = (vdoBlock.src = recipe.video);
+    const el = document.createElement('script');
+    el.addEventListener ('error', function (e) {
+      vdoBlock.classList.add('hidden');
+    });
+    el.src = (vdoBlock.src = recipe.video);
+    document.head.appendChild(el);
   }
-
-  const imgBlock = document.getElementById('rec-pic');  
-  imgBlock.src = recipe.image;
 }
