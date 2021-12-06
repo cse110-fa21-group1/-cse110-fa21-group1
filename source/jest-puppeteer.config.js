@@ -7,7 +7,7 @@ process.env.TEST_SERVER_PORT = port;
 
 module.exports = {
   launch: {
-    headless: false,
+    headless: true,
     slowMo: 25,
   },
   browserContext: process.env.INCOGNITO ? 'incognito' : 'default',
