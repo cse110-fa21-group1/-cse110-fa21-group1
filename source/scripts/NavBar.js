@@ -79,8 +79,4 @@ function addNavigation() {
   });
 
   // Delete button implemented in deleteRecipe.js
-
-  logoutButton.addEventListener('click', (event) => {
-    // TODO
-  });
 }

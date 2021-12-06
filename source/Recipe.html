@@ -40,12 +40,12 @@
             </li>
         </ul>
     </nav>
-    <div class="header-image"></div>
     <main>
-        <button id="pin-button" class="button" value="button">Add to favorite</button>
-        <div class="header-text">
+        <div id="name-row">
             <h1 id="title">Recipe Name</h1>
-            <button class="heart"></button>
+            <div id="heart" class=""></div>
+        </div>
+        <div class="desc-and-portion">
             <p id="description">Some recipes have a bit of a description, so i put one here just in case. This part is
                 totally optional though and we don’t have to add it in if a recipe doesn’t have it. Lorem ipsum dolor
                 sit amet, consectetur adipiscing elit. Cras elementum felis odio, eu finibus enim elementum ut. Proin ut
@@ -55,13 +55,13 @@
                 euismod dui. Nunc tortor odio, lobortis sed nibh sodales, venenatis laoreet justo. Mauris non facilisis
                 augue, nec mattis ante. Quisque semper nibh nisl, a tristique turpis accumsan ut. Nunc egestas elit ac
                 nibh dictum, eu blandit libero egestas.</p>
+                <div class="portions">
+                    <i class="cooktime"></i>
+                    <span class="portions-text" id="cookTime">Total Time</span>
+                    <i class="servings"></i>
+                    <span class="portions-text" id="Serving">Servings</span>
+                </div>
             <br>
-        </div>
-        <div class="portions">
-            <i class="cooktime"></i> 
-            <span class="portions-text" id="cooktimeAndServing">Cook Time</span>
-            <i class="servings"></i>
-            <span class="portions-text" id="cooktimeAndServing">Servings</span>
         </div>
         <div class="section">
             <div class="half-size">
@@ -78,7 +78,8 @@
                 </ul>
             </div>
             <div class="half-size">
-                <video src='nonexistentvideo.mp4' controls></video>
+                <img id="rec-pic" src="assets/image_not_found.png"
+                onError="this.onerror=null;this.src='assets/image_not_found.png';">
             </div>
         </div>
         <div class="section">
@@ -119,7 +120,7 @@
                 </div>
             </div>
         </div>
+        <iframe id="rec-vid" src="" allowfullscreen></iframe>
     </main>
 </body>
-
 </html>
