@@ -1,12 +1,26 @@
+jest.setTimeout(20000);
 describe('Timer', () => {
   beforeAll(async () => {
-    await page.goto('http://127.0.0.1:5501/source/Recipe.html');
+    await page.goto('http://localhost:8080/Explore.html?searched=true&q=&');
+    // Wait for recipe cards to be loaded
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+    const randomCard = await page.$('recipe-card');
+    const shadowRoot = await randomCard.getProperty('shadowRoot');
+    const article = await shadowRoot.$('article');
+    await article.click();
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+
+    await page.$eval('#hours', (element) => element.innerText = 0);
+    await page.$eval('#minutes', (element) => element.innerText = 0);
+    await page.$eval('#seconds', (element) => element.innerText = 0);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   });
 
   // Check to make sure input hour counts down
   it('test timer hour input', async () => {
     console.log('Inputting numbers for hour');
     // set hours input to 10
+
     await page.$eval('#hours', (element) => element.innerText =
     '10');
     // create the start button
@@ -132,4 +146,6 @@ describe('Timer', () => {
     await page.waitForSelector('#stop-button',
         {visible: false});
   }, 5000);
+  afterAll((done) => {
+  });
 });

@@ -20,6 +20,16 @@ let recipes = [];
 
 /** Populate recipe cards */
 async function init() {
+  // Updates the search message
+  const query = url.getQuery();
+  if (query == '') {
+    document.querySelector('.search-header > h1')
+        .innerText = 'Showing random recipes for you!';
+  } else {
+    document.querySelector('.search-header > h1')
+        .innerText = `Showing recipes for ${query}...`;
+  }
+  // Do query
   try {
     loadingText.innerText = 'LOADING...';
     loadingText.hidden = false;
@@ -58,16 +68,6 @@ async function init() {
     return; // Return if fetch fails
   }
 
-  // Updates the search message
-  const query = url.getQuery();
-
-  if (query == '') {
-    document.querySelector('.search-header > h1')
-        .innerText = 'Showing random recipes for you!';
-  } else {
-    document.querySelector('.search-header > h1')
-        .innerText = `Showing recipes for ${query}...`;
-  }
   populateCards(); // Add <recipe-card> elements to page with fetched data
 }
 
