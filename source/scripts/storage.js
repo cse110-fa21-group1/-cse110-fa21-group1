@@ -108,6 +108,7 @@ storage.removeRecipe = function(id) {
   if (indexOfId > -1) currRecipes.splice(indexOfId, 1);
   localStorage.setItem('recipes', JSON.stringify(currRecipes));
   localStorage.removeItem(id);
+  storage.unpinRecipe(id, true);
 };
 
 /**
