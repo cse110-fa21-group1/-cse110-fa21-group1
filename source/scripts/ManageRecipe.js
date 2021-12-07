@@ -284,6 +284,9 @@ function newIng() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') ingList.removeChild(created);
@@ -318,6 +321,9 @@ function newInstr() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') instrList.removeChild(created);
@@ -357,4 +363,10 @@ firstInstr.addEventListener('keydown', (event) => {
     firstInstr.parentNode.insertBefore(newInstr(), firstInstr.nextSibling);
     firstInstr.nextSibling.focus();
   }
+});
+firstIng.addEventListener('paste', (event) => {
+  event.preventDefault();
+});
+firstInstr.addEventListener('paste', (event) => {
+  event.preventDefault();
 });
