@@ -2,7 +2,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if explore button in navbar is clickable
@@ -30,7 +30,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if view button in navbar is clickable
@@ -47,7 +47,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if edit button in navbar is clickable
@@ -64,7 +64,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if delete button in navbar is clickable
@@ -81,7 +81,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if add button in navbar is clickable
@@ -98,7 +98,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://127.0.0.1:5501/source/Home.html');
+    await page.goto('http://localhost:8080/source/Home.html');
   });
 
   // Homepage: check if logout button in navbar is clickable
