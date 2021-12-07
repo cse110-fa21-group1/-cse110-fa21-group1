@@ -24,9 +24,9 @@ main {
 }
 
 @keyframes floating {
-    0% { transform: translate(0px,  0px); }
-    50%  { transform: translate(0px, -30px); }
-    100%   { transform: translate(0px, -0px); }   
+    0% { transform: translateY(1px); }
+    50%  { transform: translateY(-30px); }
+    100%   { transform: translateY(-1px); }   
 }
 
 #donut {
