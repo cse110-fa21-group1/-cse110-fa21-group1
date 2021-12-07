@@ -10,7 +10,7 @@ body {
   border-radius: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--purple-gray);;
+  background: var(--purple-gray);
   border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb {

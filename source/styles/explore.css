@@ -8,7 +8,7 @@ body {
   border-radius: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--purple-gray);;
+  background: var(--purple-gray);
   border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb {
@@ -289,7 +289,7 @@ article:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg);
 }
-
+}
 @media only screen and (max-width: 1600px) {
   .header-image {
     width: 350px;
