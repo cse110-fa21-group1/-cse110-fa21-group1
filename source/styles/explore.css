@@ -52,6 +52,10 @@ p {
   overflow: visible;
 }
 
+recipe-card {
+  padding: 1%;
+}
+
 .search-header{
   display: flex;
   justify-content: space-between;
@@ -120,6 +124,7 @@ article {
   background-color: var(--purple-gray);
   transition: all 0.2s ease;
   overflow: visible;
+  padding: 10%;
 }
 
 article:hover {
