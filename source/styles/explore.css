@@ -3,7 +3,22 @@ body {
   margin: 0;
   background-color: var(--midnight-purple);
 }
+::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta-purple);
+  border-radius: 12px;
+}
 
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-purple);
+}
 main {
   overflow-y: scroll;
   overflow-x: hidden;
