@@ -194,9 +194,9 @@ article:hover {
 }
 
 .time-wrapper {
-  /*  margin-left: 3%;
+  margin-left: 3%;
   margin-top: 1%;
-  margin-bottom: 1%;*/
+  margin-bottom: 1%;
 }
 
 .time-wrapper > p {
@@ -228,6 +228,14 @@ article:hover {
 }
 
 .image-wrapper > img {
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  width:100%;
+  height: auto;
+}
+
+.no-image {
+  content:url(../assets/image_not_found.png);
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
   width:100%;
