@@ -42,7 +42,8 @@ class RecipeCard extends HTMLElement {
     imgWrapper.classList.add('image-wrapper');
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
-    img.setAttribute('onerror', 'this.onerror=null;this.src="assets/image_not_found.png";');
+    img.setAttribute('onerror',
+    'this.onerror=null;this.src="assets/image_not_found.png";');
 
     // Create the like buttons for each recipe
     const heartWrapper = document.createElement('div');
