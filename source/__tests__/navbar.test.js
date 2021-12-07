@@ -47,7 +47,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://localhost:8080/Home.html');
+    await page.goto('http://localhost:8080/Recipe.html?searched=true&id=207035');
   });
 
   // Homepage: check if edit button in navbar is clickable
@@ -64,7 +64,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://localhost:8080/Home.html');
+    await page.goto('http://localhost:8080/Recipe.html?searched=true&id=207035');
   });
 
   // Homepage: check if delete button in navbar is clickable
@@ -90,23 +90,6 @@ describe('Navbar user flow', () => {
     await hamburButton.click();
 
     const button = await page.$('#nav-add');
-    await button.click();
-  });
-});
-
-describe('Navbar user flow', () => {
-  beforeAll(async () => {
-    // TODO change to http://localhost:8080/xxx.html
-    // Start at home page
-    await page.goto('http://localhost:8080/Home.html');
-  });
-
-  // Homepage: check if logout button in navbar is clickable
-  it('test navigation to logout page...', async () => {
-    const hamburButton = await page.$('.hamburger-icon');
-    await hamburButton.click();
-
-    const button = await page.$('#nav-logout');
     await button.click();
   });
 });
