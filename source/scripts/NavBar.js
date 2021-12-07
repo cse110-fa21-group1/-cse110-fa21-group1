@@ -73,7 +73,7 @@ function addNavigation() {
     navigation.toManageRecipe(true);
   });
 
-  if(editButton){
+  if (editButton) {
     editButton.addEventListener('click', (event) => {
       event.preventDefault();
       navigation.toManageRecipe(false);
