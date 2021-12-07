@@ -124,6 +124,7 @@ article {
   background-color: var(--purple-gray);
   transition: all 0.2s ease;
   overflow: visible;
+  padding: 10%;
 }
 
 article:hover {
