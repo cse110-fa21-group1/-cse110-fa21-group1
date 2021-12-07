@@ -76,20 +76,3 @@ describe('Navbar user flow', () => {
     await button.click();
   });
 });
-
-describe('Navbar user flow', () => {
-  beforeAll(async () => {
-    // TODO change to http://localhost:8080/xxx.html
-    // Start at home page
-    await page.goto('http://localhost:8080/Home.html');
-  });
-
-  // Homepage: check if add button in navbar is clickable
-  it('test navigation to add page...', async () => {
-    const hamburButton = await page.$('.hamburger-icon');
-    await hamburButton.click();
-
-    const button = await page.$('#nav-add');
-    await button.click();
-  });
-});
