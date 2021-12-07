@@ -56,8 +56,10 @@ function populateRecipe() {
   (!isNaN(parseInt(splitTime[1])) && splitTime[1] == 0) ?
   'Total: ' + totalMin + ' min' :
   'Total: ' + totalHr + hrTxt + totalMin + ' min';
+  const srvText = (!isNaN(parseInt(splitTime[1])) && splitTime[1] == 1) ?
+  ' Serving' : ' Servings';
   document.querySelector('#Serving').innerText =
-  recipe.recipeYield + ' Servings';
+  recipe.recipeYield + srvText;
   // Populate ingredients
   const ingredientList = document.querySelector('#thelist');
   ingredientList.innerHTML = '';
