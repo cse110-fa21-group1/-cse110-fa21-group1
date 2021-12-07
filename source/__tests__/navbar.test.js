@@ -2,7 +2,7 @@ describe('Navbar user flow', () => {
   beforeAll(async () => {
     // TODO change to http://localhost:8080/xxx.html
     // Start at home page
-    await page.goto('http://localhost:8080/source/Home.html');
+    await page.goto('http://localhost:8080/Home.html');
   });
 
   // Homepage: check if explore button in navbar is clickable
