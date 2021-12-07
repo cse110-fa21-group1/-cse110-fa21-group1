@@ -14,13 +14,13 @@ describe('Navbar user flow', () => {
     await button.click();
     // await page.waitForNavigation();
     /*
-        await Promise.all([
-            await exploreButton.click(),
-            page.waitForNavigation({
-              waitUntil: 'networkidle0',
-            }),
-          ]);
-          */
+          await Promise.all([
+              await exploreButton.click(),
+              page.waitForNavigation({
+                waitUntil: 'networkidle0',
+              }),
+            ]);
+            */
     // let url = await page.url();
     // expect(url).toBe('http://127.0.0.1:5501/source/Explore.html');
   });
