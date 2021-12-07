@@ -247,13 +247,6 @@ article:hover {
   max-width: 100%
 }
 
-.no-image {
-  content:url(../assets/image_not_found.png);
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
-  object-fit: cover;
-}
-
 .loading {
   max-height:80vh;
   display: flex;

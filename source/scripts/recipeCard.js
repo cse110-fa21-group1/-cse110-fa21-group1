@@ -43,9 +43,6 @@ class RecipeCard extends HTMLElement {
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
     img.setAttribute('alt', data.name);
-    if (data.img == null) {
-      img.classList.add('no-image');
-    }
 
     // Create the like buttons for each recipe
     const heartWrapper = document.createElement('div');
