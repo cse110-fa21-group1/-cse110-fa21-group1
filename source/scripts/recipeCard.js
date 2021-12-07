@@ -43,7 +43,7 @@ class RecipeCard extends HTMLElement {
     const img = document.createElement('img');
     img.setAttribute('src', data.image);
     img.setAttribute('alt', data.name);
-    if (data.img == null){
+    if (data.img == null) {
       img.classList.add('no-image');
     }
 
