@@ -27,6 +27,7 @@ body {
     grid-area: logo;
     text-align: center;
     padding: 10px 10px;
+    padding-left: 0;
 }
 
 #logo:hover {
@@ -118,7 +119,7 @@ body {
     margin:0;
     right:0;
     position: absolute;
-    background-color: var(--midnight-purple);
+    background-color: var(--purple-gray);
     text-align: left;
     z-index: 5;
     transition: all .4s ease-in-out;
@@ -136,8 +137,8 @@ body {
     line-height: 250%;
 }
 
-.active{
-    background-color: var(--purple-gray);
+.hamburger-menu li:hover{
+    background-color: var(--midnight-purple);
 }
 
 .hamburger-menu li a{
@@ -149,7 +150,7 @@ body {
 }
 
 .recipe-menu {
-  margin-left:20px;
+  padding-left:60px;
 }
 
 li img {

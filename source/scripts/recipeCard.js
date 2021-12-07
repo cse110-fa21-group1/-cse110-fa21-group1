@@ -76,6 +76,14 @@ class RecipeCard extends HTMLElement {
 
     // Create the time for recipe
     const time = document.createElement('div');
+    if (data.totalTime) {
+      const timeIcon = document.createElement('img');
+      timeIcon.setAttribute('alt', 'cook time');
+      timeIcon.setAttribute('src', '/assets/cooktime.png');
+      const timeText = document.createElement('p');
+      timeText.innerText = formatTime(data.totalTime);
+      time.append(timeIcon, timeText);
+    }
     time.classList.add('time-wrapper');
 
     // Create the tags for recipe
@@ -99,3 +107,19 @@ class RecipeCard extends HTMLElement {
 }
 
 customElements.define('recipe-card', RecipeCard);
+
+/**
+ * Makes the time strings readable, for the most part.
+ * @param {String} time a string representing the total time for a  recipe
+ * @return {String} formatted time string
+ */
+function formatTime(time) {
+  let newText = '';
+  if (time) {
+    newText = time.replace(/PT/i, '');
+    newText = newText.replace(/0H/i, '');
+    newText = newText.replace(/H/i, ' Hours ');
+    newText = newText.replace(/M/i, ' Minutes');
+  }
+  return newText;
+}

@@ -73,10 +73,12 @@ function addNavigation() {
     navigation.toManageRecipe(true);
   });
 
-  editButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    navigation.toManageRecipe(false);
-  });
+  if (editButton) {
+    editButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      navigation.toManageRecipe(false);
+    });
+  }
 
   // Delete button implemented in deleteRecipe.js
 

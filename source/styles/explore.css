@@ -118,6 +118,7 @@ article:hover {
 .image-wrapper {
   position: relative;
   display: inline-block;
+  width: 312px;
 }
 .heart {
   position: absolute;
@@ -165,7 +166,7 @@ article:hover {
 
 .heart.liked::before,
 .heart.liked::after {
-  background-color: #c728ff;
+  background-color: var(--electric-purple);
 }
 .heart.liked {
   animation: liked 0.4s ease;
@@ -194,9 +195,21 @@ article:hover {
 }
 
 .time-wrapper {
-  /*  margin-left: 3%;
+  margin-left: 3%;
   margin-top: 1%;
-  margin-bottom: 1%;*/
+  margin-bottom: 1.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.time-wrapper > img {
+  display: inline-block;
+  height: 24px;
+  width: auto;
+  margin-right: 2%;
+  content: url(../assets/cooktime.png);
 }
 
 .time-wrapper > p {
@@ -230,8 +243,36 @@ article:hover {
 .image-wrapper > img {
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
-  width:100%;
-  height: auto;
+  object-fit: cover;
+  max-width: 100%
+}
+
+.loading {
+  max-height:80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading{
+  font-size: 32px;
+  font-family: Montserrat;
+  color: white;
+  margin-left: 2%;
+}
+
+.loader {
+  border: 8px solid var(--purple-gray);
+  border-top: 8px solid var(--electric-blue); 
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg);
 }
 
 @media only screen and (max-width: 1600px) {
