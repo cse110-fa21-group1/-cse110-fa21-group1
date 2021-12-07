@@ -45,8 +45,6 @@ function addNavigation() {
   const viewButton = document.getElementById('nav-view');
   const addButton = document.getElementById('nav-add');
   const editButton = document.getElementById('nav-edit');
-  // const deleteButton = document.getElementById('nav-delete');
-  const logoutButton = document.getElementById('nav-logout');
 
   logo.addEventListener('click', (event) => {
     event.preventDefault();
@@ -81,8 +79,4 @@ function addNavigation() {
   }
 
   // Delete button implemented in deleteRecipe.js
-
-  logoutButton.addEventListener('click', (event) => {
-    // TODO
-  });
 }

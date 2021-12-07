@@ -1,59 +1,83 @@
+@import url(styles.css) all;
 body {
   margin: 0;
   height: 100%;
-  background-color: #181629;
+  background-color: var(--midnight-purple);
   color: white;
 }
+::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta-purple);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-purple);
+}
 main {
-  margin: 5vh 200px;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: 20vh;
-  grid-template-rows: auto;
-  grid-template-areas: ". header-image header-image header-image header-image header-image header-text header-text header-text header-text  header-text .";
+  margin: 5vh 10vw;
+  display: flex;
+  flex-wrap: wrap;
   font-family: "Montserrat", sans-serif;
-}
-
-.header-image {
-  grid-area: header-image;
-  width: calc(100vw);
-  height: calc(400px);
-  background-color: #e5e5e5;
-  border: black solid 1px;
-}
-
-.header-text {
-  grid-area: header-text;
-  flex-direction: column;
   justify-content: center;
-  align-items: left;
-  right: 0;
 }
 
-.cooktimeAndServing {
-  justify-content: right;
-  font-size: 60px;
+#name-row {
+  width: 80vw;
 }
 
-.heart {
-  background: url("/source/assets/heart_transparent.png");
-  background-size: 40px;
-  height: 36px;
-  width: 40px;
-  display: block;
-  align-items: right;
-  position: relative;
-  border: none;
-  padding: 0;
-  margin-left: 96%;
-  /* Other styles here */
+#heart {
+  position: absolute;
+  top: 17%;
+  right: 13.25%;
+  transform: scale(0.4);
 }
 
-.heart:hover {
-  background-color: #41355b;
+#heart:before {
+  position: absolute;
+  top: 0;
+  left: 80px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+  background-color: var(--midnight-purple);
+  content: "";
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#heart:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+  width: 80px;
+  height: 125px;
+  border-radius: 40px 40px 0 0;
+  border-top: 3px solid white;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  background-color: var(--midnight-purple);
+  content: "";
+  cursor: pointer;
+  transition: background 0.15s;
 }
 
-.heart:active {
-  background-color: #181629;
+#heart.liked::before,
+#heart.liked::after {
+  background-color: var(--electric-purple);
 }
 
 .cooktime {
@@ -83,64 +107,79 @@ main {
 }
 
 .section {
+  width: 80vw;
+  height: 50vh;
   margin-top: 2%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+}
+
+#rec-pic {
+  max-width: 38vw;
+  max-height: 50vh;
+  align-self: flex-end;
+}
+
+#thelist {
+  width: 34vw;
+  height: 30vh;
+  overflow: auto;
+}
+
+#insutrctionList {
+  width: 34vw;
+  height: 30vh;
+  overflow: auto;
+}
+
+#rec-vid {
+  width: 41.69vw;
+  height: 50vh;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-self: flex-end;
 }
 
 .half-size {
-  width: 50%;
+  width: 38vw;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   text-align: left;
   justify-content: left;
-  font-size: 64px;
+  font-size: 45px;
   font-weight: 550;
+  overflow: auto;
 }
 
 h2 {
-  font-weight: 320;
-  font-size: 54px;
+  align-self: flex-start;
+  width: 40vw;
+  font-weight: 550;
+  font-size: 45px;
 }
 
 p {
   margin: 0;
   text-align: left;
-  font-size: 18px;
+  font-size: 2vh;
 }
 
-small {
-  margin-top: 30vw;
-  font-size: 18px;
-}
-
-video {
-  width: 100%;
-  height: 56.25%;
-  margin-top: 21.875%;
-}
 
 li {
-  border-spacing: 1px;
   line-height: 250%;
   font-family: "Montserrat", sans-serif;
-}
-@media only screen and (max-width: 1600px) {
-  .header-image {
-    width: 100%;
-    height: 350px;
-    background: linear-gradient(#181629, #41355b);
-  }
-  h1 {
-    font-size: 48px;
-  }
 }
 
 .clock {
   width: 36vw;
   height: 35vh;
+  align-self: flex-end;
   display: flex;
   flex-wrap: wrap;
 }
