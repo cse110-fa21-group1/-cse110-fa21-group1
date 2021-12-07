@@ -79,7 +79,7 @@ class RecipeCard extends HTMLElement {
 
     // Create the time for recipe
     const time = document.createElement('div');
-    if (data.totalTime){
+    if (data.totalTime) {
       const timeIcon = document.createElement('img');
       timeIcon.setAttribute('alt', 'cook time');
       timeIcon.setAttribute('src', '/assets/cooktime.png');
@@ -99,7 +99,7 @@ class RecipeCard extends HTMLElement {
     // Append the wrapper and the styles to the Shadow DOM
     this.shadowRoot.append(styles, wrapper);
   }
-  
+
   /**
    * Return recipe showing in json string
    * @return {String} recipe showing in json string
@@ -118,11 +118,11 @@ customElements.define('recipe-card', RecipeCard);
  */
 function formatTime(time) {
   let newText = '';
-  if (time){
-    newText = time.replace(/PT/i, "");
-    newText = newText.replace(/0H/i, "");
-    newText = newText.replace(/H/i, " Hours ");
-    newText = newText.replace(/M/i, " Minutes");
+  if (time) {
+    newText = time.replace(/PT/i, '');
+    newText = newText.replace(/0H/i, '');
+    newText = newText.replace(/H/i, ' Hours ');
+    newText = newText.replace(/M/i, ' Minutes');
   }
   return newText;
 }
