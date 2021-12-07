@@ -14,7 +14,8 @@ const spoonResultBtn = document.getElementById('search-spoon');
 const userResultBtn = document.getElementById('search-user');
 const isPinnedDiv = document.querySelector('.filter-pinned');
 const isPinnedCheck = isPinnedDiv.querySelector('input');
-const loadingText = document.querySelector('.loading');
+const loadingSpinner = document.querySelector('.loader');
+const loadingText = document.querySelector('#loading');
 
 let recipes = [];
 
@@ -31,8 +32,9 @@ async function init() {
   }
   // Do query
   try {
-    loadingText.innerText = 'LOADING...';
+    loadingText.innerText = 'Loading recipes...';
     loadingText.hidden = false;
+    loadingSpinner.hidden = false;
     if (url.isSearched() && url.isPinnedRecipes()) {
       spoonResultBtn.checked = true;
       isPinnedCheck.checked = true;
@@ -62,6 +64,7 @@ async function init() {
                   storage.getRecipes();
     }
     loadingText.hidden = true;
+    loadingSpinner.hidden = true;
   } catch (err) {
     loadingText.innerText(errorText);
     console.log(`Error fetch recipes: ${err}`);

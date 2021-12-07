@@ -234,6 +234,34 @@ article:hover {
   height: auto;
 }
 
+.loading {
+  max-height:80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading{
+  font-size: 32px;
+  font-family: Montserrat;
+  color: white;
+  margin-left: 2%;
+}
+
+.loader {
+  border: 8px solid var(--purple-gray);
+  border-top: 8px solid var(--electric-blue); 
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg);
+}
+
 @media only screen and (max-width: 1600px) {
   .header-image {
     width: 350px;

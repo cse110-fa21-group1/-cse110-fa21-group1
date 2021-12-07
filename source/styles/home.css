@@ -23,12 +23,22 @@ main {
     display: grid;
 }
 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, -30px); }
+    100%   { transform: translate(0, -0px); }   
+}
+
 #donut {
     position: relative;
     right: 0;
     top: -10%;
     height: auto;
     max-width: 90%;
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 .header-text {
