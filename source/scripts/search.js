@@ -16,6 +16,8 @@ const isPinnedDiv = document.querySelector('.filter-pinned');
 const isPinnedCheck = isPinnedDiv.querySelector('input');
 const loadingSpinner = document.querySelector('.loader');
 const loadingText = document.querySelector('#loading');
+const noSpoonRecipeText = document.querySelector('#no-spoon-recipes');
+const noUserRecipeText = document.querySelector('#no-user-recipes');
 
 let recipes = [];
 
@@ -78,7 +80,10 @@ async function init() {
  * Populate fetched recipes to the page
  */
 function populateCards() {
-  if (!recipes) return;
+  if (!recipes || recipes.length == 0) {
+    displayEmptyResult();
+    return;
+  }
   // Populate recipes to recipe cards
   recipes.forEach((recipe) => {
     // Populate it with recipe data
@@ -87,6 +92,14 @@ function populateCards() {
     // Add card to the page
     document.querySelector('#recipe-cards--wrapper').appendChild(recipeCard);
   });
+}
+
+/**
+ * Show no result found text
+ */
+function displayEmptyResult() {
+  if (url.isSearched()) noSpoonRecipeText.hidden = false;
+  else noUserRecipeText.hidden = false;
 }
 
 /** Helper to populate pinned search recipes */
