@@ -53,7 +53,7 @@ p {
 }
 
 recipe-card {
-  padding: 1%;
+  margin: 1%;
 }
 
 .search-header{
@@ -124,7 +124,6 @@ article {
   background-color: var(--purple-gray);
   transition: all 0.2s ease;
   overflow: visible;
-  padding: 10%;
 }
 
 article:hover {
@@ -292,9 +291,31 @@ article:hover {
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg);
+  100% { transform: rotate(360deg);}
 }
+
+.no-recipes {
+  text-align: center;
+  color:white;
+  font-size: 24px;
+  line-height: 300%;
+  animation: flicker 2s infinite alternate;
 }
+
+.sorry {
+  font-size: 72px;
+  font-weight: 800;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow:var(--subtle-white-blue-glow);
+  }
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
+
 @media only screen and (max-width: 1600px) {
   .header-image {
     width: 350px;
