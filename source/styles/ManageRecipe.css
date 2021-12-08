@@ -167,7 +167,7 @@ header {
 .page-two {
   width: 90vw;
   height: 55vh;
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
