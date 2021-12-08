@@ -29,5 +29,5 @@
   - COMMUNICATE!
   - Complete every lab and explore all the details to their fullest extent! They help immensely!
   - Never be afraid to ask questions! It helps everyone in the long run, better to ask questions than be stuck for hours on a problem
-  - Have fun! There aren’t many classes that provide valuable experiences like this one!
+  - ***Have fun!*** There aren’t many classes that provide valuable experiences like this one!
 
