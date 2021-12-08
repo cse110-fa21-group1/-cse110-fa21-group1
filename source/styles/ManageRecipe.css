@@ -82,6 +82,10 @@ textarea:-webkit-autofill:focus {
   cursor: pointer;
   box-shadow: var(--subtle-purple-glow);
 }
+.btn-txt {
+  font-family: 'Montserrat';
+  font-size: 2vmin;
+}
 .big-button {
   margin-top: 2vh;
   width: 12vw;
