@@ -81,7 +81,6 @@ main {
 }
 
 .cooktime {
-  background: url("/source/assets/cooktime.png");
   background-size: 27px;
   height: 27px;
   width: 27px;
@@ -89,7 +88,6 @@ main {
 }
 
 .servings {
-  background: url("/source/assets/servings.png");
   background-size: 27px;
   height: 27px;
   width: 27px;
