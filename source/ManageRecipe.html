@@ -29,9 +29,6 @@
       <li id="nav-recipes"><a href=""><img src="assets/recipe.png" alt="Recipes Icon">Recipes</a></li>
       <li id="nav-view" class="recipe-menu"><a href=""><img src="assets/search.png" alt="View Icon">View All</a></li>
       <li id="nav-add" class="recipe-menu"><a href=""><img src="assets/add.png" alt="Add Icon">Add</a></li>
-      <li id="nav-edit" class="recipe-menu"><a href=""><img src="assets/edit.png" alt="Edit Icon">Edit</a></li>
-      <li id="nav-delete" class="recipe-menu"><a href=""><img src="assets/delete.png" alt="Delete Icon">Delete</a></li>
-      <li id="nav-logout"><a href=""><img src="assets/logout.png" alt="Logout Icon">Login/Logout</a></li>
     </ul>
   </nav>
   <header>
@@ -47,14 +44,15 @@
         <div class="grd-brdr" id="pic-wrap"><img id="recipe-pic" src=""></div>
         <div class="url-section">
           <div class="text-input grd-brdr"><input class="url-tb" id="pic-url" type="url" placeholder="URL of the image"></div>
-          <div class="grd-brdr"><button class="plus-button" id="pic-button" value="button">+</button></div>
+          <div class="grd-brdr"><button class="plus-button btn-txt" id="pic-button" value="button">Preview Image</button></div>
         </div>
       </div>
       <div class="right-half">
         <div class="text-input grd-brdr"><input id="name-box" type="text" placeholder="Name"></div>
-        <div class="text-input grd-brdr"><textarea id="desc-box" placeholder="Description"></textarea></div>        <div class="url-section">
+        <div class="text-input grd-brdr"><textarea id="desc-box" placeholder="Description"></textarea></div>        
+        <div class="url-section">
           <div class="text-input grd-brdr"><input class="url-tb" id="baseline-url" type="url" placeholder="URL of the base recipe"></div>
-          <div class="grd-brdr"><button class="plus-button" id="baseline-button" value="button">+</button></div>
+          <div class="grd-brdr"><button class="plus-button btn-txt" id="baseline-button" value="button">Import Recipe</button></div>
         </div>
       </div>
     </div>
@@ -96,8 +94,8 @@
       <div class="right-half">
         <div class="grd-brdr"><iframe id="recipe-vid"></iframe></div>
         <div class="url-section">
-          <div class="text-input grd-brdr"><input class="url-tb" id="vid-url" type="url" placeholder="URL of the video"></div>
-          <div class="grd-brdr"><button class="plus-button" id="vid-button" value="button">+</button></div>
+          <div class="text-input grd-brdr"><input class="url-tb" id="vid-url" type="url" placeholder="URL of the video (now supporting YouTube links!)"></div>
+          <div class="grd-brdr"><button class="plus-button btn-txt" id="vid-button" value="button">Preview Video</button></div>
         </div>
       </div>
     </div>
