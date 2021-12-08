@@ -1,27 +1,20 @@
 import {storage} from './storage.js';
 import {url} from './url.js';
 
-const Button = document.getElementById('pin-button');
+const heart = document.getElementById('heart');
 
 const id = url.getURLid();
 
-if (storage.isPinned(id) == true) {
-  Button.innerText = 'Remove from favorite';
-} else {
-  Button.innerText = 'Add to favorite';
+if (storage.isPinned(id, !(url.isSearched()))) {
+  heart.classList = 'liked';
 }
 
-Button.addEventListener('click', (event) => {
-  // if this recipe is not stored in local storage, thus from spoonacular
-  if (!storage.isPinned(id)) {
-    storage.pinRecipe(id);
-    // console.log('here');
-    // change button innerText
-    Button.innerText = 'Remove from favorite';
+heart.addEventListener('click', (event) => {
+  if (heart.classList.contains('liked')) {
+    storage.unpinRecipe(id, !(url.isSearched()));
+    heart.classList = '';
   } else {
-    storage.unpinRecipe(id);
-    // console.log('there');
-    // change button innerText
-    Button.innerText = 'Add to favorite';
+    storage.pinRecipe(id, !(url.isSearched()));
+    heart.classList = 'liked';
   }
 });

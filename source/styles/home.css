@@ -5,7 +5,22 @@ body {
     background-color: var(--midnight-purple);
     overflow: hidden;
 }
+::-webkit-scrollbar {
+  width: 11px;
+  border-radius: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--purple-gray);
+  border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--magenta-purple);
+  border-radius: 12px;
+}
 
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-purple);
+}
 main {
     margin: 20vh 70px 0 70px;
     display: grid;
@@ -23,12 +38,22 @@ main {
     display: grid;
 }
 
+@keyframes floating {
+    0% { transform: translateY(1px); }
+    50%  { transform: translateY(-30px); }
+    100%   { transform: translateY(-1px); }   
+}
+
 #donut {
     position: relative;
     right: 0;
     top: -10%;
     height: auto;
     max-width: 90%;
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 
 .header-text {

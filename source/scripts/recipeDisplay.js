@@ -44,9 +44,22 @@ function populateRecipe() {
   // console.log(recipe.description);
   document.querySelector('#description').innerHTML = recipe.description;
   // Populate cooktime and servings
-  document.querySelector('#cooktimeAndServing').innerText =
-    'Cooktime = ' + recipe.totalTime + '\n' +
-    'Servings = ' + recipe.recipeYield;
+  const splitTime =
+  recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  const totalHr = (isNaN(parseInt(splitTime[1]))) ?
+  '?' : splitTime[1];
+  const totalMin = (isNaN(parseInt(splitTime[2]))) ?
+  '?' : splitTime[2];
+  const hrTxt = (!isNaN(parseInt(splitTime[1])) && splitTime[1] == 1) ?
+  ' hr ' : ' hrs ';
+  document.querySelector('#cookTime').innerText =
+  (!isNaN(parseInt(splitTime[1])) && splitTime[1] == 0) ?
+  'Total: ' + totalMin + ' min' :
+  'Total: ' + totalHr + hrTxt + totalMin + ' min';
+  const srvText = (!isNaN(parseInt(splitTime[1])) && splitTime[1] == 1) ?
+  ' Serving' : ' Servings';
+  document.querySelector('#Serving').innerText =
+  recipe.recipeYield + srvText;
   // Populate ingredients
   const ingredientList = document.querySelector('#thelist');
   ingredientList.innerHTML = '';
@@ -64,10 +77,23 @@ function populateRecipe() {
     instructionList.appendChild(instruction);
   }
   // Populate video
-  const vdoBlock = document.querySelector('video');
-  if (recipe.video != 'undefined') {
-    vdoBlock.src = recipe.video;
+  // const vdoBlock = document.querySelector('video');
+  // if (recipe.video != 'undefined') {
+  //   vdoBlock.src = recipe.video;
+  // } else {
+  //   vdoBlock.style.display = 'none';
+  // }
+  const vdoBlock = document.getElementById('rec-vid');
+  const imgBlock = document.getElementById('rec-pic');
+  imgBlock.src = recipe.image;
+  if (!recipe.video || recipe.video.length == 0) {
+    vdoBlock.classList.add('hidden');
   } else {
-    vdoBlock.hidden = true;
+    const el = document.createElement('script');
+    el.addEventListener('error', function(e) {
+      vdoBlock.classList.add('hidden');
+    });
+    el.src = (vdoBlock.src = recipe.video);
+    document.head.appendChild(el);
   }
 }

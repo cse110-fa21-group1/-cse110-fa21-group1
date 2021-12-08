@@ -314,7 +314,7 @@ storage.formatRecipe = function(recipe) {
     }
   }
   // Recipe id (from spoonacular)
-  formatted.id = recipe['id'];
+  formatted.id = recipe['id'].toString();
   formatted.pin = false;
 
   return formatted;

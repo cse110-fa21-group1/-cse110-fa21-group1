@@ -72,9 +72,22 @@ function populateRecipe() {
   // console.log(recipe.description);
   document.querySelector('#description').innerHTML = recipe.description;
   // Populate cooktime and servings
-  document.querySelector('#cooktimeAndServing').innerText =
-    'Cooktime = ' + recipe.totalTime + '\n' +
-    'Servings = ' + recipe.recipeYield;
+  const splitTime =
+  recipe.totalTime.split(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  const totalHr = (isNaN(parseInt(splitTime[1]))) ?
+  '?' : splitTime[1];
+  const totalMin = (isNaN(parseInt(splitTime[2]))) ?
+  '?' : splitTime[2];
+  const hrTxt = (!isNaN(parseInt(splitTime[1])) &amp;&amp; splitTime[1] == 1) ?
+  ' hr ' : ' hrs ';
+  document.querySelector('#cookTime').innerText =
+  (!isNaN(parseInt(splitTime[1])) &amp;&amp; splitTime[1] == 0) ?
+  'Total: ' + totalMin + ' min' :
+  'Total: ' + totalHr + hrTxt + totalMin + ' min';
+  const srvText = (!isNaN(parseInt(splitTime[1])) &amp;&amp; splitTime[1] == 1) ?
+  ' Serving' : ' Servings';
+  document.querySelector('#Serving').innerText =
+  recipe.recipeYield + srvText;
   // Populate ingredients
   const ingredientList = document.querySelector('#thelist');
   ingredientList.innerHTML = '';
@@ -92,11 +105,24 @@ function populateRecipe() {
     instructionList.appendChild(instruction);
   }
   // Populate video
-  const vdoBlock = document.querySelector('video');
-  if (recipe.video != 'undefined') {
-    vdoBlock.src = recipe.video;
+  // const vdoBlock = document.querySelector('video');
+  // if (recipe.video != 'undefined') {
+  //   vdoBlock.src = recipe.video;
+  // } else {
+  //   vdoBlock.style.display = 'none';
+  // }
+  const vdoBlock = document.getElementById('rec-vid');
+  const imgBlock = document.getElementById('rec-pic');
+  imgBlock.src = recipe.image;
+  if (!recipe.video || recipe.video.length == 0) {
+    vdoBlock.classList.add('hidden');
   } else {
-    vdoBlock.hidden = true;
+    const el = document.createElement('script');
+    el.addEventListener('error', function(e) {
+      vdoBlock.classList.add('hidden');
+    });
+    el.src = (vdoBlock.src = recipe.video);
+    document.head.appendChild(el);
   }
 }
 </code></pre>
@@ -109,13 +135,13 @@ function populateRecipe() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addButtonListeners">addButtonListeners</a></li><li><a href="global.html#addInputLimitations">addInputLimitations</a></li><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#addTimeTextListeners">addTimeTextListeners</a></li><li><a href="global.html#endAlarm">endAlarm</a></li><li><a href="global.html#fetchPinnedSearchHelper">fetchPinnedSearchHelper</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#resetTimerView">resetTimerView</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#timerFinish">timerFinish</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a></li><li><a href="RecipeCard.html">RecipeCard</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addButtonListeners">addButtonListeners</a></li><li><a href="global.html#addInputLimitations">addInputLimitations</a></li><li><a href="global.html#addNavigation">addNavigation</a></li><li><a href="global.html#addSearchFunction">addSearchFunction</a></li><li><a href="global.html#addTimeTextListeners">addTimeTextListeners</a></li><li><a href="global.html#displayEmptyResult">displayEmptyResult</a></li><li><a href="global.html#endAlarm">endAlarm</a></li><li><a href="global.html#fetchPinnedSearchHelper">fetchPinnedSearchHelper</a></li><li><a href="global.html#fetchRandomRecipesHelper">fetchRandomRecipesHelper</a></li><li><a href="global.html#fetchRecipes">fetchRecipes</a></li><li><a href="global.html#fetchRecipesHelper">fetchRecipesHelper</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveToPage">moveToPage</a></li><li><a href="global.html#newIng">newIng</a></li><li><a href="global.html#newInstr">newInstr</a></li><li><a href="global.html#openHamburgerMenu">openHamburgerMenu</a></li><li><a href="global.html#populateBaseline">populateBaseline</a></li><li><a href="global.html#populateCards">populateCards</a></li><li><a href="global.html#populateRecipe">populateRecipe</a></li><li><a href="global.html#populateRecipeHelper">populateRecipeHelper</a></li><li><a href="global.html#resetTimerView">resetTimerView</a></li><li><a href="global.html#setTimerText">setTimerText</a></li><li><a href="global.html#startTimer">startTimer</a></li><li><a href="global.html#timerFinish">timerFinish</a></li><li><a href="global.html#youtubeID">youtubeID</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 03:37:08 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Dec 07 2021 23:08:59 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

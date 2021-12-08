@@ -14,7 +14,10 @@ const spoonResultBtn = document.getElementById('search-spoon');
 const userResultBtn = document.getElementById('search-user');
 const isPinnedDiv = document.querySelector('.filter-pinned');
 const isPinnedCheck = isPinnedDiv.querySelector('input');
-const loadingText = document.querySelector('.loading');
+const loadingSpinner = document.querySelector('.loader');
+const loadingText = document.querySelector('#loading');
+const noSpoonRecipeText = document.querySelector('#no-spoon-recipes');
+const noUserRecipeText = document.querySelector('#no-user-recipes');
 
 let recipes = [];
 
@@ -31,8 +34,9 @@ async function init() {
   }
   // Do query
   try {
-    loadingText.innerText = 'LOADING...';
+    loadingText.innerText = 'Loading recipes...';
     loadingText.hidden = false;
+    loadingSpinner.hidden = false;
     if (url.isSearched() && url.isPinnedRecipes()) {
       spoonResultBtn.checked = true;
       isPinnedCheck.checked = true;
@@ -62,6 +66,7 @@ async function init() {
                   storage.getRecipes();
     }
     loadingText.hidden = true;
+    loadingSpinner.hidden = true;
   } catch (err) {
     loadingText.innerText(errorText);
     console.log(`Error fetch recipes: ${err}`);
@@ -75,7 +80,10 @@ async function init() {
  * Populate fetched recipes to the page
  */
 function populateCards() {
-  if (!recipes) return;
+  if (!recipes || recipes.length == 0) {
+    displayEmptyResult();
+    return;
+  }
   // Populate recipes to recipe cards
   recipes.forEach((recipe) => {
     // Populate it with recipe data
@@ -84,6 +92,14 @@ function populateCards() {
     // Add card to the page
     document.querySelector('#recipe-cards--wrapper').appendChild(recipeCard);
   });
+}
+
+/**
+ * Show no result found text
+ */
+function displayEmptyResult() {
+  if (url.isSearched()) noSpoonRecipeText.hidden = false;
+  else noUserRecipeText.hidden = false;
 }
 
 /** Helper to populate pinned search recipes */

@@ -174,10 +174,9 @@ rightButton.onclick = function() {
     const recp = {};
     recp.name = document.getElementById('name-box').value;
     recp.image = picURL.value;
-    recp.video = document.getElementById('vid-url').value;
-    // console.log(document.getElementsByTagName('video'));
-    // document.querySelector('video').src = recp.video;
-    document.getElementsByTagName('video').src = recp.video;
+    let link = youtubeID(vidURL.value);
+    if (link.length == 11) link = 'https://youtube.com/embed/' + link;
+    recp.video = link;
 
     let today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -270,6 +269,7 @@ picButton.onclick = function() {
 vidButton.onclick = function() {
   let link = youtubeID(vidURL.value);
   if (link.length == 11) link = 'https://youtube.com/embed/' + link;
+  vidURL.value = link;
   recipeVid.src = link;
 };
 
@@ -284,6 +284,9 @@ function newIng() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') ingList.removeChild(created);
@@ -318,6 +321,9 @@ function newInstr() {
   created.setAttribute('contenteditable', 'true');
   created.classList.add('ing-instr');
   created.classList.add('grd-brdr');
+  created.addEventListener('paste', (event) => {
+    event.preventDefault();
+  });
   created.addEventListener('keydown', (event) => {
     if (event.key == 'Backspace') {
       if (created.textContent == '') instrList.removeChild(created);
@@ -357,4 +363,10 @@ firstInstr.addEventListener('keydown', (event) => {
     firstInstr.parentNode.insertBefore(newInstr(), firstInstr.nextSibling);
     firstInstr.nextSibling.focus();
   }
+});
+firstIng.addEventListener('paste', (event) => {
+  event.preventDefault();
+});
+firstInstr.addEventListener('paste', (event) => {
+  event.preventDefault();
 });

@@ -41,20 +41,11 @@
         <li id="nav-add" class="recipe-menu">
           <a href=""><img src="assets/add.png" alt="Add Icon" />Add</a>
         </li>
-        <li id="nav-edit" class="recipe-menu">
-          <a href=""><img src="assets/edit.png" alt="Edit Icon" />Edit</a>
-        </li>
-        <li id="nav-delete" class="recipe-menu">
-          <a href=""><img src="assets/delete.png" alt="Delete Icon" />Delete</a>
-        </li>
-        <li id="nav-logout">
-          <a href=""><img src="assets/logout.png" alt="Logout Icon">Login/Logout</a>
-        </li>
       </ul>
     </nav>
     <main>
       <div class="search-header">
-        <h1>Showing results for SEARCH TERM</h1>
+        <h1>Showing results for...</h1>
         <div class="offset-toggle">
           <button class="page-button" type="button" id="previous-page" hidden>Previous page</button>
           <button class="page-button" type="button" id="next-page" hidden>Next page</button>
@@ -73,8 +64,13 @@
         <input type="checkbox" id="is-pinned">
         <label for="is-pinned">Pinned recipes only</label>
       </div>
-      <div class="loading">
-        <h2 id="loading" hidden>LOADING....</h2>
+      <div class="loading" >
+        <div class="loader" hidden></div>
+        <h2 id="loading" hidden>LOADING</h2>
+      </div>
+      <div class="no-recipes">
+        <h2 id="no-spoon-recipes" hidden><span class="sorry">Sorry :(</span><br> no search results were found</h2>
+        <h2 id="no-user-recipes" hidden><span class="sorry">Sorry :(</span><br> no recipes were found</h2>
       </div>
       <div class="recipe-cards--wrapper" id="recipe-cards--wrapper">
         <!-- <article>
