@@ -33,6 +33,10 @@ main {
   width: 80vw;
 }
 
+#description {
+  width: 80vw;
+}
+
 #heart {
   position: absolute;
   top: 17%;
@@ -96,6 +100,7 @@ main {
 
 .portions {
   display: flex;
+  width: 80vw;
 }
 
 .portions-text {
