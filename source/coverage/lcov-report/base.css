@@ -129,7 +129,6 @@ table.coverage td span.cline-any {
   white-space: nowrap;
 }
 .coverage-summary th.file { border-right: none !important; }
-.coverage-summary th.pic,
 .coverage-summary th.abs,
 .coverage-summary td.pct,
 .coverage-summary td.abs { text-align: right; }
